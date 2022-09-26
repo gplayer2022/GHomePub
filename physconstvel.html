@@ -37,8 +37,7 @@
               <ul>
                 <li>速さ : <input type="number" class="number" name="velocity" id="velocity" value="12.0" min="0.1"
                     max="128.0"> m/s （指定可能範囲 : (0, 128.0] ）</li>
-                <li>角度 : <input type="number" class="number" name="angle" id="angle" value="0" min="0" max="90"> °
-                  （指定可能範囲 : [0, 90] ）</li>
+                <li>角度 : <input type="number" class="number" name="angle" id="angle" value="23" min="0" max="90"> ° （指定可能範囲 : [0, 90] ）</li>
               </ul>
               <p id="alert" class="alert"></p>
               <div class="gplayer-button-wrapper">
@@ -63,6 +62,36 @@
             <canvas id="chart-xt" class="chart"></canvas>
             <h4 class="chart-title">v-t グラフ</h4>
             <canvas id="chart-vt" class="chart"></canvas>
+          </div><!-- .card-inner -->
+          <div class="card-inner">
+            <h3 class="card-subtitle">観測例</h3>
+            <p>真横に移動します。</p>
+            <table class="left-th-table">
+              <tbody>
+                <tr>
+                  <th>速さ</th>
+                  <td>12.0 [m/s]</td>
+                </tr>
+                <tr>
+                  <th>角度</th>
+                  <td>0 °</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>真下に移動します。</p>
+            <table class="left-th-table">
+              <tbody>
+                <tr>
+                  <th>速さ</th>
+                  <td>12.0 [m/s]</td>
+                </tr>
+                <tr>
+                  <th>角度</th>
+                  <td>90 °</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>上記は PC 利用時の観測例です。利用状況によって精度が変わるため、いつも同じ結果が出るわけではありません。</p>
           </div><!-- .card-inner -->
         </section>
         <section class="card">
