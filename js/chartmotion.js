@@ -3,7 +3,6 @@
   // スタートボタン
   const startButtonIElem = document.getElementById('start-button');
   // 実験場とボール
-  const labBoardElem = document.getElementById('lab-board');
   const ballElem = document.getElementById('ball');
   // フォーム
   const originIElem = document.getElementById('origin');
@@ -78,7 +77,11 @@
   function computeBallPosition() {
     const ballStyle = getComputedStyle(ballElem);
     x = parseInt(ballStyle.left);
-    y = parseInt(ballStyle.top);
+    if (originIElem.value == 'bottom-left') {
+      y = parseInt(ballStyle.bottom);
+    } else {
+      y = parseInt(ballStyle.top);
+    }
   }
 
   // x-t グラフ用データを追加
