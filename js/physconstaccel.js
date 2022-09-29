@@ -12,8 +12,8 @@
   // 経過時間
   let milliSecond = 0;
   // フォームタグ
-  const velocityIElem = document.getElementById('velocity');
   const accelerationIElem = document.getElementById('acceleration');
+  const velocityIElem = document.getElementById('velocity');
   const angleIElem = document.getElementById('angle');
   const startButtonIElem = document.getElementById('start-button');
   // 実験場とボール

@@ -1,18 +1,25 @@
 (function() {
   'use strict';
-  // スタートボタン
+  // 重力加速度
+  const acceleration = 9.8;
+  // 水平投射初速度
+  let velocity = 0;
+  // 経過時間
+  let milliSecond = 0;
+  // フォームタグ
+  const velocityIElem = document.getElementById('velocity');
   const startButtonIElem = document.getElementById('start-button');
-  // 実験場とボール
+  // ボール
   const ballElem = document.getElementById('ball');
-  // フォーム
-  const originIElem = document.getElementById('origin');
-  // キャンバス
-  const chartXtContext = document.getElementById('chart-xt').getContext('2d');
-  const chartVtContext = document.getElementById('chart-vt').getContext('2d');
-  // 1 文字分のフォントサイズ（1 メートルに該当）
-  const fontSize = 16;
+  const ballPosition = {
+    x: 0,
+    y: 0,
+  };
   // 観測間隔
   const intervalMilliSecond = 250;
+  // キャンバス
+  const chartXtContext = document.getElementById('theoretical-chart-xt').getContext('2d');
+  const chartVtContext = document.getElementById('theoretical-chart-vt').getContext('2d');
   // チャート
   let xtChart = null;
   let vtChart = null;
@@ -21,25 +28,17 @@
   // x-t グラフ用
   let horizontalXs = [];
   let verticalYs = [];
-  let diagonalDistances = [];
   // v-t グラフ用
   let horizontalVelocities = [];
   let verticalVelocities = [];
-  let diagonalVelocities = [];
-  // 座標と経過時間
-  let x;
-  let y;
-  let milliSecond = 0;
 
   // 「開始」ボタンクリック
   startButtonIElem.addEventListener('click', function() {
     // チャート用配列を初期化
     initializeData();
+    setUserParam();
     const interval = setInterval(function() {
-      computeBallPosition();
-      if (0 < timeLabels.length
-        && horizontalXs[horizontalXs.length - 1] === x / fontSize
-        && verticalYs[verticalYs.length - 1] === y / fontSize) {
+      if (hasStopped()) {
         // グラフを描画
         drawXtChart();
         drawVtChart();
@@ -53,7 +52,7 @@
     }, intervalMilliSecond);
   }, false);
 
-  // チャート用配列を初期化
+  // 値を初期化
   function initializeData() {
     if (xtChart !== null) {
       xtChart.destroy();
@@ -64,50 +63,64 @@
     timeLabels = [];
     horizontalXs = [];
     verticalYs = [];
-    diagonalDistances = [];
     horizontalVelocities = [];
     verticalVelocities = [];
-    diagonalVelocities = [];
     // ミリ秒の蓄積をクリア
     milliSecond = 0;
+    // ボール位置をクリア
+    ballPosition.x = 0;
+    ballPosition.y = 0;
   }
 
-  // ボールの位置を取得
-  function computeBallPosition() {
+  // ユーザ設定値をセット
+  function setUserParam() {
+    velocity = parseFloat(velocityIElem.value);
+  }
+
+  // ボールの停止判定
+  function hasStopped() {
     const ballStyle = getComputedStyle(ballElem);
-    x = parseInt(ballStyle.left);
-    if (originIElem.value == 'bottom-left') {
-      y = parseInt(ballStyle.bottom);
+    let hasStopped = false;
+    if (ballPosition.x === ballStyle.left
+      && ballPosition.y === ballStyle.top) {
+      hasStopped = true;
     } else {
-      y = parseInt(ballStyle.top);
+      ballPosition.x = ballStyle.left;
+      ballPosition.y = ballStyle.top;
     }
+    return hasStopped;
+  }
+
+  // X 方向の速さを計算
+  function calcVelocityX() {
+    return velocity;
+  }
+
+  // Y 方向の速さを計算
+  function calcVelocityY() {
+    return acceleration * (milliSecond / 1000);
+  }
+
+  // x 方向の変位を計算
+  function calcDistanceX() {
+    return calcVelocityX() * (milliSecond / 1000);
+  }
+
+  // y 方向の変位を計算
+  function calcDistanceY() {
+    return (1 / 2) * acceleration * Math.pow((milliSecond / 1000), 2);
   }
 
   // x-t グラフ用データを追加
   function pushXtData() {
-    horizontalXs.push(x / fontSize);
-    verticalYs.push(y / fontSize);
-    diagonalDistances.push(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)) / fontSize);
+    horizontalXs.push(calcDistanceX());
+    verticalYs.push(calcDistanceY());
   }
 
   // v-t グラフ用データを追加
   function pushVtData() {
-    if (timeLabels.length === 1) {
-      horizontalVelocities.push(null);
-      verticalVelocities.push(null);
-      diagonalVelocities.push(null);
-    } else {
-      horizontalVelocities.push(
-        (horizontalXs[horizontalXs.length - 1] - horizontalXs[horizontalXs.length - 2])
-        / (intervalMilliSecond / 1000));
-      verticalVelocities.push(
-        (verticalYs[verticalYs.length - 1] - verticalYs[verticalYs.length - 2])
-        / (intervalMilliSecond / 1000));
-      diagonalVelocities.push(
-        (diagonalDistances[diagonalDistances.length - 1]
-        - diagonalDistances[diagonalDistances.length - 2])
-        / (intervalMilliSecond / 1000));
-    }
+    horizontalVelocities.push(calcVelocityX());
+    verticalVelocities.push(calcVelocityY());
   }
 
   // x-t グラフ描画
@@ -124,11 +137,7 @@
           label: '縦方向',
           data: verticalYs,
           borderColor: '#448844',
-        }, {
-          label: '合成',
-          data: diagonalDistances,
-          borderColor: '#4488ff',
-        }],
+        },],
       },
       options: {
         title: {
@@ -153,11 +162,7 @@
           label: '縦方向',
           data: verticalVelocities,
           borderColor: '#448844',
-        }, {
-          label: '合成',
-          data: diagonalVelocities,
-          borderColor: '#4488ff',
-        }],
+        },],
       },
       options: {
         title: {
