@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,16 @@
   <meta property="og:locale" content="ja_JP">
   <title>垂直抗力と摩擦力 | GHomePub</title>
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-D8HPBTVCPM');
+  </script>
 </head>
+
 <body class="body">
   <div class="whole-wrapper">
     <div class="pre-header">
@@ -36,12 +46,13 @@
             <p>抗力は、接触面に垂直な分力である垂直抗力と、接触面に平行な分力である摩擦力とに分けられます。</p>
           </div><!-- .card-inner -->
         </section>
+
         <section class="card">
           <h2 class="card-title">実験室</h2>
           <div class="card-inner">
             <h3 class="card-subtitle">シミュレーション</h3>
-            <p>ざらざらの斜面に箱状の物体が置かれている。斜面から物体に働く摩擦力は非常に大きく、斜面をいくら傾けても物体は滑りださないものとする。</p>
-            <p>なお、赤・緑・青の矢印は、それぞれ重力・摩擦力・垂直抗力を表している。</p>
+            <p>ざらざらの斜面に箱状の物体が置かれています。斜面から物体に働く摩擦力は非常に大きく、斜面をいくら傾けても物体は滑りださないものとします。</p>
+            <p>なお、赤・緑・青の矢印は、それぞれ重力・摩擦力・垂直抗力を表しています。</p>
             <form>
               <ul>
                 <li>傾斜角度 : <input id="angle" class="range" type="range" name="angle" min="0" max="70" step="1"
@@ -86,6 +97,7 @@
             <p>上記は PC 利用時の観測例です。利用状況によって精度が変わるため、いつも同じ結果が出るわけではありません。</p>
           </div><!-- .card-inner -->
         </section>
+
         <script src="js/button.js"></script>
         <script src="js/physslope.js"></script>
       </main>
@@ -96,4 +108,5 @@
   </div><!-- .whole-wrapper -->
   <script src="js/common.js"></script>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,16 @@
   <meta property="og:locale" content="ja_JP">
   <title>GHomePub</title>
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-D8HPBTVCPM');
+  </script>
 </head>
+
 <body class="body">
   <div class="whole-wrapper">
     <div class="pre-header">
@@ -28,14 +38,23 @@
     </header>
     <div class="content-container">
       <main id="main" class="main">
+
         <section class="card">
           <h2 class="card-title">C# 授業支援</h2>
+          <h3 class="card-subtitle">基本編</h3>
           <ul>
             <li><a href="guideio.html">入出力</a></li>
             <li><a href="guideif.html">条件分岐</a></li>
             <li><a href="guiderandom.html">乱数生成</a></li>
+            <li><a href="guideloop.html">ループ</a></li>
+          </ul>
+          <h3 class="card-subtitle">課題編</h3>
+          <ul>
+            <li><a href="taskio.html">入出力</a></li>
+            <li><a href="taskif.html">条件分岐</a></li>
           </ul>
         </section>
+
         <section class="card">
           <h2 class="card-title">物理基礎授業支援</h2>
           <h3 class="card-subtitle">計算室</h3>
@@ -52,12 +71,14 @@
             <li><a href="physslope.html">垂直抗力と摩擦力</a></li>
           </ul>
         </section>
+
         <section class="card">
           <h2 class="card-title">外部ページ</h2>
           <ul>
             <li><a href="http://gplayer2022.web.fc2.com/index.html" target="_blank">夏期講習実習室</a></li>
           </ul>
         </section>
+
       </main>
     </div><!-- .content-container -->
     <footer id="footer">
@@ -66,4 +87,5 @@
   </div><!-- .whole-wrapper -->
   <script src="js/common.js"></script>
 </body>
+
 </html>

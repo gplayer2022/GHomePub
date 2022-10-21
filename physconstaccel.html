@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,16 @@
   <meta property="og:locale" content="ja_JP">
   <title>等加速度直線運動 | GHomePub</title>
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-D8HPBTVCPM');
+  </script>
 </head>
+
 <body class="body">
   <div class="whole-wrapper">
     <div class="pre-header">
@@ -35,6 +45,7 @@
             <p>等加速度直線運動とは、一定の加速度でまっすぐ進む運動です。</p>
           </div><!-- .card-inner -->
         </section>
+
         <section class="card">
           <h2 class="card-title">実験室</h2>
           <div class="card-inner">
@@ -138,6 +149,7 @@
             <canvas id="theoretical-chart-vt" class="chart"></canvas>
           </div><!-- .card-inner -->
         </section>
+
         <section class="card">
           <h2 class="card-title">JavaScript と物理基礎</h2>
           <div class="card-inner">
@@ -146,6 +158,7 @@
             <script src="https://gist.github.com/gplayer2022/c88bef927a10254ec378b4570a9602fe.js"></script>
           </div><!-- .card-inner -->
         </section>
+
         <script src="js/button.js"></script>
         <script src="js/physconstaccel.js"></script>
         <script src="js/chartmotion.js"></script>
@@ -158,4 +171,5 @@
   </div><!-- .whole-wrapper -->
   <script src="js/common.js"></script>
 </body>
+
 </html>

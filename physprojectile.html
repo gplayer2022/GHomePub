@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,16 @@
   <meta property="og:locale" content="ja_JP">
   <title>鉛直投げ上げと斜方投射 | GHomePub</title>
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-D8HPBTVCPM');
+  </script>
 </head>
+
 <body class="body">
   <div class="whole-wrapper">
     <div class="pre-header">
@@ -36,6 +46,7 @@
             <p>斜方投射とは、物体を斜めに投げ出す運動です。斜方投射は、運動を鉛直方向と水平方向に分けて考えたとき、鉛直方向には鉛直投げ上げと同様に、水平方向には等速直線運動と同様に運動しています。</p>
           </div><!-- .card-inner -->
         </section>
+
         <section class="card">
           <h2 class="card-title">実験室</h2>
           <div class="card-inner">
@@ -111,6 +122,7 @@
             <canvas id="theoretical-chart-vt" class="chart"></canvas>
           </div><!-- .card-inner -->
         </section>
+
         <section class="card">
           <h2 class="card-title">JavaScript と物理基礎</h2>
           <div class="card-inner">
@@ -119,6 +131,7 @@
             <script src="https://gist.github.com/gplayer2022/c4fa0d026e3fdf36dd05c9f693f1c385.js"></script>
           </div><!-- .card-inner -->
         </section>
+
         <script src="js/button.js"></script>
         <script src="js/physprojectile.js"></script>
         <script src="js/chartmotion.js"></script>
@@ -131,4 +144,5 @@
   </div><!-- .whole-wrapper -->
   <script src="js/common.js"></script>
 </body>
+
 </html>
