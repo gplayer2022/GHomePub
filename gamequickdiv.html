@@ -56,8 +56,9 @@
               <h3 class="card-subtitle">問 {{ i + 1 }}</h3>
               <p class="question">{{ question.dividend }} ÷ {{ question.divisor }} = ? ... ?</p>
               <ul>
-                <li>商　 : <input v-if="question.yourQuotient === -1" v-on:change="answerQuotient(i, $event.target.value)"
-                    type="number" min="0" max="9">
+                <li>商　 :
+                  <input v-if="question.yourQuotient === -1" v-on:change="answerQuotient(i, $event.target.value)"
+                    type="text">
                   <span v-if="(-1 === question.yourQuotient)"></span>
                   <span v-else>{{ question.yourQuotient }}</span>
                   （正答 :
@@ -68,8 +69,9 @@
                   <span v-else-if="(question.yourQuotient === question.quotient)" class="correct">○</span>
                   <span v-else class="incorrect">×</span>）
                 </li>
-                <li>余り : <input v-if="question.yourRemainder === -1"
-                    v-on:change="answerRemainder(i, $event.target.value)" type="number" min="0" max="9">
+                <li>余り :
+                  <input v-if="question.yourRemainder === -1" v-on:change="answerRemainder(i, $event.target.value)"
+                    type="text">
                   <span v-if="(-1 === question.yourRemainder)"></span>
                   <span v-else>{{ question.yourRemainder }}</span>
                   （正答 :
