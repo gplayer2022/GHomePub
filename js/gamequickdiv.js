@@ -8,6 +8,7 @@ new Vue({
       time: 0,
     },
     questions: [],
+    is4SmartPhone: false,
     isRunning: false,
     startTime: 0,
   },
