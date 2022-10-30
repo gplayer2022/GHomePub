@@ -53,7 +53,7 @@
               </div><!-- .gplayer-button-wrapper -->
             </div><!-- .card-inner -->
           </section>
-          <section v-if="0 < questions.length" class="card">
+          <section v-if="0 < questions.length" class="card" v-cloak>
             <h2 class="card-title">問題</h2>
             <div v-for="(question, i) in questions" class="card-inner quiz">
               <h3 class="card-subtitle">問 {{ i + 1 }}</h3>
@@ -100,7 +100,7 @@
               </ul>
             </div><!-- .card-inner .quiz -->
           </section>
-          <section v-if="score.time !== 0" class="card">
+          <section v-if="score.time !== 0" class="card" v-cloak>
             <h2 class="card-title">採点</h2>
             <p>今回の試験結果です。</p>
             <table class="left-th-table">
