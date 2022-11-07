@@ -103,8 +103,6 @@ window.addEventListener('DOMContentLoaded', function() {
     pedestal: '#ae9890',
     box: '#a8dba8',
     gravity: 'rgba(' + [235, 70, 84, 0.7] + ')',
-    // gravity: 'rgba(' + [255, 69, 0, 0.7] + ')',
-    // friction: 'rgba(' + [119, 175, 156, 0.7] + ')',
     friction: 'rgba(' + [0, 100, 0, 0.7] + ')',
     normalForce: 'rgba(' + [72, 55, 252, 0.7] + ')',
   };
