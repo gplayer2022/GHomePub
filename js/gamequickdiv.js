@@ -23,13 +23,17 @@ new Vue({
     initializeScore: function () {
       this.score.point = 0;
       this.score.time = 0;
+      if (this.level === 0 || this.level === 1) {
+        this.eachPoint = 5;
+      } else {
+        this.eachPoint = 10;
+      }
     },
     createQuestions: function () {
       this.questions = [];
       for (let i = 0; i < this.questionsLength; i++) {
         let question = {};
         if (this.level === 0 || this.level === 1) {
-          this.eachPoint = 5;
           if (this.level === 0) {
             question.dividend = Math.floor(Math.random() * 10);
             question.divisor = Math.floor(Math.random() * 9) + 1;
@@ -42,7 +46,6 @@ new Vue({
           question.yourQuotient = null;
           question.yourRemainder = null;
         } else if (this.level === 2 || this.level === 3) {
-          this.eachPoint = 10;
           let quotient;
           if (this.level === 2) {
             question.divisor = Math.floor(Math.random() * 9) + 1;
@@ -59,7 +62,6 @@ new Vue({
           question.yourQuotient = null;
           question.yourRemainder = null;
         } else if (this.level === 4 || this.level === 5) {
-          this.eachPoint = 10;
           let quotient;
           let divisor;
           if (this.level === 4) {
