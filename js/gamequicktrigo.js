@@ -16,39 +16,39 @@ new Vue({
     baseSelections : {
       p1: {
         value: '1',
-        levels: [1, 2, ],
+        levels: [1, 2, 3, ],
       },
       pfs3d2: {
         value: '√3/2',
-        levels: [0, 1, 2, ],
+        levels: [0, 1, 2, 3, ],
       },
       pf1ds2: {
         value: '1/√2',
-        levels: [0, 1, 2, ],
+        levels: [0, 1, 2, 3, ],
       },
       pf1d2: {
         value: '1/2',
-        levels: [0, 1, 2, ],
+        levels: [0, 1, 2, 3, ],
       },
       pm0: {
         value: '0',
-        levels: [1, 2, ],
+        levels: [1, 2, 3, ],
       },
       mf1d2: {
         value: '-(1/2)',
-        levels: [1, 2, ],
+        levels: [1, 2, 3, ],
       },
       mf1ds2: {
         value: '-(1/√2)',
-        levels: [1, 2, ],
+        levels: [1, 2, 3, ],
       },
       mfs3d2: {
         value: '-(√3/2)',
-        levels: [1, 2, ],
+        levels: [1, 2, 3, ],
       },
       m1: {
         value: '-1',
-        levels: [1, 2, ],
+        levels: [1, 2, 3, ],
       },
     },
   },
@@ -61,7 +61,7 @@ new Vue({
             degree: `sin0°`,
             radian: `sin0`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.pm0.value,
         },
         {
@@ -69,7 +69,7 @@ new Vue({
             degree: `sin30°`,
             radian: `sin(π/6)`,
           },
-          levels: [0, 1, 2, ],
+          levels: [0, 1, 2, 3, ],
           answer: this.baseSelections.pf1d2.value,
         },
         {
@@ -77,7 +77,7 @@ new Vue({
             degree: `sin45°`,
             radian: `sin(π/4)`,
           },
-          levels: [0, 1, 2, ],
+          levels: [0, 1, 2, 3, ],
           answer: this.baseSelections.pf1ds2.value,
         },
         {
@@ -85,7 +85,7 @@ new Vue({
             degree: `sin60°`,
             radian: `sin(π/3)`,
           },
-          levels: [0, 1, 2, ],
+          levels: [0, 1, 2, 3, ],
           answer: this.baseSelections.pfs3d2.value,
         },
         {
@@ -93,7 +93,7 @@ new Vue({
             degree: `sin90°`,
             radian: `sin(π/2)`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.p1.value,
         },
         {
@@ -101,7 +101,7 @@ new Vue({
             degree: `sin120°`,
             radian: `sin(2π/3)`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.pfs3d2.value,
         },
         {
@@ -109,7 +109,7 @@ new Vue({
             degree: `sin135°`,
             radian: `sin(3π/4)`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.pf1ds2.value,
         },
         {
@@ -117,7 +117,7 @@ new Vue({
             degree: `sin150°`,
             radian: `sin(5π/6)`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.pf1d2.value,
         },
         {
@@ -125,7 +125,7 @@ new Vue({
             degree: `sin180°`,
             radian: `sinπ`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.pm0.value,
         },
         {
@@ -133,7 +133,7 @@ new Vue({
             degree: `sin210°`,
             radian: `sin(7π/6)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mf1d2.value,
         },
         {
@@ -141,7 +141,7 @@ new Vue({
             degree: `sin225`,
             radian: `sin(5π/4)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mf1ds2.value,
         },
         {
@@ -149,7 +149,7 @@ new Vue({
             degree: `sin240°`,
             radian: `sin(4π/3)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mfs3d2.value,
         },
         {
@@ -157,7 +157,7 @@ new Vue({
             degree: `sin270°`,
             radian: `sin(3π/2)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.m1.value,
         },
         {
@@ -165,7 +165,7 @@ new Vue({
             degree: `sin300°`,
             radian: `sin(5π/3)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mfs3d2.value,
         },
         {
@@ -173,7 +173,7 @@ new Vue({
             degree: `sin315°`,
             radian: `sin(7π/4)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mf1ds2.value,
         },
         {
@@ -181,7 +181,7 @@ new Vue({
             degree: `sin330°`,
             radian: `sin(11π/6)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mf1d2.value,
         },
         {
@@ -189,7 +189,7 @@ new Vue({
             degree: `sin360°`,
             radian: `sin(2π)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.pm0.value,
         },
         // cos
@@ -198,7 +198,7 @@ new Vue({
             degree: `cos0°`,
             radian: `cos0`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.p1.value,
         },
         {
@@ -206,7 +206,7 @@ new Vue({
             degree: `cos30°`,
             radian: `cos(π/6)`,
           },
-          levels: [0, 1, 2, ],
+          levels: [0, 1, 2, 3, ],
           answer: this.baseSelections.pfs3d2.value,
         },
         {
@@ -214,7 +214,7 @@ new Vue({
             degree: `cos45°`,
             radian: `cos(π/4)`,
           },
-          levels: [0, 1, 2, ],
+          levels: [0, 1, 2, 3, ],
           answer: this.baseSelections.pf1ds2.value,
         },
         {
@@ -222,7 +222,7 @@ new Vue({
             degree: `cos60°`,
             radian: `cos(π/3)`,
           },
-          levels: [0, 1, 2, ],
+          levels: [0, 1, 2, 3, ],
           answer: this.baseSelections.pf1d2.value,
         },
         {
@@ -230,7 +230,7 @@ new Vue({
             degree: `cos90°`,
             radian: `cos(π/2)`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.pm0.value,
         },
         {
@@ -238,7 +238,7 @@ new Vue({
             degree: `cos120°`,
             radian: `cos(2π/3)`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.mf1d2.value,
         },
         {
@@ -246,7 +246,7 @@ new Vue({
             degree: `cos135°`,
             radian: `cos(3π/4)`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.mf1ds2.value,
         },
         {
@@ -254,7 +254,7 @@ new Vue({
             degree: `cos150°`,
             radian: `cos(5π/6)`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.mfs3d2.value,
         },
         {
@@ -262,7 +262,7 @@ new Vue({
             degree: `cos180°`,
             radian: `cosπ`,
           },
-          levels: [1, 2, ],
+          levels: [1, 2, 3, ],
           answer: this.baseSelections.m1.value,
         },
         {
@@ -270,7 +270,7 @@ new Vue({
             degree: `cos210°`,
             radian: `cos(7π/6)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mfs3d2.value,
         },
         {
@@ -278,7 +278,7 @@ new Vue({
             degree: `cos225°`,
             radian: `cos(5π/4)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mf1ds2.value,
         },
         {
@@ -286,7 +286,7 @@ new Vue({
             degree: `cos240°`,
             radian: `cos(4π/3)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.mf1d2.value,
         },
         {
@@ -294,7 +294,7 @@ new Vue({
             degree: `cos270°`,
             radian: `cos(3π/2)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.pm0.value,
         },
         {
@@ -302,7 +302,7 @@ new Vue({
             degree: `cos300°`,
             radian: `cos(5π/3)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.pf1d2.value,
         },
         {
@@ -310,7 +310,7 @@ new Vue({
             degree: `cos315°`,
             radian: `cos(7π/4)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.pf1ds2.value,
         },
         {
@@ -318,7 +318,7 @@ new Vue({
             degree: `cos330°`,
             radian: `cos(11π/6)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.pfs3d2.value,
         },
         {
@@ -326,7 +326,7 @@ new Vue({
             degree: `cos360°`,
             radian: `cos(2π)`,
           },
-          levels: [1, 2, ],
+          levels: [2, 3, ],
           answer: this.baseSelections.p1.value,
         },
       ];
