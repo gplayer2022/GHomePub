@@ -1,74 +1,90 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="授業支援用サイトです。主に C# および物理基礎を扱っています。"
+    />
+    <meta property="og:title" content="入出力 | GHomePub" />
+    <meta
+      property="og:description"
+      content="授業支援用サイトです。主に C# および物理基礎を扱っています。"
+    />
+    <meta property="og:site_name" content="入出力 | GHomePub" />
+    <meta property="og:locale" content="ja_JP" />
+    <title>入出力 | GHomePub</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-D8HPBTVCPM");
+    </script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="授業支援用サイトです。主に C# および物理基礎を扱っています。">
-  <meta property="og:title" content="入出力 | GHomePub">
-  <meta property="og:description" content="授業支援用サイトです。主に C# および物理基礎を扱っています。">
-  <meta property="og:site_name" content="入出力 | GHomePub">
-  <meta property="og:locale" content="ja_JP">
-  <title>入出力 | GHomePub</title>
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-D8HPBTVCPM');
-  </script>
-</head>
-
-<body class="body">
-  <div class="whole-wrapper">
-    <div class="pre-header">
-      <div class="pre-header-inner">
-        <p class="site-description">授業支援用サイト</p>
-      </div><!-- .pre-header-inner -->
-    </div><!-- .pre-header -->
-    <header class="header" id="sticky-header">
-      <div class="header-inner">
-        <h1 class="site-title">
-          <a href="index.html">GHomePub</a>
-        </h1>
-      </div><!-- .header-inner -->
-    </header>
-    <div class="content-container">
-      <main id="main" class="main">
-        <section class="card">
-          <h2 class="card-title">C# 授業支援</h2>
-          <div class="card-inner">
-            <h3 class="card-subtitle">入出力</h3>
-            <p>出力します。</p>
-            <script src="https://gist.github.com/gplayer2022/e83f0f8c1ed9c45956fad63fe82355f7.js"></script>
-            <p>入力します。</p>
-            <script src="https://gist.github.com/gplayer2022/f3ce1ebb441643c98228fad597edf3b1.js"></script>
-          </div><!-- .card-inner -->
-          <div class="card-inner">
-            <h3 class="card-subtitle">文字の装飾</h3>
-            <p>出力する文字の色を変えます。</p>
-            <script src="https://gist.github.com/gplayer2022/c0d1d6f33bfa059840c3c34529eb8086.js"></script>
-            <p>出力する文字の背景色を変えます。</p>
-            <script src="https://gist.github.com/gplayer2022/915962539c1ea1a3bea2fafdf966ea2c.js"></script>
-          </div><!-- .card-inner -->
-          <div class="card-inner">
-            <h3 class="card-subtitle">待ち受け</h3>
-            <p>ユーザの入力を待ち受けます。</p>
-            <script src="https://gist.github.com/gplayer2022/711ef219553ae3a341160971158c26c6.js"></script>
-          </div><!-- .card-inner -->
-        </section>
-
-      </main>
-    </div><!-- .content-container -->
-    <footer id="footer">
-      <p class="copyright">&copy;GHome 2022</p>
-    </footer>
-  </div><!-- .whole-wrapper -->
-  <script src="js/common.js"></script>
-</body>
-
+  <body class="body">
+    <div class="whole-wrapper">
+      <div class="pre-header">
+        <div class="pre-header-inner">
+          <p class="site-description">授業支援用サイト</p>
+        </div>
+        <!-- .pre-header-inner -->
+      </div>
+      <!-- .pre-header -->
+      <header class="header" id="sticky-header">
+        <div class="header-inner">
+          <h1 class="site-title">
+            <a href="index.html">GHomePub</a>
+          </h1>
+        </div>
+        <!-- .header-inner -->
+      </header>
+      <div class="content-container">
+        <main id="main" class="main">
+          <section class="card">
+            <h2 class="card-title">C# 授業支援</h2>
+            <div class="card-inner">
+              <h3 class="card-subtitle">入出力</h3>
+              <p>出力します。</p>
+              <script src="https://gist.github.com/gplayer2022/e83f0f8c1ed9c45956fad63fe82355f7.js"></script>
+              <p>入力します。</p>
+              <script src="https://gist.github.com/gplayer2022/f3ce1ebb441643c98228fad597edf3b1.js"></script>
+            </div>
+            <!-- .card-inner -->
+            <div class="card-inner">
+              <h3 class="card-subtitle">文字の装飾</h3>
+              <p>出力する文字の色を変えます。</p>
+              <script src="https://gist.github.com/gplayer2022/c0d1d6f33bfa059840c3c34529eb8086.js"></script>
+              <p>出力する文字の背景色を変えます。</p>
+              <script src="https://gist.github.com/gplayer2022/915962539c1ea1a3bea2fafdf966ea2c.js"></script>
+            </div>
+            <!-- .card-inner -->
+            <div class="card-inner">
+              <h3 class="card-subtitle">待ち受け</h3>
+              <p>ユーザの入力を待ち受けます。</p>
+              <script src="https://gist.github.com/gplayer2022/711ef219553ae3a341160971158c26c6.js"></script>
+            </div>
+            <!-- .card-inner -->
+          </section>
+        </main>
+      </div>
+      <!-- .content-container -->
+      <footer id="footer">
+        <p class="copyright">&copy;GHome 2022</p>
+      </footer>
+    </div>
+    <!-- .whole-wrapper -->
+    <script src="js/common.js"></script>
+  </body>
 </html>

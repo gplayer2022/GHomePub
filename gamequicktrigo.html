@@ -1,173 +1,254 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="授業支援用サイトです。主に C# および物理基礎を扱っています。">
-  <meta property="og:title" content="素早く三角比 | GHomePub">
-  <meta property="og:description" content="授業支援用サイトです。主に C# および物理基礎を扱っています。">
-  <meta property="og:site_name" content="素早く三角比 | GHomePub">
-  <meta property="og:locale" content="ja_JP">
-  <title>素早く三角比 | GHomePub</title>
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-D8HPBTVCPM');
-  </script>
-</head><body class="body">
-  <div class="whole-wrapper">
-    <div class="pre-header">
-      <div class="pre-header-inner">
-        <p class="site-description">授業支援用サイト</p>
-      </div><!-- .pre-header-inner -->
-    </div><!-- .pre-header -->
-    <header class="header" id="sticky-header">
-      <div class="header-inner">
-        <h1 class="site-title">
-          <a href="index.html">GHomePub</a>
-        </h1>
-      </div><!-- .header-inner -->
-    </header>
-    <div class="content-container">
-      <main id="main" class="main">
-<script id="MathJax-script" async src="js/mathjax/tex-mml-chtml.js"></script>
-<div id="app">
-  <section class="card">
-    <h2 class="card-title">道場</h2>
-    <div class="card-inner">
-      <h3 class="card-subtitle">素早く三角比</h3>
-      <p>三角比の問題を 10 問出題します。素早く解答していきましょう。</p>
-      <p>答えは一発勝負です。修正できません。気張っていきましょう！</p>
-    </div><!-- .card-inner -->
-    <div class="card-inner">
-      <h3 class="card-subtitle">凡例</h3>
-      <p>出題は、値や式が簡易的に表示されます。左の値や式は右のように表示されます。パイ（ π ）が見にくいかもしれません。</p>
-      <table class="left-th-table th-text-center">
-        <tr>
-          <th>\(\dfrac{1}{2}\)</th>
-          <td>1/2</td>
-        </tr>
-        <tr>
-          <th>\(-\dfrac{1}{2}\)</th>
-          <td>-(1/2)</td>
-        </tr>
-        <tr>
-          <th>\(\dfrac{1}{\sqrt{2}}\)</th>
-          <td>1/√2</td>
-        </tr>
-        <tr>
-          <th>\(-\dfrac{\sqrt{3}}{2}\)</th>
-          <td>-(√3/2)</td>
-        </tr>
-        <tr>
-          <th>\(\sin0^\circ\)</th>
-          <td>sin0°</td>
-        </tr>
-        <tr>
-          <th>\(\sin\dfrac{\pi}{6}\)</th>
-          <td>sin(π/6)</td>
-        </tr>
-        <tr>
-          <th>\(\sin\dfrac{2\pi}{3}\)</th>
-          <td>sin(2π/3)</td>
-        </tr>
-      </table>
-    </div><!-- .card-inner -->
-    <div class="card-inner">
-      <h3 v-if="!isRunning" class="card-subtitle">レベル選択と実行</h3>
-      <ul v-if="!isRunning" class="simple-list">
-        <li>
-          <label for="level-0">
-            <input type="radio" id="level-0" value="0" v-model.number="level"> レベル 0 : 0° より大きく 90° 未満
-          </label>
-        </li>
-        <li>
-          <label for="level-1">
-            <input type="radio" id="level-1" value="1" v-model.number="level"> レベル 1 : 0° 以上 180° 以下
-          </label>
-        </li>
-        <li>
-          <label for="level-2">
-            <input type="radio" id="level-2" value="2" v-model.number="level"> レベル 2 : 0° 以上 360° 以下
-          </label>
-        </li>
-        <li>
-          <label for="level-3">
-            <input type="radio" id="level-3" value="3" v-model.number="level"> レベル 3 : 弧度法で
-          </label>
-        </li>
-      </ul>
-      <div v-if="!isRunning" class="gplayer-button-wrapper">
-        <button v-on:click="startGame()" type="button" class="gplayer-button ripple">ゲーム開始</button>
-      </div><!-- .gplayer-button-wrapper -->
-    </div><!-- .card-inner -->
-  </section>
-  <section v-if="0 < questions.length" class="card" v-cloak>
-    <h2 class="card-title">問題</h2>
-    <div v-for="(question, i) in questions"  v-bind:key="question.index" class="card-inner quiz">
-      <h3 class="card-subtitle">問 {{ i + 1 }}</h3>
-      <p class="question">{{ question.question }} = ?</p>
-      <ul>
-        <li>解答 : 
-          <template v-if="(question.yourAnswer === '')">
-            <ul class="smart-selection">
-              <li v-for="(selection, j) in selections" v-bind:key="selection.index">
-                <label v-bind:for="`_${ i }-${ j }`">
-                  <input type="radio"
-                    v-bind:id="`_${ i }-${ j }`"
-                    v-bind:value="selection"
-                    v-bind:checked="question.yourAnswer === question.answer"
-                    v-on:change="selectAnswer(i, selection, $event);"
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="授業支援用サイトです。主に C# および物理基礎を扱っています。"
+    />
+    <meta property="og:title" content="素早く三角比 | GHomePub" />
+    <meta
+      property="og:description"
+      content="授業支援用サイトです。主に C# および物理基礎を扱っています。"
+    />
+    <meta property="og:site_name" content="素早く三角比 | GHomePub" />
+    <meta property="og:locale" content="ja_JP" />
+    <title>素早く三角比 | GHomePub</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-D8HPBTVCPM");
+    </script>
+  </head>
+  <body class="body">
+    <div class="whole-wrapper">
+      <div class="pre-header">
+        <div class="pre-header-inner">
+          <p class="site-description">授業支援用サイト</p>
+        </div>
+        <!-- .pre-header-inner -->
+      </div>
+      <!-- .pre-header -->
+      <header class="header" id="sticky-header">
+        <div class="header-inner">
+          <h1 class="site-title">
+            <a href="index.html">GHomePub</a>
+          </h1>
+        </div>
+        <!-- .header-inner -->
+      </header>
+      <div class="content-container">
+        <main id="main" class="main">
+          <script
+            id="MathJax-script"
+            async
+            src="js/mathjax/tex-mml-chtml.js"
+          ></script>
+          <div id="app">
+            <section class="card">
+              <h2 class="card-title">道場</h2>
+              <div class="card-inner">
+                <h3 class="card-subtitle">素早く三角比</h3>
+                <p>
+                  三角比の問題を 10 問出題します。素早く解答していきましょう。
+                </p>
+                <p>
+                  答えは一発勝負です。修正できません。気張っていきましょう！
+                </p>
+              </div>
+              <!-- .card-inner -->
+              <div class="card-inner">
+                <h3 class="card-subtitle">凡例</h3>
+                <p>
+                  出題は、値や式が簡易的に表示されます。左の値や式は右のように表示されます。パイ（
+                  π ）が見にくいかもしれません。
+                </p>
+                <table class="left-th-table th-text-center">
+                  <tr>
+                    <th>\(\dfrac{1}{2}\)</th>
+                    <td>1/2</td>
+                  </tr>
+                  <tr>
+                    <th>\(-\dfrac{1}{2}\)</th>
+                    <td>-(1/2)</td>
+                  </tr>
+                  <tr>
+                    <th>\(\dfrac{1}{\sqrt{2}}\)</th>
+                    <td>1/√2</td>
+                  </tr>
+                  <tr>
+                    <th>\(-\dfrac{\sqrt{3}}{2}\)</th>
+                    <td>-(√3/2)</td>
+                  </tr>
+                  <tr>
+                    <th>\(\sin0^\circ\)</th>
+                    <td>sin0°</td>
+                  </tr>
+                  <tr>
+                    <th>\(\sin\dfrac{\pi}{6}\)</th>
+                    <td>sin(π/6)</td>
+                  </tr>
+                  <tr>
+                    <th>\(\sin\dfrac{2\pi}{3}\)</th>
+                    <td>sin(2π/3)</td>
+                  </tr>
+                </table>
+              </div>
+              <!-- .card-inner -->
+              <div class="card-inner">
+                <h3 v-if="!isRunning" class="card-subtitle">
+                  レベル選択と実行
+                </h3>
+                <ul v-if="!isRunning" class="simple-list">
+                  <li>
+                    <label for="level-0">
+                      <input
+                        type="radio"
+                        id="level-0"
+                        value="0"
+                        v-model.number="level"
+                      />
+                      レベル 0 : 0° より大きく 90° 未満
+                    </label>
+                  </li>
+                  <li>
+                    <label for="level-1">
+                      <input
+                        type="radio"
+                        id="level-1"
+                        value="1"
+                        v-model.number="level"
+                      />
+                      レベル 1 : 0° 以上 180° 以下
+                    </label>
+                  </li>
+                  <li>
+                    <label for="level-2">
+                      <input
+                        type="radio"
+                        id="level-2"
+                        value="2"
+                        v-model.number="level"
+                      />
+                      レベル 2 : 0° 以上 360° 以下
+                    </label>
+                  </li>
+                  <li>
+                    <label for="level-3">
+                      <input
+                        type="radio"
+                        id="level-3"
+                        value="3"
+                        v-model.number="level"
+                      />
+                      レベル 3 : 弧度法で
+                    </label>
+                  </li>
+                </ul>
+                <div v-if="!isRunning" class="gplayer-button-wrapper">
+                  <button
+                    v-on:click="startGame()"
+                    type="button"
+                    class="gplayer-button ripple"
                   >
-                    {{ selection }}
-                </label>
-              </li>
-            </ul>
-          </template>
-          <template v-else>{{ question.yourAnswer }}</template>
-        </li>
-        <li>正答 : 
-          <span v-if="(question.yourAnswer === '')"></span>
-          <span v-else>{{ question.answer }}</span>
-        </li>
-        <li>評価 : 
-          <span v-if="(question.yourAnswer === '')"></span>
-          <span v-else-if="(question.yourAnswer === question.answer)" class="correct">○</span>
-          <span v-else class="incorrect">×</span>
-        </li>
-      </ul>
-    </div><!-- .card-inner .quiz -->
-  </section>
-  <section v-if="score.time !== 0" class="card" v-cloak>
-    <h2 class="card-title">採点</h2>
-    <p>今回の試験結果です。</p>
-    <table class="left-th-table">
-      <tr>
-        <th>得点</th>
-        <td>{{ score.point }}</td>
-      </tr>
-      <tr>
-        <th>所要時間</th>
-        <td>{{ score.time }} 秒</td>
-      </tr>
-    </table>
-  </section>
-</div><!-- #app -->
+                    ゲーム開始
+                  </button>
+                </div>
+                <!-- .gplayer-button-wrapper -->
+              </div>
+              <!-- .card-inner -->
+            </section>
+            <section v-if="0 < questions.length" class="card" v-cloak>
+              <h2 class="card-title">問題</h2>
+              <div
+                v-for="(question, i) in questions"
+                v-bind:key="question.index"
+                class="card-inner quiz"
+              >
+                <h3 class="card-subtitle">問 {{ i + 1 }}</h3>
+                <p class="question">{{ question.question }} = ?</p>
+                <ul>
+                  <li>
+                    解答 :
+                    <template v-if="(question.yourAnswer === '')">
+                      <ul class="smart-selection">
+                        <li
+                          v-for="(selection, j) in selections"
+                          v-bind:key="selection.index"
+                        >
+                          <label v-bind:for="`_${ i }-${ j }`">
+                            <input
+                              type="radio"
+                              v-bind:id="`_${ i }-${ j }`"
+                              v-bind:value="selection"
+                              v-bind:checked="question.yourAnswer === question.answer"
+                              v-on:change="selectAnswer(i, selection, $event);"
+                            />
+                            {{ selection }}
+                          </label>
+                        </li>
+                      </ul>
+                    </template>
+                    <template v-else>{{ question.yourAnswer }}</template>
+                  </li>
+                  <li>
+                    正答 :
+                    <span v-if="(question.yourAnswer === '')"></span>
+                    <span v-else>{{ question.answer }}</span>
+                  </li>
+                  <li>
+                    評価 :
+                    <span v-if="(question.yourAnswer === '')"></span>
+                    <span
+                      v-else-if="(question.yourAnswer === question.answer)"
+                      class="correct"
+                      >○</span
+                    >
+                    <span v-else class="incorrect">×</span>
+                  </li>
+                </ul>
+              </div>
+              <!-- .card-inner .quiz -->
+            </section>
+            <section v-if="score.time !== 0" class="card" v-cloak>
+              <h2 class="card-title">採点</h2>
+              <p>今回の試験結果です。</p>
+              <table class="left-th-table">
+                <tr>
+                  <th>得点</th>
+                  <td>{{ score.point }}</td>
+                </tr>
+                <tr>
+                  <th>所要時間</th>
+                  <td>{{ score.time }} 秒</td>
+                </tr>
+              </table>
+            </section>
+          </div>
+          <!-- #app -->
 
-<script src="js/vue.min.js"></script>
-<script src="js/gamequicktrigo.js"></script>
-      </main>
-    </div><!-- .content-container -->
-    <footer id="footer">
-      <p class="copyright">&copy;GHome 2022</p>
-    </footer>
-  </div><!-- .whole-wrapper -->
-  <script src="js/common.js"></script>
-</body>
+          <script src="js/vue.min.js"></script>
+          <script src="js/gamequicktrigo.js"></script>
+        </main>
+      </div>
+      <!-- .content-container -->
+      <footer id="footer">
+        <p class="copyright">&copy;GHome 2022</p>
+      </footer>
+    </div>
+    <!-- .whole-wrapper -->
+    <script src="js/common.js"></script>
+  </body>
 </html>

@@ -1,148 +1,216 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="授業支援用サイトです。主に C# および物理基礎を扱っています。"
+    />
+    <meta property="og:title" content="等速直線運動 | GHomePub" />
+    <meta
+      property="og:description"
+      content="授業支援用サイトです。主に C# および物理基礎を扱っています。"
+    />
+    <meta property="og:site_name" content="等速直線運動 | GHomePub" />
+    <meta property="og:locale" content="ja_JP" />
+    <title>等速直線運動 | GHomePub</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-D8HPBTVCPM");
+    </script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="授業支援用サイトです。主に C# および物理基礎を扱っています。">
-  <meta property="og:title" content="等速直線運動 | GHomePub">
-  <meta property="og:description" content="授業支援用サイトです。主に C# および物理基礎を扱っています。">
-  <meta property="og:site_name" content="等速直線運動 | GHomePub">
-  <meta property="og:locale" content="ja_JP">
-  <title>等速直線運動 | GHomePub</title>
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-D8HPBTVCPM');
-  </script>
-</head>
+  <body class="body">
+    <div class="whole-wrapper">
+      <div class="pre-header">
+        <div class="pre-header-inner">
+          <p class="site-description">授業支援用サイト</p>
+        </div>
+        <!-- .pre-header-inner -->
+      </div>
+      <!-- .pre-header -->
+      <header class="header" id="sticky-header">
+        <div class="header-inner">
+          <h1 class="site-title">
+            <a href="index.html">GHomePub</a>
+          </h1>
+        </div>
+        <!-- .header-inner -->
+      </header>
+      <div class="content-container">
+        <main id="main" class="main">
+          <section class="card">
+            <h2 class="card-title">物理基礎授業支援</h2>
+            <div class="card-inner">
+              <h3 class="card-subtitle">等速直線運動</h3>
+              <p>等速直線運動とは、速さも向きも変化しない運動です。</p>
+            </div>
+            <!-- .card-inner -->
+          </section>
 
-<body class="body">
-  <div class="whole-wrapper">
-    <div class="pre-header">
-      <div class="pre-header-inner">
-        <p class="site-description">授業支援用サイト</p>
-      </div><!-- .pre-header-inner -->
-    </div><!-- .pre-header -->
-    <header class="header" id="sticky-header">
-      <div class="header-inner">
-        <h1 class="site-title">
-          <a href="index.html">GHomePub</a>
-        </h1>
-      </div><!-- .header-inner -->
-    </header>
-    <div class="content-container">
-      <main id="main" class="main">
-        <section class="card">
-          <h2 class="card-title">物理基礎授業支援</h2>
-          <div class="card-inner">
-            <h3 class="card-subtitle">等速直線運動</h3>
-            <p>等速直線運動とは、速さも向きも変化しない運動です。</p>
-          </div><!-- .card-inner -->
-        </section>
+          <section class="card">
+            <h2 class="card-title">実験室</h2>
+            <div class="card-inner">
+              <h3 class="card-subtitle">シミュレーション</h3>
+              <p>
+                1 文字分の大きさ（ 16px ）を 1.0m とみなしています。角度は 0°
+                で右へ、 90° で真下へ移動します。
+              </p>
+              <form>
+                <ul>
+                  <li>
+                    速さ :
+                    <input
+                      type="number"
+                      class="number"
+                      name="velocity"
+                      id="velocity"
+                      value="12.0"
+                      min="0.1"
+                      max="128.0"
+                    />
+                    m/s （指定可能範囲 : (0, 128.0] ）
+                  </li>
+                  <li>
+                    角度 :
+                    <input
+                      type="number"
+                      class="number"
+                      name="angle"
+                      id="angle"
+                      value="23"
+                      min="0"
+                      max="90"
+                    />
+                    ° （指定可能範囲 : [0, 90] ）
+                  </li>
+                </ul>
+                <p id="alert" class="alert"></p>
+                <div class="gplayer-button-wrapper">
+                  <button
+                    id="start-button"
+                    type="button"
+                    class="gplayer-button ripple"
+                  >
+                    開始
+                  </button>
+                </div>
+                <!-- .gplayer-button-wrapper -->
+              </form>
+              <div id="lab-board" class="lab-board lab-horizontal-board">
+                <img id="ball" class="lab-ball" src="img/ball.png" alt="ball" />
+              </div>
+              <!-- .lab-board -->
+            </div>
+            <!-- .card-inner -->
+            <div class="card-inner">
+              <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+                integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"
+              ></script>
+              <h3 class="card-subtitle">観測</h3>
+              <p>
+                観測結果は、シミュレーションのプログラムとは独立に、運動を観測しています。そのため、同じ設定値でも、実行する度に観測結果が少しずつ異なります。
+              </p>
+              <p>また多くの場合、観測開始に 0.1s 強の遅れが発生します。</p>
+              <form>
+                <input
+                  id="origin"
+                  type="hidden"
+                  name="origin"
+                  value="top-left"
+                />
+              </form>
+              <h4 class="chart-title">x-t グラフ</h4>
+              <canvas id="chart-xt" class="chart"></canvas>
+              <h4 class="chart-title">v-t グラフ</h4>
+              <canvas id="chart-vt" class="chart"></canvas>
+            </div>
+            <!-- .card-inner -->
+            <div class="card-inner">
+              <h3 class="card-subtitle">観測例</h3>
+              <p>真横に移動します。</p>
+              <table class="left-th-table">
+                <tbody>
+                  <tr>
+                    <th>速さ</th>
+                    <td>12.0 [m/s]</td>
+                  </tr>
+                  <tr>
+                    <th>角度</th>
+                    <td>0 °</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>真下に移動します。</p>
+              <table class="left-th-table">
+                <tbody>
+                  <tr>
+                    <th>速さ</th>
+                    <td>12.0 [m/s]</td>
+                  </tr>
+                  <tr>
+                    <th>角度</th>
+                    <td>90 °</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                上記は PC
+                利用時の観測例です。利用状況によって精度が変わるため、いつも同じ結果が出るわけではありません。
+              </p>
+            </div>
+            <!-- .card-inner -->
+            <div class="card-inner">
+              <h3 class="card-subtitle">理論値</h3>
+              <p>ユーザの設定から算出された理論値を元にしたグラフです。</p>
+              <h4 class="chart-title">x-t グラフ</h4>
+              <canvas id="theoretical-chart-xt" class="chart"></canvas>
+              <h4 class="chart-title">v-t グラフ</h4>
+              <canvas id="theoretical-chart-vt" class="chart"></canvas>
+            </div>
+            <!-- .card-inner -->
+          </section>
 
-        <section class="card">
-          <h2 class="card-title">実験室</h2>
-          <div class="card-inner">
-            <h3 class="card-subtitle">シミュレーション</h3>
-            <p>1 文字分の大きさ（ 16px ）を 1.0m とみなしています。角度は 0° で右へ、 90° で真下へ移動します。</p>
-            <form>
-              <ul>
-                <li>速さ : <input type="number" class="number" name="velocity" id="velocity" value="12.0" min="0.1"
-                    max="128.0"> m/s （指定可能範囲 : (0, 128.0] ）</li>
-                <li>角度 : <input type="number" class="number" name="angle" id="angle" value="23" min="0" max="90"> °
-                  （指定可能範囲 : [0, 90] ）</li>
-              </ul>
-              <p id="alert" class="alert"></p>
-              <div class="gplayer-button-wrapper">
-                <button id="start-button" type="button" class="gplayer-button ripple">開始</button>
-              </div><!-- .gplayer-button-wrapper -->
-            </form>
-            <div id="lab-board" class="lab-board lab-horizontal-board">
-              <img id="ball" class="lab-ball" src="img/ball.png" alt="ball">
-            </div><!-- .lab-board -->
-          </div><!-- .card-inner -->
-          <div class="card-inner">
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
-              integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
-              crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <h3 class="card-subtitle">観測</h3>
-            <p>観測結果は、シミュレーションのプログラムとは独立に、運動を観測しています。そのため、同じ設定値でも、実行する度に観測結果が少しずつ異なります。</p>
-            <p>また多くの場合、観測開始に 0.1s 強の遅れが発生します。</p>
-            <form>
-              <input id="origin" type="hidden" name="origin" value="top-left">
-            </form>
-            <h4 class="chart-title">x-t グラフ</h4>
-            <canvas id="chart-xt" class="chart"></canvas>
-            <h4 class="chart-title">v-t グラフ</h4>
-            <canvas id="chart-vt" class="chart"></canvas>
-          </div><!-- .card-inner -->
-          <div class="card-inner">
-            <h3 class="card-subtitle">観測例</h3>
-            <p>真横に移動します。</p>
-            <table class="left-th-table">
-              <tbody>
-                <tr>
-                  <th>速さ</th>
-                  <td>12.0 [m/s]</td>
-                </tr>
-                <tr>
-                  <th>角度</th>
-                  <td>0 °</td>
-                </tr>
-              </tbody>
-            </table>
-            <p>真下に移動します。</p>
-            <table class="left-th-table">
-              <tbody>
-                <tr>
-                  <th>速さ</th>
-                  <td>12.0 [m/s]</td>
-                </tr>
-                <tr>
-                  <th>角度</th>
-                  <td>90 °</td>
-                </tr>
-              </tbody>
-            </table>
-            <p>上記は PC 利用時の観測例です。利用状況によって精度が変わるため、いつも同じ結果が出るわけではありません。</p>
-          </div><!-- .card-inner -->
-          <div class="card-inner">
-            <h3 class="card-subtitle">理論値</h3>
-            <p>ユーザの設定から算出された理論値を元にしたグラフです。</p>
-            <h4 class="chart-title">x-t グラフ</h4>
-            <canvas id="theoretical-chart-xt" class="chart"></canvas>
-            <h4 class="chart-title">v-t グラフ</h4>
-            <canvas id="theoretical-chart-vt" class="chart"></canvas>
-          </div><!-- .card-inner -->
-        </section>
+          <section class="card">
+            <h2 class="card-title">JavaScript と物理基礎</h2>
+            <div class="card-inner">
+              <h3 class="card-subtitle">速さと三角比</h3>
+              <p>
+                指定された速さと角度を元に、三角比を利用して、横方向・縦方向それぞれの速さを求めています。
+              </p>
+              <script src="https://gist.github.com/gplayer2022/0b40eb1b8bf43d589df6759fd9dfd5d3.js"></script>
+            </div>
+            <!-- .card-inner -->
+          </section>
 
-        <section class="card">
-          <h2 class="card-title">JavaScript と物理基礎</h2>
-          <div class="card-inner">
-            <h3 class="card-subtitle">速さと三角比</h3>
-            <p>指定された速さと角度を元に、三角比を利用して、横方向・縦方向それぞれの速さを求めています。</p>
-            <script src="https://gist.github.com/gplayer2022/0b40eb1b8bf43d589df6759fd9dfd5d3.js"></script>
-          </div><!-- .card-inner -->
-        </section>
-
-        <script src="js/button.js"></script>
-        <script src="js/physconstvel.js"></script>
-        <script src="js/chartmotion.js"></script>
-        <script src="js/theorconstvel.js"></script>
-      </main>
-    </div><!-- .content-container -->
-    <footer id="footer">
-      <p class="copyright">&copy;GHome 2022</p>
-    </footer>
-  </div><!-- .whole-wrapper -->
-  <script src="js/common.js"></script>
-</body>
-
+          <script src="js/button.js"></script>
+          <script src="js/physconstvel.js"></script>
+          <script src="js/chartmotion.js"></script>
+          <script src="js/theorconstvel.js"></script>
+        </main>
+      </div>
+      <!-- .content-container -->
+      <footer id="footer">
+        <p class="copyright">&copy;GHome 2022</p>
+      </footer>
+    </div>
+    <!-- .whole-wrapper -->
+    <script src="js/common.js"></script>
+  </body>
 </html>
