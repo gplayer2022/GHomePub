@@ -1,12 +1,1 @@
-(function() {
-  'use strict';
-  window.addEventListener('scroll', function() {
-    var stickyHeader = document.getElementById('sticky-header');
-    var offsetTop = stickyHeader.offsetTop;
-    if (offsetTop < window.pageYOffset) {
-      stickyHeader.classList.add('sticky');
-    } else {
-      stickyHeader.classList.remove('sticky');
-    }
-  });
-})();
+(function(){window.addEventListener("scroll",function(){var b=document.getElementById("sticky-header");var a=b.offsetTop;if(a<window.pageYOffset){b.classList.add("sticky")}else{b.classList.remove("sticky")}})})();
