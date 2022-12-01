@@ -363,7 +363,7 @@ new Vue({
         delete question.levels;
         question.yourAnswer = "";
       });
-      // // 設問数が足りない場合に設問を水増しする
+      // 設問数が足りない場合に設問を水増しする
       if (this.questions.length < this.questionsLength) {
         this.questions.forEach(function (question) {
           _this.questions.push(JSON.parse(JSON.stringify(question)));
