@@ -26,7 +26,7 @@ document.getElementById('update').addEventListener('click', function () {
 function appendGistIframe(file, parentElem) {
   const iframeElem = document.createElement('iframe');
   iframeElem.width = '100%';
-  iframeElem.height = '500px';
+  iframeElem.height = '300px';
   iframeElem.frameBorder = '0';
   iframeElem.addEventListener('load', function () {
     const iframeDocument = iframeElem.contentDocument || iframeElem.contentWindow.document;
