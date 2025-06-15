@@ -1,1 +1,9 @@
-(function(){window.addEventListener("scroll",function(){var b=document.getElementById("sticky-header");var a=b.offsetTop;if(a<window.pageYOffset){b.classList.add("sticky")}else{b.classList.remove("sticky")}})})();
+window.addEventListener('scroll', function() {
+  const stickyHeaderElem = document.getElementById('sticky-header');
+  const offsetTop = stickyHeaderElem.offsetTop;
+  if (offsetTop < window.pageYOffset) {
+    stickyHeaderElem.classList.add('sticky');
+  } else {
+    stickyHeaderElem.classList.remove('sticky');
+  }
+});

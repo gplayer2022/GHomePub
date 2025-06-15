@@ -1,1 +1,31 @@
-(function(){(function(){var a=document.getElementsByClassName("ripple");if(a){for(var c=0;c<a.length;c++){var b=a[c];b.addEventListener("click",function(e){d(this,e)},false)}}function d(m,e){var g=512;var f=m.offsetWidth;var i=m.getBoundingClientRect();var h=e.pageX-i.left-window.pageXOffset-(f/2);var l=e.pageY-i.top-window.pageYOffset-(f/2);var j="";j+="left:"+h+"px;";j+="top:"+l+"px;";j+="width:"+f+"px;";j+="height:"+f+"px;";var k=document.createElement("span");k.setAttribute("style",j);k.classList.add("spread");m.appendChild(k);setTimeout(function(){var o=document.getElementsByClassName("spread");for(var n=o.length-1;0<=n;n--){o[n].parentElement.lastElementChild.remove()}},g)}})()})();
+
+function main() {
+  const rippleElems = document.getElementsByClassName('ripple');
+  for (let i = 0; i < rippleElems.length; i++) {
+    let rippleElem = rippleElems[i];
+    rippleElem.addEventListener('click', function (event) {
+      spreadRipple(this, event);
+    }, false);
+  }
+}
+function spreadRipple(rippleElem, event) {
+  const TIMEOUT = 512;
+  const rippleWidth = rippleElem.offsetWidth;
+  const rippleRect = rippleElem.getBoundingClientRect();
+  const left = event.pageX - rippleRect.left - window.pageXOffset - (rippleWidth / 2);
+  const top = event.pageY - rippleRect.top - window.pageYOffset - (rippleWidth / 2);
+  const position = `
+      left: ${left}px;
+      top: ${top}px;
+      width: ${rippleWidth}px;
+      height: ${rippleWidth}px;
+      `.trim();
+  const spreadSpanElem = document.createElement('span');
+  spreadSpanElem.setAttribute('style', position);
+  spreadSpanElem.classList.add('spread');
+  rippleElem.appendChild(spreadSpanElem);
+  setTimeout(function () {
+    spreadSpanElem.remove();
+  }, TIMEOUT);
+}
+document.addEventListener('DOMContentLoaded', main);
