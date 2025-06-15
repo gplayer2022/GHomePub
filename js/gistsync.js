@@ -27,27 +27,28 @@ function appendGistIframe(file, parentElem) {
   const iframeElem = document.createElement('iframe');
   iframeElem.width = '100%';
   iframeElem.height = '300px';
-  iframeElem.frameBorder = '0';
+  iframeElem.style.border = 'none';
   iframeElem.addEventListener('load', function () {
     const iframeDocument = iframeElem.contentDocument || iframeElem.contentWindow.document;
-    const iframeInnerHTML = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"></head><body><script type="text/javascript" src="https://gist.github.com/gplayer2022/${file.id}.js"></script></body></html>`
+    const iframeInnerHTML = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"></head><body><script type="text/javascript" src="https://gist.github.com/gplayer2022/${file.id}.js"></script><script>window.addEventListener('load', function () { window.parent.postMessage({id: '${file.id}', height: document.body.scrollHeight }, '*');});</script></body></html>`
     iframeDocument.open();
-    iframeDocument.write(iframeInnerHTML);
+    iframeDocument.srcdoc = iframeInnerHTML;
     iframeDocument.close();
   });
-  parentElem.appendChild(iframeElem);
-  adjustIframeHeight(iframeElem);
-}
-
-// iframe の高さを調整する
-function adjustIframeHeight(iframeElem) {
-  const intervalId = setInterval(function () {
-    const iframeDocument = iframeElem.contentDocument || iframeElem.contentWindow.document;
-    if (iframeDocument && iframeDocument.body && 0 < iframeDocument.body.scrollHeight) {
-      iframeElem.style.height = iframeDocument.body.scrollHeight + 'px';
-      clearInterval(intervalId);
+  // iframe の高さを事後的に調整する
+  window.addEventListener('message', function (event) {
+    // クロスドメイン対策
+    if (event.origin !== "https://gist.github.com" && event.origin !== window.origin) {
+      return;
     }
-  }, 100);
+    if (!event.data || !event.data.height || !event.data.id) {
+      return;
+    }
+    if (iframeElem.srcdoc || iframeElem.contentDocument?.body?.textContent?.includes(file.id)) {
+      iframeElem.style.height = event.data.height + 'px';
+    }
+  });
+  parentElem.appendChild(iframeElem);
 }
 
 // 公開 Gist の一覧を取得する
