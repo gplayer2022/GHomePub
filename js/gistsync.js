@@ -28,21 +28,22 @@ function appendGistIframe(file, parentElem) {
   iframeElem.width = '100%';
   iframeElem.height = '300px';
   iframeElem.style.border = 'none';
-  iframeElem.addEventListener('load', function () {
-    const iframeDocument = iframeElem.contentDocument || iframeElem.contentWindow.document;
-    const iframeInnerHTML = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"></head><body><script type="text/javascript" src="https://gist.github.com/gplayer2022/${file.id}.js"></script><script>window.addEventListener('load', function () { setTimeout(function () { window.parent.postMessage({id: '${file.id}', height: document.body.scrollHeight }, '*');}, 100);});</script></body></html>`
-    iframeDocument.srcdoc = iframeInnerHTML;
-  });
+  const iframeInnerHTML = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"></head><body><script type="text/javascript" src="https://gist.github.com/gplayer2022/${file.id}.js"></script><script>window.addEventListener('load', function () { setTimeout(function () { window.parent.postMessage({id: '${file.id}', height: document.body.scrollHeight }, '*');}, 100);});</script></body></html>`
+  const blob = new Blob([iframeInnerHTML], { type: 'text/html' });
+  const blobURL = URL.createObjectURL(blob);
+  iframeElem.src = blobURL;
   // iframe の高さを事後的に調整する
   window.addEventListener('message', function (event) {
     // クロスドメイン対策
-    if (event.origin !== "https://gist.github.com" && event.origin !== window.origin) {
+    if (event.origin !== 'null' &&
+      event.origin !== window.origin &&
+      !event.origin.includes('gist.github.com')) {
       return;
     }
     if (!event.data || !event.data.height || !event.data.id) {
       return;
     }
-    if (iframeElem.srcdoc || iframeElem.contentDocument?.body?.textContent?.includes(file.id)) {
+    if (event.data.id === file.id) {
       iframeElem.style.height = event.data.height + 'px';
     }
   });
