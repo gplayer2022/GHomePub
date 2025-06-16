@@ -30,10 +30,8 @@ function appendGistIframe(file, parentElem) {
   iframeElem.style.border = 'none';
   iframeElem.addEventListener('load', function () {
     const iframeDocument = iframeElem.contentDocument || iframeElem.contentWindow.document;
-    const iframeInnerHTML = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"></head><body><script type="text/javascript" src="https://gist.github.com/gplayer2022/${file.id}.js"></script><script>window.addEventListener('load', function () { window.parent.postMessage({id: '${file.id}', height: document.body.scrollHeight }, '*');});</script></body></html>`
-    iframeDocument.open();
+    const iframeInnerHTML = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"></head><body><script type="text/javascript" src="https://gist.github.com/gplayer2022/${file.id}.js"></script><script>window.addEventListener('load', function () { setTimeout(function () { window.parent.postMessage({id: '${file.id}', height: document.body.scrollHeight }, '*');}, 100);});</script></body></html>`
     iframeDocument.srcdoc = iframeInnerHTML;
-    iframeDocument.close();
   });
   // iframe の高さを事後的に調整する
   window.addEventListener('message', function (event) {
