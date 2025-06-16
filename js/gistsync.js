@@ -30,6 +30,7 @@ function appendGistIframe(file, parentElem) {
   iframeElem.style.border = 'none';
   const iframeInnerHTML = `<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"></head><body><script type="text/javascript" src="https://gist.github.com/gplayer2022/${file.id}.js"></script><script>window.addEventListener('load', function () { setTimeout(function () { window.parent.postMessage({id: '${file.id}', height: document.body.scrollHeight }, '*');}, 100);});</script></body></html>`
   const blob = new Blob([iframeInnerHTML], { type: 'text/html' });
+  // 仮想的に URL に追加
   const blobURL = URL.createObjectURL(blob);
   iframeElem.src = blobURL;
   // iframe の高さを事後的に調整する
