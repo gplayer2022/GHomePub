@@ -62,16 +62,16 @@ function fetchGists() {
   }).then(function (gists) {
     const filtered = gists
       .filter(function (gist) {
-        return descriptionPattern.test(gist.description)
+        return descriptionPattern.test(gist.description);
       })
       .sort(function (a, b) {
-        return new Date(b.updated_at) - new Date(a.updated_at)
+        return Date.parse(b.updated_at) - Date.parse(a.updated_at);
       });
     const files = filtered.map(function (gist) {
       return {
         id: gist.id,
         filename: Object.keys(gist.files)[Object.keys(gist.files).length - 1],
-      }
+      };
     });
     return Promise.resolve(files);
   });
