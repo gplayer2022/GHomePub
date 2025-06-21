@@ -69,6 +69,10 @@ function fetchGists() {
         });
       }
     });
+    // アップデート降順で追加
+    files = files.sort(function (a, b) {
+      return new Date(b.updated_at) - new Date(a.updated_at);
+    });
     return Promise.resolve(files);
   });
 }
