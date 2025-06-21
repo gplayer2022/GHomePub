@@ -60,18 +60,18 @@ function fetchGists() {
   }).catch(function (reason) {
     console.log(reason);
   }).then(function (gists) {
-    const files = [];
-    gists.forEach(function (gist) {
-      if (descriptionPattern.test(gist.description)) {
-        files.push({
-          id: gist.id,
-          filename: Object.keys(gist.files)[Object.keys(gist.files).length - 1],
-        });
+    const filtered = gists
+      .filter(function (gist) {
+        return descriptionPattern.test(gist.description)
+      })
+      .sort(function (a, b) {
+        new Date(b.updated_at) - new Date(a.updated_at)
+      });
+    const files = filtered.map(function (gist) {
+      return {
+        id: gist.id,
+        filename: Object.keys(gist.files)[Object.keys(gist.files).length - 1],
       }
-    });
-    // アップデート降順で追加
-    files = files.sort(function (a, b) {
-      return new Date(b.updated_at) - new Date(a.updated_at);
     });
     return Promise.resolve(files);
   });
