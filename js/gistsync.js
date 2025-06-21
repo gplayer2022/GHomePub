@@ -65,7 +65,7 @@ function fetchGists() {
         return descriptionPattern.test(gist.description)
       })
       .sort(function (a, b) {
-        new Date(b.updated_at) - new Date(a.updated_at)
+        return new Date(b.updated_at) - new Date(a.updated_at)
       });
     const files = filtered.map(function (gist) {
       return {
