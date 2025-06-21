@@ -60,14 +60,15 @@ function fetchGists() {
   }).catch(function (reason) {
     console.log(reason);
   }).then(function (gists) {
-    const filtered = gists
+    // Gist 更新後 `update_at` は直ちに正しく反映されていない模様
+    const filteredGists = gists
       .filter(function (gist) {
         return descriptionPattern.test(gist.description);
       })
       .sort(function (a, b) {
         return Date.parse(b.updated_at) - Date.parse(a.updated_at);
       });
-    const files = filtered.map(function (gist) {
+    const files = filteredGists.map(function (gist) {
       return {
         id: gist.id,
         filename: Object.keys(gist.files)[Object.keys(gist.files).length - 1],
