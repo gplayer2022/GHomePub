@@ -214,6 +214,7 @@ function main() {
     try {
       await signInWithEmailAndPassword(auth, email, passwordIElem.value);
       toggleDisplay(true);
+      selectQuestions();
     } catch (e) {
       const loginMessageElem = document.getElementById('login-message');
       loginMessageElem.textContent = 'ログインに失敗しました。';
