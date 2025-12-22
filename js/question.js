@@ -183,7 +183,7 @@ function formatTimestamp(timestamp) {
 }
 
 // ログイン状態によって、表示を切り替える
-function toggleDisplay(hasLoggedIn) {
+async function toggleDisplay(hasLoggedIn) {
   const preLoginElem = document.getElementById('pre-login');
   const questionElem = document.getElementById('question');
   const questionsCardElem = document.getElementById('questions-card');
@@ -191,6 +191,7 @@ function toggleDisplay(hasLoggedIn) {
     preLoginElem.classList.add('hidden');
     questionElem.classList.remove('hidden');
     questionsCardElem.classList.remove('hidden');
+    await selectQuestions();
   } else {
     preLoginElem.classList.remove('hidden');
     questionElem.classList.add('hidden');
@@ -201,11 +202,11 @@ function toggleDisplay(hasLoggedIn) {
 // メインメソッド
 function main() {
   // すでにログイン済かどうかをチェックして表示を切り替える
-  onAuthStateChanged(auth, function (user) {
+  onAuthStateChanged(auth, async function (user) {
     if (user) {
-      toggleDisplay(true);
+      await toggleDisplay(true);
     } else {
-      toggleDisplay(false);
+      await toggleDisplay(false);
     }
   });
   // ログインボタン押下イベント登録
@@ -213,12 +214,11 @@ function main() {
     const passwordIElem = document.getElementById('password');
     try {
       await signInWithEmailAndPassword(auth, email, passwordIElem.value);
-      toggleDisplay(true);
-      await selectQuestions();
+      await toggleDisplay(true);
     } catch (e) {
       const loginMessageElem = document.getElementById('login-message');
       loginMessageElem.textContent = 'ログインに失敗しました。';
-      toggleDisplay(false);
+      await toggleDisplay(false);
     }
   });
   // 質問する / 更新するボタン押下イベント登録
