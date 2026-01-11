@@ -64,9 +64,9 @@ async function insertQuestion() {
 async function selectQuestions() {
   const docs = await getDocs(
     query(
-      collection(firestore, 'questions')),
-    orderBy('timestamp', 'desc')
-  );
+      collection(firestore, 'questions'),
+      orderBy('timestamp', 'desc')
+    ));
   const ulElem = document.getElementById('question-list');
   ulElem.replaceChildren();
   docs.forEach(function (doc) {
