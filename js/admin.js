@@ -314,7 +314,7 @@ function aggregateUserResults(results) {
   let min = 0;
   if (0 < results.length) {
     max = Math.max(...correctCounts);
-    min = Math.max(...correctCounts);
+    min = Math.min(...correctCounts);
   }
   const userResults = {
     createdAts: createdAts,
