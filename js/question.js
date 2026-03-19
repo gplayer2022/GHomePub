@@ -21,6 +21,7 @@ import {
 // Import the functions you need from the SDKs you need
 import { initializeApp, } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
 import { getAnalytics, } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js";
+import { formatTimestamp, } from './firebase.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -51,7 +52,7 @@ async function insertQuestion() {
   const yourNameIElem = document.getElementById('your-name');
   const yourName = yourNameIElem.value.trim() === '' ? 'ななし' : yourNameIElem.value.trim();
   if (yourQuestionIElem.value.trim() !== '') {
-    await addDoc(collection(firestore, "questions"), {
+    await addDoc(collection(firestore, 'questions'), {
       question: yourQuestionIElem.value,
       name: yourName,
       timestamp: serverTimestamp(),
@@ -167,19 +168,6 @@ function append2DiscussionList(discussionListElem, discussion) {
   dlElem.appendChild(dtElem);
   dlElem.appendChild(ddElem);
   discussionListElem.appendChild(dlElem);
-}
-
-// Firestore の timestamp 型の値を適切なフォーマットに直す
-function formatTimestamp(timestamp) {
-  const date = timestamp.toDate();
-  const yyyy = String(date.getFullYear());
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const dd = String(date.getDate()).padStart(2, '0');
-  const weekDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
-  const hh = String(date.getHours()).padStart(2, '0');
-  const MM = String(date.getMinutes()).padStart(2, '0');
-  const ss = String(date.getSeconds()).padStart(2, '0');
-  return `${yyyy}/${mm}/${dd} (${weekDay}) ${hh}:${MM}:${ss}`;
 }
 
 // ログイン状態によって、表示を切り替える

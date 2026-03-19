@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,16 +13,17 @@
   <title>質問箱 | GHomePub</title>
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/styles.css">
-  
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-D8HPBTVCPM');
   </script>
 </head>
+
 <body class="body">
   <div class="whole-wrapper">
     <div class="pre-header">
@@ -36,55 +38,58 @@
         </h1>
       </div><!-- .header-inner -->
     </header>
+
     <div class="content-container">
       <main id="main" class="main">
-<section class="card">
-  <h2 class="card-title">質問箱</h2>
-  <div id="pre-login" class="">
-    <h3 class="card-subtitle">ログイン</h3>
-    <p>授業外で質疑応答が必要な際にのみ、ログインの上、利用できます。ログインパスワードは、必要に応じて授業等で告知します。</p>
-    <p><label>ログインパスワード : <input id="password" type="password" placeholder="password"></label></p>
-    <div class="gplayer-button-wrapper">
-      <button class="gplayer-button ripple" type="button" id="login">ログイン</button>
-    </div><!-- .gplayer-button-wrapper -->
-    <p id="login-message" class="alert"></p>
-  </div><!-- #pre-login -->
+        <section class="card">
+          <h2 class="card-title">質問箱</h2>
+          <div id="pre-login" class="">
+            <h3 class="card-subtitle">ログイン</h3>
+            <p>授業外で質疑応答が必要な際にのみ、ログインの上、利用できます。ログインパスワードは、必要に応じて授業等で告知します。</p>
+            <p><label>ログインパスワード : <input id="password" type="password" placeholder="password"></label></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="login">ログイン</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <p id="login-message" class="alert"></p>
+          </div><!-- #pre-login -->
 
-  <div id="question" class="hidden">
-    <h3 class="card-subtitle">質問</h3>
-    <p>質問がある場合は、氏名と質問を記入の上でボタンを押下してください。質問欄を未記入のままボタンを押下した場合、質問一覧を再取得してページを更新します。</p>
-    <p><label for="your-name"></label>氏名 : <input type="text" id="your-name" placeholder="ななし"></p>
-    <p><label for="your-question">質問 : <textarea id="your-question" class="your-question"></textarea></label></p>
-    <div class="gplayer-button-wrapper">
-      <button class="gplayer-button ripple" type="button" id="ask">質問する / 更新する</button>
-    </div><!-- .gplayer-button-wrapper -->
-  </div>
-</section>
+          <div id="question" class="hidden">
+            <h3 class="card-subtitle">質問</h3>
+            <p>質問がある場合は、氏名と質問を記入の上でボタンを押下してください。質問欄を未記入のままボタンを押下した場合、質問一覧を再取得してページを更新します。</p>
+            <p><label for="your-name"></label>氏名 : <input type="text" id="your-name" placeholder="ななし"></p>
+            <p><label for="your-question">質問 : <textarea id="your-question" class="your-question"></textarea></label>
+            </p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="ask">質問する / 更新する</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </div><!-- #question -->
+        </section><!-- .card -->
 
-<section id="questions-card" class="card hidden">
-  <h2 class="card-title">質問一覧</h2>
-  <ul id="question-list" class="question-list">
+        <section id="questions-card" class="card hidden">
+          <h2 class="card-title">質問一覧</h2>
+          <ul id="question-list" class="question-list">
 
-  </ul>
-</section>
+          </ul>
+        </section><!-- #question-card -->
 
-<section id="discussions-card" class="card hidden">
-  <h2 class="card-title">回答</h2>
-  <div id="discussion-list" class="discussion-list">
+        <section id="discussions-card" class="card hidden">
+          <h2 class="card-title">回答</h2>
+          <div id="discussion-list" class="discussion-list">
 
-  </div>
-  <p><label for="your-discussion-name"></label>氏名 : <input type="text" id="your-discussion-name" placeholder="ななし"></p>
-  <p><label for="your-discussion">投稿 : <textarea id="your-discussion" class="your-question"></textarea></label></p>
-  <div class="gplayer-button-wrapper">
-    <button class="gplayer-button ripple" type="button" id="discuss">投稿する / 更新する</button>
-  </div><!-- .gplayer-button-wrapper -->
-</section>
+          </div>
+          <p><label for="your-discussion-name"></label>氏名 : <input type="text" id="your-discussion-name"
+              placeholder="ななし"></p>
+          <p><label for="your-discussion">投稿 : <textarea id="your-discussion" class="your-question"></textarea></label>
+          </p>
+          <div class="gplayer-button-wrapper">
+            <button class="gplayer-button ripple" type="button" id="discuss">投稿する / 更新する</button>
+          </div><!-- .gplayer-button-wrapper -->
+        </section><!-- #discussions-card -->
 
-
-<div id="script-wrapper">
-  <script type="module" src="js/question.js"></script>
-  <script src="js/button.js"></script>
-</div>
+        <div id="script-wrapper">
+          <script type="module" src="js/question.js"></script>
+          <script src="js/button.js"></script>
+        </div>
 
       </main>
     </div><!-- .content-container -->
@@ -94,4 +99,5 @@
   </div><!-- .whole-wrapper -->
   <script src="js/common.js"></script>
 </body>
+
 </html>
