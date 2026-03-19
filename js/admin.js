@@ -373,7 +373,7 @@ function showAggregations(aggregations) {
     minDtElem.textContent = '最小値';
     dlElem.appendChild(minDtElem);
     const minDdElem = document.createElement('dd');
-    minDdElem.textContent = aggregation.userResults.max;
+    minDdElem.textContent = aggregation.userResults.min;
     dlElem.appendChild(minDdElem);
     // 表示
     aggregationsWrapperElem.appendChild(h3Elem);
