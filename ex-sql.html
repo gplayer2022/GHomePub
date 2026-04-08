@@ -58,7 +58,9 @@
             に詳しく、今回はガンツの経営の補助をします。実は会計処理についてはそんなに詳しくないため、複式簿記だのなんだのといった会計処理については知らん顔をして、もっぱらガンツの業務をデータベース化することに尽力していきます。
           </p>
           <p><img class="sql-hero-image" src="images/yorozuya.png" alt="ガンツとクレア"></p>
-          <p>以下、データベース操作は SQLite を基準にします。解答欄ではユーザ入力 SQL が直接実行可能になっていますが、システムはローカル環境で完結しているため、サーバサイドへの影響は一切ありません。またユーザの進捗は、ブラウザのローカルストレージにデータを保存していくため、同一ブラウザで開けば前回の続きから実行できます。</p>
+          <p>以下、データベース操作は SQLite を基準にします。解答欄ではユーザ入力 SQL
+            が直接実行可能になっていますが、システムはローカル環境で完結しているため、サーバサイドへの影響は一切ありません。またユーザの進捗は、ブラウザのローカルストレージにデータを保存していくため、同一ブラウザで開けば前回の続きから実行できます。
+          </p>
         </section><!-- .card -->
 
         <section class="card">
@@ -99,31 +101,33 @@
               <p class="clare-line">データベースでは表ではなく、テーブルといいます。他に列はカラム、行はレコードと呼ぶことがあります。例えば商品管理ならこんな感じです。テーブル名は今回は products
                 とでもしておきましょう。列名は順に ID
                 、商品名、価格、在庫数ですね。商品名は文字列、それ以外は数値のみを扱うようにします。</p>
-              <table class="sql-table">
-                <caption>products</caption>
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>product_name</th>
-                    <th>price</th>
-                    <th>stock_quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>桐の棒</td>
-                    <td>1,200</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>鉄の斧</td>
-                    <td>16,000</td>
-                    <td>8</td>
-                  </tr>
-                </tbody>
-              </table><!-- .sql-table -->
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <caption>products</caption>
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>product_name</th>
+                      <th>price</th>
+                      <th>stock_quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>桐の棒</td>
+                      <td>1,200</td>
+                      <td>10</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>鉄の斧</td>
+                      <td>16,000</td>
+                      <td>8</td>
+                    </tr>
+                  </tbody>
+                </table><!-- .sql-table -->
+              </div><!-- .sql-table-wrapper -->
               <p class="gantz-line">なんじゃい。こんなただの表をやけに大げさに扱うんじゃな。</p>
               <p class="clare-line">データベースはこういった表の集まりです。これからこれを SQL と呼ばれる言語を使って操作していきます。</p>
               <p class="gantz-line">えすきゅーえる？</p>
@@ -193,29 +197,31 @@
             <div class="sql-story">
               <p class="clare-line">下記のようなテーブル products を作成してください。まだレコードの入力は必要ありません。</p>
             </div>
-            <table class="sql-table">
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>product_name</th>
-                  <th>price</th>
-                  <th>stock_quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>整数型、主キー、連番付与</td>
-                  <td>文字列型、空値禁止</td>
-                  <td>整数型、空値禁止</td>
-                  <td>整数型、空値禁止</td>
-                </tr>
-              </tbody>
-            </table><!-- .sql-table -->
+            <div class="sql-table-wrapper">
+              <table class="sql-table">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>product_name</th>
+                    <th>price</th>
+                    <th>stock_quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>整数型、主キー、連番付与</td>
+                    <td>文字列型、空値禁止</td>
+                    <td>整数型、空値禁止</td>
+                    <td>整数型、空値禁止</td>
+                  </tr>
+                </tbody>
+              </table><!-- .sql-table -->
+            </div><!-- .sql-table-wrapper -->
             <p><textarea id="your-sql-01" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="run-your-sql-01">実行</button>
             </div><!-- .gplayer-button-wrapper -->
-            <div id="your-result-01" class="sql-story">
+            <div id="your-result-01" class="sql-story sql-table-wrapper">
             </div><!-- #your-result-01 -->
           </section>
 
@@ -259,52 +265,54 @@
               <pre class="line-numbers language-sql"
                 tabindex="0"><code class="language-sql">PRAGMA table_info(`products`);</code></pre>
               <p class="clare-line">実行するとこんな感じです。</p>
-              <table class="sql-table">
-                <thead>
-                  <tr>
-                    <th>cid</th>
-                    <th>name</th>
-                    <th>type</th>
-                    <th>notnull</th>
-                    <th>dflt_value</th>
-                    <th>pk</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>0</td>
-                    <td>id</td>
-                    <td>INTEGER</td>
-                    <td>0</td>
-                    <td></td>
-                    <td>1</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>product_name</td>
-                    <td>TEXT</td>
-                    <td>1</td>
-                    <td></td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>price</td>
-                    <td>INTEGER</td>
-                    <td>1</td>
-                    <td></td>
-                    <td>0</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>stock_quantity</td>
-                    <td>INTEGER</td>
-                    <td>1</td>
-                    <td></td>
-                    <td>0</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <thead>
+                    <tr>
+                      <th>cid</th>
+                      <th>name</th>
+                      <th>type</th>
+                      <th>notnull</th>
+                      <th>dflt_value</th>
+                      <th>pk</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>0</td>
+                      <td>id</td>
+                      <td>INTEGER</td>
+                      <td>0</td>
+                      <td></td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>product_name</td>
+                      <td>TEXT</td>
+                      <td>1</td>
+                      <td></td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>price</td>
+                      <td>INTEGER</td>
+                      <td>1</td>
+                      <td></td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>stock_quantity</td>
+                      <td>INTEGER</td>
+                      <td>1</td>
+                      <td></td>
+                      <td>0</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><!-- .sql-table-wrapper -->
               <p class="gantz-line">なんかよく分からないぞ。</p>
               <p class="clare-line">まず cid は Column ID で列の番号です。 0 から始まります。今回は 4 列あるので 0 から 3 が割り当てられます。</p>
               <p class="gantz-line">なるほど。内部的には、列にも勝手に ID が振られてるんじゃな。</p>
@@ -398,30 +406,32 @@
               <p class="gantz-line">
                 なるほど。つまりデータベース以外でデータを取り扱う場合などは、また別の実装がされてたりするんじゃな。……うん、なんか少しイライラしてきたぞ。で、データの挿入はどうするんじゃ？</p>
               <p class="clare-line">では INSERT 文を使って、次のようなデータを挿入してみることにします。</p>
-              <table class="sql-table">
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>product_name</th>
-                    <th>price</th>
-                    <th>stock_quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>桐の棒</td>
-                    <td>1,200</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>鉄の斧</td>
-                    <td>16,000</td>
-                    <td>8</td>
-                  </tr>
-                </tbody>
-              </table><!-- .sql-table -->
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>product_name</th>
+                      <th>price</th>
+                      <th>stock_quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>桐の棒</td>
+                      <td>1,200</td>
+                      <td>10</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>鉄の斧</td>
+                      <td>16,000</td>
+                      <td>8</td>
+                    </tr>
+                  </tbody>
+                </table><!-- .sql-table -->
+              </div><!-- .sql-table-wrapper -->
             </div><!-- #sql-story -->
           </section><!-- #users-card -->
 
@@ -478,36 +488,38 @@ VALUES
             <div class="sql-story">
               <p class="clare-line">下記のようにテーブル products に 2 件のデータを挿入してください。</p>
             </div>
-            <table class="sql-table">
-              <caption>products</caption>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>product_name</th>
-                  <th>price</th>
-                  <th>stock_quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>桐の棒</td>
-                  <td>1200</td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>鉄の斧</td>
-                  <td>16000</td>
-                  <td>8</td>
-                </tr>
-              </tbody>
-            </table><!-- .sql-table -->
+            <div class="sql-table-wrapper">
+              <table class="sql-table">
+                <caption>products</caption>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>product_name</th>
+                    <th>price</th>
+                    <th>stock_quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>桐の棒</td>
+                    <td>1200</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>鉄の斧</td>
+                    <td>16000</td>
+                    <td>8</td>
+                  </tr>
+                </tbody>
+              </table><!-- .sql-table -->
+            </div><!-- .sql-table-wrapper -->
             <p><textarea id="your-sql-03" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="run-your-sql-03">実行</button>
             </div><!-- .gplayer-button-wrapper -->
-            <div id="your-result-03" class="sql-story">
+            <div id="your-result-03" class="sql-story sql-table-wrapper">
             </div><!-- #your-result-03 -->
           </section>
 
@@ -557,30 +569,32 @@ INSERT INTO `products` VALUES (
               <p class="clare-line">そうです。今度は CRUD の Read の登場です。</p>
               <p class="gantz-line">READ 文じゃなくて、 SELECT 文なんじゃったな。</p>
               <p class="clare-line">とりあえず、入力したデータ全件を読み込んでみましょう。</p>
-              <table class="sql-table">
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>product_name</th>
-                    <th>price</th>
-                    <th>stock_quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>桐の棒</td>
-                    <td>1,200</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>鉄の斧</td>
-                    <td>16,000</td>
-                    <td>8</td>
-                  </tr>
-                </tbody>
-              </table><!-- .sql-table -->
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>product_name</th>
+                      <th>price</th>
+                      <th>stock_quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>桐の棒</td>
+                      <td>1,200</td>
+                      <td>10</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>鉄の斧</td>
+                      <td>16,000</td>
+                      <td>8</td>
+                    </tr>
+                  </tbody>
+                </table><!-- .sql-table -->
+              </div><!-- .sql-table-wrapper -->
             </div><!-- #sql-story -->
           </section><!-- #users-card -->
 
@@ -608,36 +622,38 @@ FROM
             <div class="sql-story">
               <p class="clare-line">下記のようにテーブル products のデータを全件読み込んでください。</p>
             </div>
-            <table class="sql-table">
-              <caption>products</caption>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>product_name</th>
-                  <th>price</th>
-                  <th>stock_quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>桐の棒</td>
-                  <td>1200</td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>鉄の斧</td>
-                  <td>16000</td>
-                  <td>8</td>
-                </tr>
-              </tbody>
-            </table><!-- .sql-table -->
+            <div class="sql-table-wrapper">
+              <table class="sql-table">
+                <caption>products</caption>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>product_name</th>
+                    <th>price</th>
+                    <th>stock_quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>桐の棒</td>
+                    <td>1200</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>鉄の斧</td>
+                    <td>16000</td>
+                    <td>8</td>
+                  </tr>
+                </tbody>
+              </table><!-- .sql-table -->
+            </div>
             <p><textarea id="your-sql-04" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="run-your-sql-04">実行</button>
             </div><!-- .gplayer-button-wrapper -->
-            <div id="your-result-04" class="sql-story">
+            <div id="your-result-04" class="sql-story sql-table-wrapper">
             </div><!-- #your-result-04 -->
           </section>
 
@@ -670,30 +686,32 @@ SELECT * FROM `products`;</code></pre>
               <p class="gantz-line">想像に任せる。更新は CRUD の Update じゃな？</p>
               <p class="clare-line">データを更新する場合、どのデータを更新したいのかを必ず指定してやる必要があります。テーブル products の場合、レコードを一意に指定できる id
                 列で指定してやると良いでしょう。</p>
-              <table class="sql-table">
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>product_name</th>
-                    <th>price</th>
-                    <th>stock_quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>桐の棒</td>
-                    <td>1,200</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>鉄の斧</td>
-                    <td>16,000</td>
-                    <td>8</td>
-                  </tr>
-                </tbody>
-              </table><!-- .sql-table -->
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>product_name</th>
+                      <th>price</th>
+                      <th>stock_quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>桐の棒</td>
+                      <td>1,200</td>
+                      <td>10</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>鉄の斧</td>
+                      <td>16,000</td>
+                      <td>8</td>
+                    </tr>
+                  </tbody>
+                </table><!-- .sql-table -->
+              </div>
               <p class="gantz-line">つまりこのテーブルの場合、 id が 2 のレコードを指定するんじゃな？</p>
             </div><!-- #sql-story -->
           </section><!-- #users-card -->
@@ -725,31 +743,33 @@ WHERE
               <p class="clare-line">下記のようなテーブル products
                 について「鉄の斧」を「金の斧」に変え、価格も「2000000」に変更してください。さらに変更を確認するために、全列全レコードを読み取ってください。</p>
             </div>
-            <table class="sql-table">
-              <caption>products</caption>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>product_name</th>
-                  <th>price</th>
-                  <th>stock_quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>桐の棒</td>
-                  <td>1200</td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>鉄の斧</td>
-                  <td>16000</td>
-                  <td>8</td>
-                </tr>
-              </tbody>
-            </table><!-- .sql-table -->
+            <div class="sql-table-wrapper">
+              <table class="sql-table">
+                <caption>products</caption>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>product_name</th>
+                    <th>price</th>
+                    <th>stock_quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>桐の棒</td>
+                    <td>1200</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>鉄の斧</td>
+                    <td>16000</td>
+                    <td>8</td>
+                  </tr>
+                </tbody>
+              </table><!-- .sql-table -->
+            </div><!-- .sql-table-wrapper -->
             <p><textarea id="your-sql-05" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="run-your-sql-05">実行</button>
@@ -786,31 +806,33 @@ SELECT * FROM `products`;</code></pre>
               <p class="gantz-line">まあ、そういう桐もある。……ともかく「桐の棒」を削除したいんじゃ。</p>
               <p class="clare-line">データを削除する場合、どのデータを削除したいのかを指定してやる必要があります。テーブル products の場合、レコードを一意に指定できる id
                 列で指定してやると良いでしょう。</p>
-              <table class="sql-table">
-                <caption>products</caption>
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>product_name</th>
-                    <th>price</th>
-                    <th>stock_quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>桐の棒</td>
-                    <td>1,200</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>金の斧</td>
-                    <td>2,000,000</td>
-                    <td>8</td>
-                  </tr>
-                </tbody>
-              </table><!-- .sql-table -->
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <caption>products</caption>
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>product_name</th>
+                      <th>price</th>
+                      <th>stock_quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>桐の棒</td>
+                      <td>1,200</td>
+                      <td>10</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>金の斧</td>
+                      <td>2,000,000</td>
+                      <td>8</td>
+                    </tr>
+                  </tbody>
+                </table><!-- .sql-table -->
+              </div><!-- .sql-table-wrapper -->
               <p class="gantz-line">つまりこのテーブルの場合、 id が 1 のレコードを指定して削除するんじゃな？</p>
             </div><!-- #sql-story -->
           </section><!-- #users-card -->
@@ -838,36 +860,38 @@ WHERE
             <div class="sql-story">
               <p class="clare-line">下記テーブル products について「桐の棒」のレコードを削除してください。さらに変更を確認するために、全レコードを読み取ってください。</p>
             </div>
-            <table class="sql-table">
-              <caption>products</caption>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>product_name</th>
-                  <th>price</th>
-                  <th>stock_quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>桐の棒</td>
-                  <td>1200</td>
-                  <td>10</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>金の斧</td>
-                  <td>2000000</td>
-                  <td>8</td>
-                </tr>
-              </tbody>
-            </table><!-- .sql-table -->
+            <div class="sql-table-wrapper">
+              <table class="sql-table">
+                <caption>products</caption>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>product_name</th>
+                    <th>price</th>
+                    <th>stock_quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>桐の棒</td>
+                    <td>1200</td>
+                    <td>10</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>金の斧</td>
+                    <td>2000000</td>
+                    <td>8</td>
+                  </tr>
+                </tbody>
+              </table><!-- .sql-table -->
+            </div><!-- .sql-table-wrapper -->
             <p><textarea id="your-sql-06" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="run-your-sql-06">実行</button>
             </div><!-- .gplayer-button-wrapper -->
-            <div id="your-result-06" class="sql-story">
+            <div id="your-result-06" class="sql-story sql-table-wrapper">
             </div><!-- #your-result-06 -->
           </section>
 
@@ -894,48 +918,50 @@ SELECT * FROM `products`;</code></pre>
             <div class="sql-story">
               <p class="gantz-line">最近いろんな道具を作ったから、試しにデータベースに登録してみたんじゃが、パッと検索できないものか？
                 値段とか商品名とか在庫が足りなさそうなやつとか、一発で調べられないかな？</p>
-              <table class="sql-table">
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>product_name</th>
-                    <th>price</th>
-                    <th>stock_quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>金の斧</td>
-                    <td>2,000,000</td>
-                    <td>8</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>ぬか杖</td>
-                    <td>1,000</td>
-                    <td>20</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>祝福の杖</td>
-                    <td>3,000,000</td>
-                    <td>1</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>i本</td>
-                    <td>180,000</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>壺</td>
-                    <td>1,000,000</td>
-                    <td>2</td>
-                  </tr>
-                </tbody>
-              </table><!-- .sql-table -->
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>product_name</th>
+                      <th>price</th>
+                      <th>stock_quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>金の斧</td>
+                      <td>2,000,000</td>
+                      <td>8</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>ぬか杖</td>
+                      <td>1,000</td>
+                      <td>20</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>祝福の杖</td>
+                      <td>3,000,000</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>i本</td>
+                      <td>180,000</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>壺</td>
+                      <td>1,000,000</td>
+                      <td>2</td>
+                    </tr>
+                  </tbody>
+                </table><!-- .sql-table -->
+              </div><!-- .sql-table-wrapper -->
               <p class="clare-line">珍品揃いですね。何ですか、「i本」て？</p>
               <p class="gantz-line">最近は携帯電話機で本も読めるらしいからな。だったら電話もできる本があってもいいんじゃないかと思って作ってみた。</p>
               <p class="clare-line">ふぅん。……で、何がしたいんですか？</p>
@@ -991,79 +1017,9 @@ WHERE
             <div class="sql-story">
               <p class="clare-line">下記テーブル products について商品名に「杖」を含むレコードのみを検索して全列を表示してください。</p>
             </div>
-            <table class="sql-table">
-              <caption>products</caption>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>product_name</th>
-                  <th>price</th>
-                  <th>stock_quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>金の斧</td>
-                  <td>2,000,000</td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>ぬか杖</td>
-                  <td>1,000</td>
-                  <td>20</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>祝福の杖</td>
-                  <td>3,000,000</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>i本</td>
-                  <td>180,000</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>壺</td>
-                  <td>1,000,000</td>
-                  <td>2</td>
-                </tr>
-              </tbody>
-            </table><!-- .sql-table -->
-            <p><textarea id="your-sql-07" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
-            <div class="gplayer-button-wrapper">
-              <button class="gplayer-button ripple" type="button" id="run-your-sql-07">実行</button>
-            </div><!-- .gplayer-button-wrapper -->
-            <div id="your-result-07" class="sql-story">
-            </div><!-- #your-result-07 -->
-          </section>
-
-          <section id="answer-07-card" class="card hidden">
-            <h2 class="card-title">解答例 07</h2>
-            <div class="sql-story">
-              <p class="clare-line">
-                解答例です。 </p>
-              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT * FROM `products`
-WHERE
-  `product_name` LIKE '%杖%';</code></pre>
-            </div>
-            <div class="gplayer-button-wrapper">
-              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="08">次の問題へ</button>
-            </div><!-- .gplayer-button-wrapper -->
-          </section><!-- #answer-07-card -->
-        </div><!-- #sql-story-07 -->
-
-        <!-- 08 データの並び替え -->
-        <div id="sql-story-08" class="sql-story-wrapper">
-          <section class="card">
-            <h2 class="card-title">08. ドワーフ・ガンツのデータ並び替え</h2>
-            <div class="sql-story">
-              <p class="gantz-line">並び替えはできないのかな？</p>
+            <div class="sql-table-wrapper">
               <table class="sql-table">
+                <caption>products</caption>
                 <thead>
                   <tr>
                     <th>id</th>
@@ -1105,6 +1061,80 @@ WHERE
                   </tr>
                 </tbody>
               </table><!-- .sql-table -->
+            </div><!-- .sql-table-wrapper -->
+            <p><textarea id="your-sql-07" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="run-your-sql-07">実行</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-07" class="sql-story sql-table-wrapper">
+            </div><!-- #your-result-07 -->
+          </section>
+
+          <section id="answer-07-card" class="card hidden">
+            <h2 class="card-title">解答例 07</h2>
+            <div class="sql-story">
+              <p class="clare-line">
+                解答例です。 </p>
+              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT * FROM `products`
+WHERE
+  `product_name` LIKE '%杖%';</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="08">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-07-card -->
+        </div><!-- #sql-story-07 -->
+
+        <!-- 08 データの並び替え -->
+        <div id="sql-story-08" class="sql-story-wrapper">
+          <section class="card">
+            <h2 class="card-title">08. ドワーフ・ガンツのデータ並び替え</h2>
+            <div class="sql-story">
+              <p class="gantz-line">並び替えはできないのかな？</p>
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>product_name</th>
+                      <th>price</th>
+                      <th>stock_quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>金の斧</td>
+                      <td>2,000,000</td>
+                      <td>8</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>ぬか杖</td>
+                      <td>1,000</td>
+                      <td>20</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>祝福の杖</td>
+                      <td>3,000,000</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>i本</td>
+                      <td>180,000</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>壺</td>
+                      <td>1,000,000</td>
+                      <td>2</td>
+                    </tr>
+                  </tbody>
+                </table><!-- .sql-table -->
+              </div><!-- .sql-table-wrapper -->
               <p class="clare-line">もちろんできます。降順でも昇順でもできます。</p>
               <p class="gantz-line">降順でもできるのか？ それは便利じゃ。お金持ちの信心深そうなご婦人が来た時には「祝福の杖」とか「壺」とか売らないかんしな。</p>
               <p class="clare-line">じゃあ、高いもの順に価格で降順ですね。</p>
@@ -1139,54 +1169,56 @@ ORDER BY `price` DESC;</code></pre>
             <div class="sql-story">
               <p class="clare-line">下記テーブル products について、商品名に「杖」を含むレコードのみを価格の降順で検索して全列表示してください。</p>
             </div>
-            <table class="sql-table">
-              <caption>products</caption>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>product_name</th>
-                  <th>price</th>
-                  <th>stock_quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>金の斧</td>
-                  <td>2,000,000</td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>ぬか杖</td>
-                  <td>1,000</td>
-                  <td>20</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>祝福の杖</td>
-                  <td>3,000,000</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>i本</td>
-                  <td>180,000</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>壺</td>
-                  <td>1,000,000</td>
-                  <td>2</td>
-                </tr>
-              </tbody>
-            </table><!-- .sql-table -->
+            <div class="sql-table-wrapper">
+              <table class="sql-table">
+                <caption>products</caption>
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>product_name</th>
+                    <th>price</th>
+                    <th>stock_quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>金の斧</td>
+                    <td>2,000,000</td>
+                    <td>8</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>ぬか杖</td>
+                    <td>1,000</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>祝福の杖</td>
+                    <td>3,000,000</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>i本</td>
+                    <td>180,000</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>壺</td>
+                    <td>1,000,000</td>
+                    <td>2</td>
+                  </tr>
+                </tbody>
+              </table><!-- .sql-table -->
+            </div><!-- .sql-table-wrapper -->
             <p><textarea id="your-sql-08" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="run-your-sql-08">実行</button>
             </div><!-- .gplayer-button-wrapper -->
-            <div id="your-result-08" class="sql-story">
+            <div id="your-result-08" class="sql-story sql-table-wrapper">
             </div><!-- #your-result-08 -->
           </section>
 
@@ -1213,6 +1245,146 @@ ORDER BY `price` DESC;</code></pre>
             <div class="sql-story">
               <p class="gantz-line">15 件くらいのデータを入力してみたんじゃが、データが多くなってくると一度に表示するとちょっと見にくい。例えば 5 件ずつとかでページ送りのように表示できないもんかな？
               </p>
+              <div class="sql-table-wrapper">
+                <table class="sql-table">
+                  <caption>products</caption>
+                  <thead>
+                    <tr>
+                      <th>id</th>
+                      <th>product_name</th>
+                      <th>price</th>
+                      <th>stock_quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>金の斧</td>
+                      <td>2,000,000</td>
+                      <td>8</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>ぬか杖</td>
+                      <td>1,000</td>
+                      <td>20</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>祝福の杖</td>
+                      <td>3,000,000</td>
+                      <td>1</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>i本</td>
+                      <td>180,000</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>壺</td>
+                      <td>1,000,000</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>鋼のハリセン</td>
+                      <td>15,000</td>
+                      <td>8</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>エクスカリパー</td>
+                      <td>1,000</td>
+                      <td>25</td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>バールのようなもの</td>
+                      <td>5,000</td>
+                      <td>6</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>包丁</td>
+                      <td>12,000</td>
+                      <td>8</td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>箒</td>
+                      <td>500</td>
+                      <td>13</td>
+                    </tr>
+                    <tr>
+                      <td>11</td>
+                      <td>藁人形</td>
+                      <td>1,000</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>12</td>
+                      <td>手裏剣</td>
+                      <td>35,000</td>
+                      <td>20</td>
+                    </tr>
+                    <tr>
+                      <td>13</td>
+                      <td>毒針</td>
+                      <td>100</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td>14</td>
+                      <td>源氏の草鞋</td>
+                      <td>20,000</td>
+                      <td>2</td>
+                    </tr>
+                    <tr>
+                      <td>15</td>
+                      <td>冷凍バナナ</td>
+                      <td>200</td>
+                      <td>5</td>
+                    </tr>
+                  </tbody>
+                </table><!-- .sql-table -->
+              </div><!-- .sql-table-wrapper -->
+              <p class="clare-line">
+                図書館の検索システムなんかでもよくあるやつですね。もちろんできます。ページ送りは、検索結果の何件分を表示するかという指定と、最初の何件をスキップするかという指定を組み合わせて実装します。</p>
+              <p class="gantz-line">なんか難しそうじゃな。試しに 11 件目から 5 件のレコードを表示してみたい。</p>
+            </div><!-- #sql-story -->
+          </section><!-- #users-card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 09</h2>
+            <p><span id="display-hint-09" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="sql-hint-09" class="sql-story hidden">
+              <p class="clare-line">やはり SELECT 文が基本です。</p>
+              <pre class="line-numbers language-sql"
+                tabindex="0"><code class="language-sql">SELECT * FROM `products`;</code></pre>
+              <p class="clare-line">表示件数を限定するには、 LIMIT 句を使います。次のようにすれば、先頭から 5 件のレコードが抽出できます。</p>
+              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT * FROM `products`
+  LIMIT 5;</code></pre>
+              <p class="gantz-line">なるほど。じゃあ 11 件目から 5 件を表示するにはどうすればいいんじゃ？</p>
+              <p class="clare-line">LIMIT 句にさらに OFFSET 句を追加します。次のようにすれば、最初の 10 件をスキップして 11 件目から抽出されます。</p>
+              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT * FROM `products`
+  LIMIT 5 OFFSET 10;</code></pre>
+              <p class="gantz-line">OFFSET 句というのは単独でも使えたりするのか？</p>
+              <p class="clare-line">いいえ。 OFFSET 句は必ず LIMIT 句と一緒に使います。ただどうしても 11 件目以降を全部表示したいという場合には、 SQLite
+                の場合は次のように書けます。ただ SQLite 特有の書き方なので、無理に覚える必要もないでしょう。</p>
+              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT * FROM `products`
+  LIMIT -1 OFFSET 10;</code></pre>
+              <p class="gantz-line">ほう。</p>
+            </div><!-- #sql-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 09</h2>
+            <div class="sql-story">
+              <p class="clare-line">下記テーブル products について 11 件目から 15 件目までのレコードを抽出して全列表示してください。</p>
+            </div>
+            <div class="sql-table-wrapper">
               <table class="sql-table">
                 <caption>products</caption>
                 <thead>
@@ -1316,148 +1488,12 @@ ORDER BY `price` DESC;</code></pre>
                   </tr>
                 </tbody>
               </table><!-- .sql-table -->
-              <p class="clare-line">
-                図書館の検索システムなんかでもよくあるやつですね。もちろんできます。ページ送りは、検索結果の何件分を表示するかという指定と、最初の何件をスキップするかという指定を組み合わせて実装します。</p>
-              <p class="gantz-line">なんか難しそうじゃな。試しに 11 件目から 5 件のレコードを表示してみたい。</p>
-            </div><!-- #sql-story -->
-          </section><!-- #users-card -->
-
-          <section class="card">
-            <h2 class="card-title">解説 09</h2>
-            <p><span id="display-hint-09" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
-            <div id="sql-hint-09" class="sql-story hidden">
-              <p class="clare-line">やはり SELECT 文が基本です。</p>
-              <pre class="line-numbers language-sql"
-                tabindex="0"><code class="language-sql">SELECT * FROM `products`;</code></pre>
-              <p class="clare-line">表示件数を限定するには、 LIMIT 句を使います。次のようにすれば、先頭から 5 件のレコードが抽出できます。</p>
-              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT * FROM `products`
-  LIMIT 5;</code></pre>
-              <p class="gantz-line">なるほど。じゃあ 11 件目から 5 件を表示するにはどうすればいいんじゃ？</p>
-              <p class="clare-line">LIMIT 句にさらに OFFSET 句を追加します。次のようにすれば、最初の 10 件をスキップして 11 件目から抽出されます。</p>
-              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT * FROM `products`
-  LIMIT 5 OFFSET 10;</code></pre>
-              <p class="gantz-line">OFFSET 句というのは単独でも使えたりするのか？</p>
-              <p class="clare-line">いいえ。 OFFSET 句は必ず LIMIT 句と一緒に使います。ただどうしても 11 件目以降を全部表示したいという場合には、 SQLite
-                の場合は次のように書けます。ただ SQLite 特有の書き方なので、無理に覚える必要もないでしょう。</p>
-              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT * FROM `products`
-  LIMIT -1 OFFSET 10;</code></pre>
-              <p class="gantz-line">ほう。</p>
-            </div><!-- #sql-hint -->
-          </section>
-
-          <section class="card">
-            <h2 class="card-title">設問 09</h2>
-            <div class="sql-story">
-              <p class="clare-line">下記テーブル products について 11 件目から 15 件目までのレコードを抽出して全列表示してください。</p>
-            </div>
-            <table class="sql-table">
-              <caption>products</caption>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>product_name</th>
-                  <th>price</th>
-                  <th>stock_quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>金の斧</td>
-                  <td>2,000,000</td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>ぬか杖</td>
-                  <td>1,000</td>
-                  <td>20</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>祝福の杖</td>
-                  <td>3,000,000</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>i本</td>
-                  <td>180,000</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>壺</td>
-                  <td>1,000,000</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>鋼のハリセン</td>
-                  <td>15,000</td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>エクスカリパー</td>
-                  <td>1,000</td>
-                  <td>25</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>バールのようなもの</td>
-                  <td>5,000</td>
-                  <td>6</td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>包丁</td>
-                  <td>12,000</td>
-                  <td>8</td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>箒</td>
-                  <td>500</td>
-                  <td>13</td>
-                </tr>
-                <tr>
-                  <td>11</td>
-                  <td>藁人形</td>
-                  <td>1,000</td>
-                  <td>3</td>
-                </tr>
-                <tr>
-                  <td>12</td>
-                  <td>手裏剣</td>
-                  <td>35,000</td>
-                  <td>20</td>
-                </tr>
-                <tr>
-                  <td>13</td>
-                  <td>毒針</td>
-                  <td>100</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>14</td>
-                  <td>源氏の草鞋</td>
-                  <td>20,000</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td>15</td>
-                  <td>冷凍バナナ</td>
-                  <td>200</td>
-                  <td>5</td>
-                </tr>
-              </tbody>
-            </table><!-- .sql-table -->
+            </div><!-- .sql-table-wrapper -->
             <p><textarea id="your-sql-09" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="run-your-sql-09">実行</button>
             </div><!-- .gplayer-button-wrapper -->
-            <div id="your-result-09" class="sql-story">
+            <div id="your-result-09" class="sql-story sql-table-wrapper">
             </div><!-- #your-result-09 -->
           </section>
 
@@ -3889,7 +3925,8 @@ PRAGMA foreign_keys;</code></pre>
               </p>
               <ol class="sql-question-list">
                 <li>現テーブル elements を削除する。</li>
-                <li>旧テーブルの strong_against 列を自己参照列 strong_against_element_id に修正してマスターテーブル elements を作成する。主キー以外は NOT NULL 制約をつける。また適切に外部キー制約をつける。</li>
+                <li>旧テーブルの strong_against 列を自己参照列 strong_against_element_id に修正してマスターテーブル elements を作成する。主キー以外は NOT NULL
+                  制約をつける。また適切に外部キー制約をつける。</li>
                 <li>PRAGMA 文で外部キー制約の状態を確認する。</li>
                 <li>PRAGMA 文で外部キー制約を無効化する。</li>
                 <li>PRAGMA 文で外部キー制約の状態を確認する。</li>
@@ -4640,7 +4677,8 @@ SELECT 5%2;</code></pre>
               <p class="clare-line">これはよく使います。</p>
               <p class="gantz-line">ほう。</p>
               <p class="clare-line">今回はどこにも NULL 値がないので、出力結果は同じです。 NULL 値がカウントされないというのは、次のようにして確認することもできます。</p>
-              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT COUNT(NULL);</code></pre>
+              <pre class="line-numbers language-sql"
+                tabindex="0"><code class="language-sql">SELECT COUNT(NULL);</code></pre>
               <div class="sql-table-wrapper">
                 <table class="sql-table">
                   <thead>
@@ -4656,7 +4694,8 @@ SELECT 5%2;</code></pre>
                 </table><!-- .sql-table -->
               </div><!-- .sql-table-wrapper -->
               <p class="clare-line">比較のために、適当な文字列を渡して COUNT() させてみます。</p>
-              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT COUNT('hoge');</code></pre>
+              <pre class="line-numbers language-sql"
+                tabindex="0"><code class="language-sql">SELECT COUNT('hoge');</code></pre>
               <div class="sql-table-wrapper">
                 <table class="sql-table">
                   <thead>
@@ -5547,11 +5586,13 @@ SELECT
                   </tbody>
                 </table>
               </div><!-- .sql-table-wrapper -->
-              <p class="clare-line">この SELECT 文そのものを WHERE 句に組み込めます。これをサブクエリと言い、特にこのように単一の値として利用できるサブクエリをスカラサブクエリと言います。</p>
+              <p class="clare-line">この SELECT 文そのものを WHERE 句に組み込めます。これをサブクエリと言い、特にこのように単一の値として利用できるサブクエリをスカラサブクエリと言います。
+              </p>
               <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT `product_name`, `price` FROM `products`
   WHERE price&gt;(SELECT 100000 AS `number`);
               </code></pre>
-              <p class="clare-line">出力結果はさっきの products テーブルの場合と同じになります。ちなみに WHERE 句内のサブクエリ内では AS `number` はもはや何の意味もありません。</p>
+              <p class="clare-line">出力結果はさっきの products テーブルの場合と同じになります。ちなみに WHERE 句内のサブクエリ内では AS `number`
+                はもはや何の意味もありません。</p>
               <div class="sql-table-wrapper">
                 <table class="sql-table">
                   <caption>products</caption>
@@ -5581,12 +5622,14 @@ SELECT
                   </tbody>
                 </table>
               </div><!-- .sql-table-wrapper -->
-              <p class="gantz-line">ほう。……と言うことは、集約関数を使ったサブクエリを実行すれば 1 レコード 1 列のデータを返すスカラサブクエリになるから、平均以上みたいなこともできるわけじゃな。こうかな？</p>
+              <p class="gantz-line">ほう。……と言うことは、集約関数を使ったサブクエリを実行すれば 1 レコード 1
+                列のデータを返すスカラサブクエリになるから、平均以上みたいなこともできるわけじゃな。こうかな？</p>
               <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT `product_name`, `price` FROM `products`
   WHERE price&gt;(SELECT AVG(`price`) FROM `products`);</code></pre>
               <p class="clare-line">その通りです。</p>
               <p class="gantz-line">我ながら大分賢くなってきたじゃろ？</p>
-              <p class="clare-line">……びっくりです。おまけとして SELECT 文を使ったサブクエリについて、もうひとつよく使われる使い方があるので、例を挙げておきましょう。価格の上位 3 までを集計したものです。
+              <p class="clare-line">……びっくりです。おまけとして SELECT 文を使ったサブクエリについて、もうひとつよく使われる使い方があるので、例を挙げておきましょう。価格の上位 3
+                までを集計したものです。
               </p>
               <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">SELECT
     SUM(`price`) AS `total_price`
@@ -6078,7 +6121,8 @@ END;</code></pre>
             <h2 class="card-title">設問 20</h2>
             <div class="sql-story">
               <p class="clare-line">
-                下記テーブル products に対して SELECT 文を実施して、下記の条件に合致するような商品タグ用の列 tag を追加の上、列 product_name ・ price ・ tag を表示してください。
+                下記テーブル products に対して SELECT 文を実施して、下記の条件に合致するような商品タグ用の列 tag を追加の上、列 product_name ・ price ・ tag
+                を表示してください。
               <ul class="sql-question-list">
                 <li>price 列が 1,000,000 以上のとき「上品なお嬢様向け高級品」</li>
                 <li>price 列が 10,000 以上のとき「庶民向け中級品」</li>
