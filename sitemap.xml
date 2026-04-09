@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://gplayer2022.github.io/GHomePub/</loc>
+    <lastmod>2026-04-09</lastmod>
+  </url>
+  <!-- クロール可 -->
+  <url>
+    <loc>https://gplayer2022.github.io/GHomePub/index.html</loc>
+    <lastmod>2026-04-09</lastmod>
+  </url>
+  <url>
+    <loc>https://gplayer2022.github.io/GHomePub/ex-sql.html</loc>
+    <lastmod>2026-04-08</lastmod>
+  </url>
+</urlset>
