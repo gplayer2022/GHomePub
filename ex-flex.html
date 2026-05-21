@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini Flexbox Game</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      background: #f4f4f4;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .left {
+      width: 280px;
+    }
+
+    .right {
+      flex: 1;
+    }
+
+    .editor {
+      background: #222;
+      color: #0f0;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: monospace;
+    }
+
+    input {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .game-area {
+      margin-top: 20px;
+      border: 3px solid #333;
+      border-radius: 10px;
+      background: #dfffdc;
+
+      display: flex;
+      justify-content: flex-start;
+
+      height: 120px;
+      align-items: center;
+      padding: 0 20px;
+
+      transition: 0.3s;
+    }
+
+    .frog {
+      width: 60px;
+      height: 60px;
+      background: #4caf50;
+      border-radius: 50%;
+      font-size: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .target {
+      position: absolute;
+      right: 40px;
+
+      width: 70px;
+      height: 70px;
+      border: 4px dashed orange;
+      border-radius: 50%;
+    }
+
+    .stage-wrapper {
+      position: relative;
+    }
+
+    .message {
+      margin-top: 16px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Mini Flexbox Game</h1>
+
+  <div class="container">
+
+    <div class="panel left">
+      <h2>問題</h2>
+
+      <p>
+        カエルを右端のゴールへ移動してください。
+      </p>
+
+      <p>
+        使用するCSS:
+      </p>
+
+      <div class="editor">
+        justify-content:
+      </div>
+
+      <input id="answer" placeholder="例: center" />
+
+      <div id="message" class="message"></div>
+    </div>
+
+    <div class="panel right">
+      <h2>結果</h2>
+
+      <div class="stage-wrapper">
+
+        <div class="target"></div>
+
+        <div id="game" class="game-area">
+          <div class="frog">🐸</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const input = document.getElementById("answer");
+    const game = document.getElementById("game");
+    const message = document.getElementById("message");
+
+    input.addEventListener("input", () => {
+
+      const value = input.value.trim();
+      console.log(value);
+
+      game.style.justifyContent = value;
+
+      if (value === "flex-end") {
+        message.textContent = "クリア！";
+        message.className = "message success";
+      } else {
+        message.textContent = "まだ違います";
+        message.className = "message error";
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
