@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="授業支援用サイトです。主に C# を扱っています。">
-  <meta property="og:title" content="SQL 練習帳 | GHomePub">
+  <meta property="og:title" content="正規表現練習帳 | GHomePub">
   <meta property="og:description" content="授業支援用サイトです。主に C# を扱っています。">
-  <meta property="og:site_name" content="SQL 練習帳 | GHomePub">
+  <meta property="og:site_name" content="正規表現練習帳 | GHomePub">
   <meta property="og:locale" content="ja_JP">
-  <title>SQL 練習帳 | GHomePub</title>
+  <title>正規表現練習帳 | GHomePub</title>
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/prism.css">
@@ -49,13 +49,13 @@
     <div class="content-container">
       <main id="main" class="main">
         <section class="card">
-          <h2 class="card-title">SQL 練習帳</h2>
+          <h2 class="card-title">正規表現練習帳</h2>
           <p>このページでは正規表現の基礎をガンツやクレアと一緒に学んでいきます。</p>
-          <p>ガンツはドワーフの<ruby>万屋<rt>よろずや</rt></ruby>経営者です。
+          <p>ガンツはドワーフの<ruby>万屋<rt>よろずや</rt></ruby>経営者です。最近、世間では業務の IT 化がすっかり進んでいるのを知って、年寄りの手習いで自分でもシステムをいじり始めている。
           </p>
           <p>メイドのクレアは、ガンツに雇われた少し口の悪い普通の人間です。 IT
-            に詳しく、今回はガンツの経営の補助をします。</p>
-          <p><img class="sql-hero-image" src="images/yorozuya.png" alt="ガンツとクレア"></p>
+            に詳しく、ガンツの経営の IT 化を補助をしています。</p>
+          <p><img class="story-hero-image" src="images/yorozuya.png" alt="ガンツとクレア"></p>
         </section><!-- .card -->
 
         <section class="card">
@@ -65,40 +65,40 @@
         </section>
 
         <!-- 01 話 -->
-        <div id="sql-story-01" class="sql-story-wrapper active">
+        <div id="story-01" class="story-wrapper active">
           <section class="card">
             <h2 class="card-title">01. ドワーフ・ガンツの万屋事始め</h2>
-            <div class="sql-story">
+            <div class="story">
               <p class="gantz-line">クレアさんよぅ、なにやらデータベースというものを使うと、たくさんのデータをとてもいい感じに整理できるらしいな。早速やってみたいんだが、何をどうしたらいいんだ？</p>
-            </div><!-- .sql-story -->
-          </section><!-- #sql-story-01 -->
+            </div><!-- .story -->
+          </section><!-- #story-01 -->
 
           <section class="card">
             <h2 class="card-title">解説 01</h2>
             <p><span id="display-hint-01" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
-            <div id="sql-hint-01" class="sql-story hidden">
+            <div id="story-hint-01" class="story hidden">
               <p class="clare-line">テーブルを作成するには、最低限テーブル名・列名・各列の型名を指定します。例えばこんな感じです。
-            </div><!-- #sql-hint -->
+            </div><!-- #story-hint -->
           </section>
 
           <section class="card">
             <h2 class="card-title">設問 01</h2>
-            <div class="sql-story">
+            <div class="story">
               <p class="clare-line">下記のようなテーブル products を作成してください。まだレコードの入力は必要ありません。</p>
             </div>
-            <p><textarea id="your-sql-01" class="your-sql" rows="10" placeholder="ここにSQL 文を書きます"></textarea></p>
+            <p><textarea id="your-story-01" class="your-story" rows="10" placeholder="ここにstory 文を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
-              <button class="gplayer-button ripple" type="button" id="run-your-sql-01">実行</button>
+              <button class="gplayer-button ripple" type="button" id="run-your-story-01">実行</button>
             </div><!-- .gplayer-button-wrapper -->
-            <div id="your-result-01" class="sql-story">
+            <div id="your-result-01" class="story">
             </div><!-- #your-result-01 -->
           </section>
 
           <section id="answer-01-card" class="card hidden">
             <h2 class="card-title">解答例 01</h2>
-            <div class="sql-story">
+            <div class="story">
               <p class="clare-line">解答例です。 AUTOINCREMENT は、なくても大丈夫です。</p>
-              <pre class="line-numbers language-sql" tabindex="0"><code class="language-sql">CREATE TABLE `products` (
+              <pre class="line-numbers language-story" tabindex="0"><code class="language-story">CREATE TABLE `products` (
   `id` INTEGER PRIMARY KEY,
   `product_name` TEXT NOT NULL,
   `price` INTEGER NOT NULL,
@@ -113,9 +113,9 @@
 
         <section class="card">
           <h2 class="card-title">結果一覧</h2>
-          <dl class="sql-table-like">
+          <dl class="story-table-like">
             <dt>設問 01 ドワーフ・ガンツの万屋事始め</dt>
-            <dd id="your-result-list-01" data-result-id="ghomepub-sql-01"></dd>
+            <dd id="your-result-list-01" data-result-id="ghomepub-story-01"></dd>
           </dl>
           <div class="gplayer-button-wrapper">
             <button class="gplayer-button ripple" type="button" id="clear-your-progress-button">結果一覧のクリア</button>
@@ -131,7 +131,7 @@
 
   </div><!-- .whole-wrapper -->
   <script id="prism" src="js/prism.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/story.js/1.8.0/story-wasm.js"></script>
   <script type="module" src="js/ex-regex.js"></script>
   <script src="js/button.js"></script>
   <script src="js/common.js"></script>
