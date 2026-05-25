@@ -2,179 +2,753 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Mini Flexbox Game</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="授業支援用サイトです。主に C# を扱っています。">
+  <meta property="og:title" content="フレックスボックス練習帳 | GHomePub">
+  <meta property="og:description" content="授業支援用サイトです。主に C# を扱っています。">
+  <meta property="og:site_name" content="フレックスボックス練習帳 | GHomePub">
+  <meta property="og:locale" content="ja_JP">
+  <title>Flexbox 練習帳 | GHomePub</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/prism.css">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      font-family: sans-serif;
-      background: #f4f4f4;
-    }
-
-    h1 {
-      margin-top: 0;
-    }
-
-    .container {
-      display: flex;
-      gap: 20px;
-    }
-
-    .panel {
-      background: white;
-      border-radius: 8px;
-      padding: 16px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .left {
-      width: 280px;
-    }
-
-    .right {
-      flex: 1;
-    }
-
-    .editor {
-      background: #222;
-      color: #0f0;
-      padding: 12px;
-      border-radius: 6px;
-      font-family: monospace;
-    }
-
-    input {
-      width: 100%;
-      margin-top: 8px;
-      padding: 8px;
-      font-size: 16px;
-    }
-
-    .game-area {
-      margin-top: 20px;
-      border: 3px solid #333;
-      border-radius: 10px;
-      background: #dfffdc;
-
-      display: flex;
-      justify-content: flex-start;
-
-      height: 120px;
-      align-items: center;
-      padding: 0 20px;
-
-      transition: 0.3s;
-    }
-
-    .frog {
-      width: 60px;
-      height: 60px;
-      background: #4caf50;
-      border-radius: 50%;
-      font-size: 32px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .target {
-      position: absolute;
-      right: 40px;
-
-      width: 70px;
-      height: 70px;
-      border: 4px dashed orange;
-      border-radius: 50%;
-    }
-
-    .stage-wrapper {
-      position: relative;
-    }
-
-    .message {
-      margin-top: 16px;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .success {
-      color: green;
-    }
-
-    .error {
-      color: red;
-    }
-  </style>
+  <!-- chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"
+    integrity="sha512-Y51n9mtKTVBh3Jbx5pZSJNDDMyY+yGe77DGtBPzRlgsf/YLCh13kSZ3JmfHGzYFCmOndraf0sQgfM654b7dJ3w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-D8HPBTVCPM');
+  </script>
 </head>
 
-<body>
+<body class="body">
+  <div class="whole-wrapper">
 
-  <h1>Mini Flexbox Game</h1>
+    <div class="pre-header">
+      <div class="pre-header-inner">
+        <p class="site-description">授業支援用サイト</p>
+      </div><!-- .pre-header-inner -->
+    </div><!-- .pre-header -->
 
-  <div class="container">
+    <header class="header" id="sticky-header">
+      <div class="header-inner">
+        <h1 class="site-title">
+          <a href="index.html">GHomePub</a>
+        </h1>
+      </div><!-- .header-inner -->
+    </header>
 
-    <div class="panel left">
-      <h2>問題</h2>
+    <div class="content-container">
+      <main id="main" class="main">
+        <section class="card">
+          <h2 class="card-title">フレックスボックス練習帳</h2>
+          <p>このページでは CSS のフレックスボックスをガンツやクレアと一緒に学んでいきます。</p>
+          <p>ガンツはドワーフの<ruby>万屋<rt>よろずや</rt></ruby>経営者です。最近、世間では業務の IT 化がすっかり進んでいるのを知って、年寄りの手習いで自分でもシステムをいじり始めています。
+          </p>
+          <p>メイドのクレアはガンツに雇われた普通の人間です。ときどき少し口が悪くなることもあります。 IT に詳しく、ガンツの経営の IT 化を補助しています。</p>
+          <p><img class="story-hero-image" src="images/yorozuya-half.png" alt="ガンツとクレア"></p>
+        </section><!-- .card -->
 
-      <p>
-        カエルを右端のゴールへ移動してください。
-      </p>
+        <section class="card">
+          <div id="step-progress" class="progress">
+            <span title="01 ドワーフ・ガンツのフレックスコンテナ" data-step="01">●</span>
+            <span title="02 ドワーフ・ガンツの justify-content" data-step="02">○</span>
+            <span title="03 ドワーフ・ガンツの応用" data-step="03">○</span>
+            <span title="04 ドワーフ・ガンツの交差軸" data-step="04">○</span>
+            <span title="05 ドワーフ・ガンツの主軸と交差軸" data-step="05">○</span>
+            <span title="06 ドワーフ・ガンツの改行" data-step="06">○</span>
+            <span title="07 ドワーフ・ガンツのフレックスボックスまとめ" data-step="07">○</span>
+          </div>
+        </section>
 
-      <p>
-        使用するCSS:
-      </p>
+        <!-- 01 話 -->
+        <div id="story-01" class="story-wrapper active">
+          <section class="card">
+            <h2 class="card-title">01. ドワーフ・ガンツのフレックスコンテナ</h2>
+            <div class="story">
+              <p class="gantz-line">クレアさんよぅ、 CSS を使ってフレックスアイテムたちを横並びにしたいんじゃが、うまくできないものかな？</p>
+              <p class="clare-line">フレックスボックスを使えば簡単に横並びにできますよ。</p>
+            </div><!-- .story -->
+          </section><!-- card -->
 
-      <div class="editor">
-        justify-content:
-      </div>
+          <section class="card">
+            <h2 class="card-title">解説 01</h2>
+            <p><span id="display-hint-01" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-01" class="story hidden">
+              <p class="clare-line">{ display: flex;} を使うと、フレックスアイテムたちを一次元の横方向に並べることができます。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  display: flex;
+}</code></pre>
+              <p class="gantz-line">これだけ？</p>
+              <p class="clare-line">はい。これだけです。デフォルトで左から右への横方向に並びますが、 flex-direction を使えば、右から左、上から下、下から上方向も指定できます。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  display: flex;
+  flex-direction: row; /* 左から右（デフォルト） */
+  flex-direction: row-reverse; /* 右から左 */
+  flex-direction: column; /* 上から下 */
+  flex-direction: column-reverse; /* 下から上 */
+}</code></pre>
+              <p class="gantz-line">わざわざ上から下へとか並べて意味あるんかいな？ そもそも flex なんか使わなければ嫌でも上から下に並ぶじゃろ？</p>
+              <p class="clare-line">
+                もちろん意味はあります。スマホで見るときみたいに狭い横幅に対応させたいときと、パソコンで見るときみたいに広い横幅に対応させたいときとで表示を切り替えるような、レスポンシブデザインを実装する際なんかには重宝します。
+              </p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">/* スマホファーストで */
+div.target {
+  display: flex;
+  flex-direction: column; /* 上から下 */
+}
+/* PC 表示の場合 */
+@media (min-width: 884px) {
+  div.target {
+    flex-direction: row; /* 左から右 */
+  }
+}
+</code></pre>
+              <p class="gantz-line">なるほど。</p>
+              <p class="clare-line">ちなみに flex 指定された領域を「フレックスコンテナ」と言います。また、フレックスコンテナ内の子要素たちを「フレックスアイテム」と言います。</p>
+            </div><!-- #story-hint -->
+          </section>
 
-      <input id="answer" placeholder="例: center" />
+          <section class="card">
+            <h2 class="card-title">設問 01</h2>
+            <div class="story">
+              <p class="clare-line">{ display: flex;} 指定だけで横並びになります。右から左に並べてください。</p>
+            </div>
+            <div class="css-textarea-and-panel-wrapper">
+              <div class="css-answer-wrapper">
+                <pre>
+.css-panel-answer {
+  display: flex;
+<textarea id="your-answer-01" class="your-answer" rows="4" placeholder="ここにCSS を書きます"></textarea>
+}</pre>
+              </div>
+              <div class="css-panel-wrapper">
+                <div id="css-panel-model-01" class="css-panel css-panel-model">
+                </div>
+                <div id="css-panel-answer-01" class="css-panel css-panel-answer">
+                </div>
+              </div>
+            </div><!-- .css-textarea-and-panel-wrapper -->
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-01">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-01" class="story hidden">
+            </div>
+          </section>
 
-      <div id="message" class="message"></div>
-    </div>
-
-    <div class="panel right">
-      <h2>結果</h2>
-
-      <div class="stage-wrapper">
-
-        <div class="target"></div>
-
-        <div id="game" class="game-area">
-          <div class="frog">🐸</div>
+          <section id="answer-01-card" class="card hidden">
+            <h2 class="card-title">解答例 01</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。設問欄で他の向きも試してみるとよいでしょう。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  display: flex; /* 設定済 */
+  flex-direction: row-reverse;
+}</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="02">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-01-card -->
         </div>
 
-      </div>
-    </div>
+        <!-- 02 話 -->
+        <div id="story-02" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">02. ドワーフ・ガンツの justify-content</h2>
+            <div class="story">
+              <p class="gantz-line">もう少しいい感じに真ん中に設定できたりしないのかな？</p>
+              <p class="clare-line">justify-content を使えば flex-direction の方向を基準にして、簡単に中央配置させられます。</p>
+            </div><!-- .story -->
+          </section><!-- .card -->
 
-  </div>
+          <section class="card">
+            <h2 class="card-title">解説 02</h2>
+            <p><span id="display-hint-02" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-02" class="story hidden">
+              <p class="clare-line">justify-content を使うと、一次元に並んだフレックスアイテムたちの配置を変更することができます。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  justify-content: flex-start; /* 先頭側から配置（デフォルト） */
+}</code></pre>
+              <p class="clare-line">このとき、注意して欲しいのは、 flex-direction の指定次第で先頭の位置が変わるということです。</p>
+              <p class="gantz-line">デフォルトの row だったら左から右で、例えば row-reverse だったら同じように flex-start にしていても、右から左に並ぶんじゃな。</p>
+              <p class="clare-line">そうですね。終端側に押し込むには次のようにします。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  justify-content: flex-end; /* 終端側から配置 */
+}</code></pre>
+              <p class="clare-line">他には例えば均等な間隔で並べるためのこんなプロパティたちがあります。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  /* まず両端に配置して、その間に要素を等間隔で埋める */
+  /* 例 : |A------B------C| */
+  justify-content: space-between;
+  /* 各要素の両端のマージンが全て等しい */
+  /* 例 : |--A----B----C--| */
+  justify-content: space-around;
+  /* 全ての余白が等しい */
+  /* 例 : |---A---B---C---| */
+  justify-content: space-evenly;
+}</code></pre>
+              <p class="gantz-line">ほう。 3 つもあるんじゃな。</p>
+              <p class="clare-line">中央配置は次の通りです。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  justify-content: center; /* 中央に配置 */
+}</code></pre>
+            </div><!-- #story-hint -->
+          </section>
 
-  <script>
-    const input = document.getElementById("answer");
-    const game = document.getElementById("game");
-    const message = document.getElementById("message");
+          <section class="card">
+            <h2 class="card-title">設問 02</h2>
+            <div class="story">
+              <p class="clare-line">マンホールたちを中央配置してください。</p>
+            </div>
+            <div class="css-textarea-and-panel-wrapper">
+              <div class="css-answer-wrapper">
+                <pre>
+.css-panel-answer {
+  display: flex;
+<textarea id="your-answer-02" class="your-answer" rows="4" placeholder="ここにCSS を書きます"></textarea>
+}</pre>
+              </div>
+              <div class="css-panel-wrapper">
+                <div id="css-panel-model-02" class="css-panel css-panel-model">
+                </div>
+                <div id="css-panel-answer-02" class="css-panel css-panel-answer">
+                </div>
+              </div>
+            </div><!-- .css-textarea-and-panel-wrapper -->
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-02">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-02" class="story hidden"></div>
+          </section>
 
-    input.addEventListener("input", () => {
+          <section id="answer-02-card" class="card hidden">
+            <h2 class="card-title">解答例 02</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  display: flex; /* 設定済 */
+  justify-content: center;
+}</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="03">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-02-card -->
+        </div>
 
-      const value = input.value.trim();
-      console.log(value);
+        <!-- 03 話 -->
+        <div id="story-03" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">03. ドワーフ・ガンツの応用</h2>
+            <div class="story">
+              <p class="gantz-line">flex-direction と justify-content を組み合わせただけで、いろいろできそうじゃな？</p>
+              <p class="clare-line">そうですね。</p>
+            </div><!-- .story -->
+          </section><!-- .card -->
 
-      game.style.justifyContent = value;
+          <section class="card">
+            <h2 class="card-title">解説 03</h2>
+            <p><span id="display-hint-03" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-03" class="story hidden">
+              <p class="clare-line">flex-direction を使うことで、左から右・右から左・上から下・下から上の指定ができました。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  flex-direction: row; /* 左から右（デフォルト） */
+  flex-direction: row-reverse; /* 右から左 */
+  flex-direction: column; /* 上から下 */
+  flex-direction: column-reverse; /* 下から上 */
+}</code></pre>
+              <p class="clare-line">justify-content を使うことで、開始端寄せ・終了端寄せ・中央寄せができる他、均等割り付けができます。</p>
+              <p class="gantz-line">均等割り付けは 3 種類できるんじゃったな。</p>
+              <p class="clare-line">そうです。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  justify-content: flex-start; /* 開始端から配置（デフォルト） */
+  justify-content: flex-end; /* 終端から配置 */
+  justify-content: center; /* 中央寄せ */
+  /* 均等割り付け */
+  justify-content: space-between; /* 例 : |A------B------C| */
+  justify-content: space-around;  /* 例 : |--A----B----C--| */
+  justify-content: space-evenly;  /* 例 : |---A---B---C---| */
+}</code></pre>
+              <p class="gantz-line">組み合わせれば、これだけでも 24 通りできるんじゃな。</p>
+              <p class="clare-line">はい。ただ、今のところ、左上寄りのレイアウトばかりです。</p>
+            </div><!-- #story-hint -->
+          </section>
 
-      if (value === "flex-end") {
-        message.textContent = "クリア！";
-        message.className = "message success";
-      } else {
-        message.textContent = "まだ違います";
-        message.className = "message error";
-      }
+          <section class="card">
+            <h2 class="card-title">設問 03</h2>
+            <div class="story">
+              <p class="clare-line">マンホールに蓋をしてください。</p>
+            </div>
+            <div class="css-textarea-and-panel-wrapper">
+              <div class="css-answer-wrapper">
+                <pre>
+.css-panel-answer {
+  display: flex;
+<textarea id="your-answer-03" class="your-answer" rows="4" placeholder="ここにCSS を書きます"></textarea>
+}</pre>
+              </div>
+              <div class="css-panel-wrapper">
+                <div id="css-panel-model-03" class="css-panel css-panel-model">
+                </div>
+                <div id="css-panel-answer-03" class="css-panel css-panel-answer">
+                </div>
+              </div>
+            </div><!-- .css-textarea-and-panel-wrapper -->
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-03">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-03" class="story hidden"></div>
+          </section>
 
-    });
-  </script>
+          <section id="answer-03-card" class="card hidden">
+            <h2 class="card-title">解答例 03</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  display: flex; /* 設定済 */
+  flex-direction: column-reverse;
+  justify-content: space-evenly;
+}</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="04">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-03-card -->
+        </div>
 
+        <!-- 04 話 -->
+        <div id="story-04" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">04. ドワーフ・ガンツの交差軸</h2>
+            <div class="story">
+              <p class="gantz-line">flex-direction と justify-content を使うだけだと、全体的にフレックスアイテムが左上によってしまうようじゃが、もっと右下の領域も活用できないものかな？
+              </p>
+              <p class="clare-line">align-items を使って「交差軸」を指定すれば、もっと柔軟にフレックスコンテナを活用できます。</p>
+              <p class="gantz-line">交差軸とな？</p>
+            </div><!-- .story -->
+          </section><!-- .card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 04</h2>
+            <p><span id="display-hint-04" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-04" class="story hidden">
+              <p class="clare-line">すでに学んだ通り、 flex-direction を使うことで、左から右・右から左・上から下・下から上の指定ができました。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  flex-direction: row; /* 左から右（デフォルト） */
+  flex-direction: row-reverse; /* 右から左 */
+  flex-direction: column; /* 上から下 */
+  flex-direction: column-reverse; /* 下から上 */
+}</code></pre>
+              <p class="clare-line">flex-direction による指定でフレックスアイテムたちが並ぶ直線を「主軸」といいます。</p>
+              <p class="gantz-line">デフォルトの row なら左から右への直線が主軸で、一方 column 指定だったら上から下への直線が主軸なんじゃな？</p>
+              <p class="clare-line">そうです。それに対して、主軸と垂直方向の軸を「交差軸」と言います。</p>
+              <p class="gantz-line">つまり、例えば flex-direction の指定がデフォルトの row なら、上下方向が交差軸なんじゃな？</p>
+              <p class="clare-line">そうです。交差軸は align-items で指定します。デフォルトは stretch です。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  align-items: stretch; /* 交差軸いっぱいに伸ばす */
+}</code></pre>
+              <p class="clare-line">実はこれは今までやってきたマンホールみたいに、画像では何が起こっているのかよく分かりません。テキストを使ってこんな風に指定してみると、……</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  display: flex;
+  /* フレックスアイテム間の隙間 */
+  gap: 6px;
+  /* 交差軸の設定 */
+  align-items: stretch;
+}
+
+/* フレックスアイテムたちを 1/4 幅に */
+div.target p {
+  width: 25%;
+}</code></pre>
+              <p class="clare-line">こんな風になります。</p>
+              <div><img src="images/stretch-01.png" alt="stretch の例"></div>
+              <p class="gantz-line">なるほど、一番長いテキストに合わせて、フレックスコンテナの交差軸いっぱいに広がるんじゃな。</p>
+              <p class="clare-line">はい。ただしこれは、フレックスアイテムたちの幅を指定しているからです。フレックスアイテムたちの幅を指定しないとこんな感じになっちゃいます。</p>
+              <div><img src="images/stretch-02.png" alt="フレックスアイテムの幅未指定の例"></div>
+              <p class="gantz-line">すべてのフレックスアイテムたちの文字列が交差軸方向いっぱい広がる感じで、幅が調整されてしまうんじゃな。</p>
+              <p class="clare-line">はい。続けて、位置を調整するタイプの値はこんな感じです。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  align-items: flex-start; /* 開始端に合わせる */
+  align-items: flex-end;   /* 終了端に合わせる */
+  align-items: center; /* 中央に合わせる */
+}</code></pre>
+              <p class="clare-line">これもマンホールみたいな画像だけでは分かりにくいところがあるので、テキストの例で示しておきますね。まずは flex-start の例です。マンホール画像では
+                flex-start を指定しても何も変化が感じられないはずです。</p>
+              <div><img src="images/align-items-01.png" alt="flex-start のサンプル"></div>
+              <p class="gantz-line">いっぱいに広がらなくなったな。</p>
+              <p class="clare-line">flex-end の例です。</p>
+              <div><img src="images/align-items-02.png" alt="flex-end のサンプル"></div>
+              <p class="clare-line">center の例です。</p>
+              <div><img src="images/align-items-03.png" alt="center のサンプル"></div>
+              <p class="gantz-line">位置調整タイプの値だと、いずれも交差軸いっぱいに広がらなくなるんじゃな。</p>
+              <p class="clare-line">ちなみに、特定の要素だけを交差軸方向に位置調整するには、該当の要素に対して直接 align-self を指定します。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  align-items: flex-start; /* 開始端に合わせる */
+}
+.blue-item {
+  align-self: flex-end; /* 青い要素のみ終了端に合わせる */
+}</code></pre>
+              <p class="clare-line">こんな感じになります。</p>
+              <div><img src="images/align-items-04.png" alt="align-self のサンプル"></div>
+              <p class="gantz-line">なるほど。ところで align を使ったプロパティというと、テキストの位置を中央寄せにしたり左寄せにしたりする text-align がすぐに思い浮かぶ。
+                text-align の方は「なにをどうするか」みたいな書き方なのに、 align-items の方はメソッド名によくある命令文みたいな書き方になってるんじゃな。</p>
+              <p class="clare-line">CSS 増築の歴史がそのまま現れてるんでしょうね。 text-align は 2000 年以前からある古い CSS なのに対して、フレックスボックスが登場したのは
+                2010 年代です。少なくともフレックスボックス関連のプロパティとしては、 justify-content なども命令文みたいな書き方になってますし、フレックスボックス内では統一されてはいる気はします。
+              </p>
+              <p class="gantz-line">まあ、こればっかりは受け入れるしかない感じじゃな。……フレックスボックスがなかったころは、横並びとかどうしてたんじゃろうな？</p>
+              <p class="clare-line">フロート・レイアウトというものを使ってたみたいですよ。かなり癖があってめんどくさかったみたいです。私はピチピチギャルなので、そんな昔のことは分かりませんけど。</p>
+              <p class="gantz-line">そ、そうじゃな……。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 04</h2>
+            <div class="story">
+              <p class="clare-line">マンホールの蓋を交差軸の終端側に移動してください。</p>
+            </div>
+            <div class="css-textarea-and-panel-wrapper">
+              <div class="css-answer-wrapper">
+                <pre>
+.css-panel-answer {
+  display: flex;
+<textarea id="your-answer-04" class="your-answer" rows="4" placeholder="ここにCSS を書きます"></textarea>
+}</pre>
+              </div>
+              <div class="css-panel-wrapper">
+                <div id="css-panel-model-04" class="css-panel css-panel-model">
+                </div>
+                <div id="css-panel-answer-04" class="css-panel css-panel-answer">
+                </div>
+              </div>
+            </div><!-- .css-textarea-and-panel-wrapper -->
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-04">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-04" class="story hidden"></div>
+          </section>
+
+          <section id="answer-04-card" class="card hidden">
+            <h2 class="card-title">解答例 04</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  display: flex; /* 設定済 */
+  align-items: flex-end;
+}</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="05">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-04-card -->
+        </div>
+
+        <!-- 05 話 -->
+        <div id="story-05" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">05. ドワーフ・ガンツの主軸と交差軸</h2>
+            <div class="story">
+              <p class="gantz-line">主軸と交差軸の設定を組み合わせれば、フレックスアイテムたちを色んな風に配置できそうじゃな。</p>
+              <p class="clare-line">はい。復習がてらに確認しておきましょう。</p>
+            </div><!-- .story -->
+          </section><!-- card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 05</h2>
+            <p><span id="display-hint-05" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-05" class="story hidden">
+              <p class="clare-line">まず flex-direction を使うと、主軸方向を指定できました。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  flex-direction: row; /* 左から右（デフォルト） */
+  flex-direction: row-reverse; /* 右から左 */
+  flex-direction: column; /* 上から下 */
+  flex-direction: column-reverse; /* 下から上 */
+}</code></pre>
+              <p class="gantz-line">ふむ。次に勉強した justify-content を使うと、主軸上で先頭側か終端側か中央かだけでなく、均等配置もできるんじゃったな。</p>
+              <p class="clare-line">はい。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  justify-content: flex-start; /* 開始端から配置（デフォルト） */
+  justify-content: flex-end; /* 終端から配置 */
+  justify-content: center; /* 中央寄せ */
+  /* 均等割り付け */
+  justify-content: space-between; /* 例 : |A------B------C| */
+  justify-content: space-around;  /* 例 : |--A----B----C--| */
+  justify-content: space-evenly;  /* 例 : |---A---B---C---| */
+}</code></pre>
+              <p class="gantz-line">交差軸は align-items で位置調整するんじゃな。</p>
+              <p class="clare-line">はい。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  align-items: flex-start; /* 開始端に合わせる */
+  align-items: flex-end;   /* 終了端に合わせる */
+  align-items: center; /* 中央に合わせる */
+}</code></pre>
+              <p class="gantz-line">デフォルトは stretch で交差軸いっぱいに伸びるんじゃったな。</p>
+              <p class="clare-line">はい。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 05</h2>
+            <div class="story">
+              <p class="clare-line">マンホールに蓋をしてください。</p>
+            </div>
+            <div class="css-textarea-and-panel-wrapper">
+              <div class="css-answer-wrapper">
+                <pre>
+.css-panel-answer {
+  display: flex;
+<textarea id="your-answer-05" class="your-answer" rows="4" placeholder="ここにCSS を書きます"></textarea>
+}</pre>
+              </div>
+              <div class="css-panel-wrapper">
+                <div id="css-panel-model-05" class="css-panel css-panel-model">
+                </div>
+                <div id="css-panel-answer-05" class="css-panel css-panel-answer">
+                </div>
+              </div>
+            </div><!-- .css-textarea-and-panel-wrapper -->
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-05">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-05" class="story hidden">
+            </div>
+          </section>
+
+          <section id="answer-05-card" class="card hidden">
+            <h2 class="card-title">解答例 05</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  display: flex; /* 設定済 */
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-around;
+}</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="06">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-05-card -->
+        </div>
+
+        <!-- 06 話 -->
+        <div id="story-06" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">06. ドワーフ・ガンツの改行</h2>
+            <div class="story">
+              <p class="gantz-line">横並びはいいんじゃが、編集中にフレックスコンテナに要素を追加したくなって、いい感じに改行してくれないかなぁと思うこともあるじゃろ？</p>
+              <p class="clare-line">そうなんですか？</p>
+              <p class="gantz-line">そうなんじゃ。上手い具合にチャチャッとできないかな？</p>
+              <p class="clare-line">flex-wrap プロパティを使うだけで、上手い具合にチャチャッとできますよ。</p>
+            </div><!-- .story -->
+          </section><!-- card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 06</h2>
+            <p><span id="display-hint-06" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-06" class="story hidden">
+              <p class="clare-line">特にフレックスコンテナ内のフレックスアイテムたちが画像データの場合、幅や高さが十分でないと、勝手に画像が縮んだりフレックスコンテナからはみ出したりします。改行を扱うプロパティは
+                flex-wrap で、デフォルト値は nowrap
+                になっています。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  flex-wrap: nowrap; /* 改行なし */
+}</code></pre>
+              <p class="clare-line">改行させたい場合は nowrap の代わりに wrap を指定します。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  flex-wrap: wrap;
+}</code></pre>
+              <p class="gantz-line">これだけ？</p>
+              <p class="clare-line">はい。上手い具合にチャチャッとできたでしょ？</p>
+              <p class="gantz-line">おう。</p>
+              <p class="clare-line">ちなみに flex-wrap と flex-direction は、プロパティ flex-flow にまとめて設定することができます。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  /* 別々に設定 */
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  /* まとめて設定 */
+  flex-flow: row-reverse wrap;
+}</code></pre>
+              <p class="gantz-line">まとめた方がよいのかな？</p>
+              <p class="clare-line">別に無理にまとめる必要はありません。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 06</h2>
+            <div class="story">
+              <p class="clare-line">改行してマンホールに蓋をしてください。</p>
+            </div>
+            <div class="css-textarea-and-panel-wrapper">
+              <div class="css-answer-wrapper">
+                <pre>
+.css-panel-answer {
+  display: flex;
+<textarea id="your-answer-06" class="your-answer" rows="4" placeholder="ここにCSS を書きます"></textarea>
+}</pre>
+              </div>
+              <div class="css-panel-wrapper">
+                <div id="css-panel-model-06" class="css-panel css-panel-model">
+                </div>
+                <div id="css-panel-answer-06" class="css-panel css-panel-answer">
+                </div>
+              </div>
+            </div><!-- .css-textarea-and-panel-wrapper -->
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-06">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-06" class="story hidden">
+            </div>
+          </section>
+
+          <section id="answer-06-card" class="card hidden">
+            <h2 class="card-title">解答例 06</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  display: flex; /* 設定済 */
+  flex-wrap: wrap;
+}</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="07">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-06-card -->
+        </div>
+
+        <!-- 07 話 -->
+        <div id="story-07" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">07. ドワーフ・ガンツのフレックスボックスまとめ</h2>
+            <div class="story">
+              <p class="gantz-line">フレックスボックス関連のいろんなプロパティが出てきたな。全部使えばいろいろできそうじゃ。</p>
+              <p class="clare-line">小手試しといきますか？</p>
+              <p class="gantz-line">おう！</p>
+            </div><!-- .story -->
+          </section><!-- card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 07</h2>
+            <p><span id="display-hint-07" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-07" class="story hidden">
+              <p class="clare-line">復習を兼ねて簡単にまとめておきましょう。</p>
+              <p class="gantz-line">まずは flex-direction じゃな。主軸の方向を決める。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  flex-direction: row; /* 左から右（デフォルト） */
+  flex-direction: row-reverse; /* 右から左 */
+  flex-direction: column; /* 上から下 */
+  flex-direction: column-reverse; /* 下から上 */
+}</code></pre>
+              <p class="gantz-line">続いて justify-content じゃ。配置や均等割り付けを決める。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  justify-content: flex-start; /* 開始端から配置（デフォルト） */
+  justify-content: flex-end; /* 終端から配置 */
+  justify-content: center; /* 中央寄せ */
+  /* 均等割り付け */
+  justify-content: space-between; /* 例 : |A------B------C| */
+  justify-content: space-around;  /* 例 : |--A----B----C--| */
+  justify-content: space-evenly;  /* 例 : |---A---B---C---| */
+}</code></pre>
+              <p class="gantz-line">align-items で交差軸を調整する。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  align-items: stretch; /* 交差幅いっぱいに伸びる（デフォルト） */
+  align-items: flex-start; /* 開始端に合わせる */
+  align-items: flex-end;   /* 終了端に合わせる */
+  align-items: center; /* 中央に合わせる */
+}</code></pre>
+              <p class="gantz-line">flex-wrap で改行の有無を切り替える。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">div.target {
+  flex-wrap: nowrap; /* 改行なし（デフォルト） */
+  flex-wrap: wrap; /* 改行あり */
+}</code></pre>
+              <p class="gantz-line">どうじゃ？</p>
+              <p class="clare-line">ばっちりですね。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 07</h2>
+            <div class="story">
+              <p class="clare-line">マンホールに蓋をしてください。</p>
+            </div>
+            <div class="css-textarea-and-panel-wrapper">
+              <div class="css-answer-wrapper">
+                <pre>
+.css-panel-answer {
+  display: flex;
+<textarea id="your-answer-07" class="your-answer" rows="4" placeholder="ここにCSS を書きます"></textarea>
+}</pre>
+              </div>
+              <div class="css-panel-wrapper">
+                <div id="css-panel-model-07" class="css-panel css-panel-model">
+                </div>
+                <div id="css-panel-answer-07" class="css-panel css-panel-answer">
+                </div>
+              </div>
+            </div><!-- .css-textarea-and-panel-wrapper -->
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-07">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-07" class="story hidden">
+            </div>
+          </section>
+
+          <section id="answer-07-card" class="card hidden">
+            <h2 class="card-title">解答例 07</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。これが最後の問題でした。お疲れ様です。</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">.css-panel-answer {
+  display: flex; /* 設定済 */
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}</code></pre>
+            </div>
+          </section><!-- #answer-07-card -->
+        </div>
+
+        <section class="card">
+          <h2 class="card-title">結果一覧</h2>
+          <dl class="story-table-like">
+            <dt>設問 01 ドワーフ・ガンツのフレックスコンテナ</dt>
+            <dd id="your-result-list-01" data-result-id="ghomepub-flexbox-01"></dd>
+            <dt>設問 02 ドワーフ・ガンツの justify-content</dt>
+            <dd id="your-result-list-02" data-result-id="ghomepub-flexbox-02"></dd>
+            <dt>設問 03 ドワーフ・ガンツの応用</dt>
+            <dd id="your-result-list-03" data-result-id="ghomepub-flexbox-03"></dd>
+            <dt>設問 04 ドワーフ・ガンツの交差軸</dt>
+            <dd id="your-result-list-04" data-result-id="ghomepub-flexbox-04"></dd>
+            <dt>設問 05 ドワーフ・ガンツの主軸と交差軸</dt>
+            <dd id="your-result-list-05" data-result-id="ghomepub-flexbox-05"></dd>
+            <dt>設問 06 ドワーフ・ガンツの改行</dt>
+            <dd id="your-result-list-06" data-result-id="ghomepub-flexbox-06"></dd>
+            <dt>設問 07 ドワーフ・ガンツのフレックスボックスまとめ</dt>
+            <dd id="your-result-list-07" data-result-id="ghomepub-flexbox-07"></dd>
+          </dl>
+          <div class="gplayer-button-wrapper">
+            <button class="gplayer-button ripple" type="button" id="clear-your-progress-button">結果一覧のクリア</button>
+          </div><!-- .gplayer-button-wrapper -->
+        </section><!-- #results-card -->
+
+      </main>
+    </div><!-- .content-container -->
+
+    <footer id="footer">
+      <p class="copyright">&copy;GHomePub 2022</p>
+    </footer><!-- .footer -->
+
+  </div><!-- .whole-wrapper -->
+  <script id="prism" src="js/prism.js"></script>
+  <script type="module" src="js/ex-flex.js"></script>
+  <script src="js/button.js"></script>
+  <script src="js/common.js"></script>
 </body>
 
 </html>
