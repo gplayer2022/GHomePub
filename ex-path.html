@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="授業支援用サイトです。主に C# を扱っています。">
+  <meta property="og:title" content="相対パス練習帳 | GHomePub">
+  <meta property="og:description" content="授業支援用サイトです。主に C# を扱っています。">
+  <meta property="og:site_name" content="相対パス練習帳 | GHomePub">
+  <meta property="og:locale" content="ja_JP">
+  <title>相対パス練習帳 | GHomePub</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/prism.css">
+
+  <!-- chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"
+    integrity="sha512-Y51n9mtKTVBh3Jbx5pZSJNDDMyY+yGe77DGtBPzRlgsf/YLCh13kSZ3JmfHGzYFCmOndraf0sQgfM654b7dJ3w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8HPBTVCPM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-D8HPBTVCPM');
+  </script>
+</head>
+
+<body class="body">
+  <div class="whole-wrapper">
+
+    <div class="pre-header">
+      <div class="pre-header-inner">
+        <p class="site-description">授業支援用サイト</p>
+      </div><!-- .pre-header-inner -->
+    </div><!-- .pre-header -->
+
+    <header class="header" id="sticky-header">
+      <div class="header-inner">
+        <h1 class="site-title">
+          <a href="index.html">GHomePub</a>
+        </h1>
+      </div><!-- .header-inner -->
+    </header>
+
+    <div class="content-container">
+      <main id="main" class="main">
+        <section class="card">
+          <h2 class="card-title">相対パス練習帳</h2>
+          <p>このページでは相対パスについて、ガンツやクレアと一緒に学んでいきます。</p>
+          <p>ガンツはドワーフの<ruby>万屋<rt>よろずや</rt></ruby>経営者です。最近、世間では業務の IT 化がすっかり進んでいるのを知って、年寄りの手習いで自分でもシステムをいじり始めています。
+          </p>
+          <p>メイドのクレアはガンツに雇われた普通の人間です。ときどき少し口が悪くなることもあります。 IT に詳しく、ガンツの経営の IT 化を補助しています。</p>
+          <p><img class="story-hero-image" src="images/yorozuya-half.png" alt="ガンツとクレア"></p>
+        </section><!-- .card -->
+
+        <section class="card">
+          <div id="step-progress" class="progress">
+            <span title="01 ドワーフ・ガンツのカレントディレクトリ" data-step="01">●</span>
+            <span title="02 ドワーフ・ガンツの子孫パス" data-step="02">○</span>
+            <span title="03 ドワーフ・ガンツの祖先パス" data-step="03">○</span>
+            <span title="04 ドワーフ・ガンツの応用" data-step="04">○</span>
+            <span title="05 ドワーフ・ガンツのランダム練習問題" data-step="05">○</span>
+          </div>
+        </section>
+
+        <!-- 01 話 -->
+        <div id="story-01" class="story-wrapper active">
+          <section class="card">
+            <h2 class="card-title">01. ドワーフ・ガンツのカレントディレクトリ</h2>
+            <div class="story">
+              <p class="gantz-line">クレアさんよぅ、 HTML ファイルに出てくるこんなやつがいまいち分からないんじゃが？</p>
+              <pre class="line-numbers language-html"
+                tabindex="0"><code class="language-html">&lt;a href="./game/tetris.html"&gt;</code></pre>
+              <p class="gantz-line">あと CSS ファイルにも似たようなものが登場するじゃろ？ なんなんじゃ、この蟻のウンコみたいなやつは？</p>
+              <pre class="line-numbers language-css" tabindex="0"><code class="language-css">h1.top {
+  background-image: url("./../images/hero.jpg");
+}</code></pre>
+              <p class="clare-line">「相対パス」のことですね。簡単ですよ。</p>
+            </div><!-- .story -->
+          </section><!-- card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 01</h2>
+            <p><span id="display-hint-01" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-01" class="story hidden">
+              <p class="gantz-line">相対パスとな？</p>
+              <p class="clare-line">相対パスというのは、基準となるファイルが存在しているフォルダやディレクトリから、別のファイルまたはフォルダやディレクトリへの経路のことです。</p>
+              <p class="gantz-line">ん？ ディレクトリとは？</p>
+              <p class="clare-line">ディレクトリはフォルダと同じです。ファイルたちや自分以外のディレクトリを格納する入れ物のことです。</p>
+              <p class="gantz-line">いやいや、フォルダと同じなら、フォルダと言ってくれ。</p>
+              <p class="clare-line">Windows などの GUI 環境ではフォルダ、 UNIX や Linux
+                もしくはファイルシステム上の概念としてはディレクトリと呼ぶことが多いです。これからはディレクトリで統一して話を進めます。</p>
+              <p class="gantz-line">すでに話がこんがらがってきた。念のため確認しておくぞ。</p>
+              <dl class="story-table-like story-definition">
+                <dt>ディレクトリ</dt>
+                <dd>フォルダのこと。</dd>
+                <dt>相対パス</dt>
+                <dd>基準となるファイルが存在しているディレクトリから、別のファイルやディレクトリへの経路のこと。</dd>
+              </dl>
+              <p class="clare-line">
+                はい。また相対パスの対義語は「絶対パス」です。ルートディレクトリからの経路のことを言います。ちなみにルートディレクトリとは、木構造の最上位に位置するディレクトリのことで、「 / 」単独で表します。</p>
+              <div class="dir-tree">
+                <ul>
+                  <li class="dir">
+                    / (root)
+                    <ul>
+                      <li class="dir">dir1/
+                        <ul>
+                          <li class="dir">
+                            dir1-1/
+                            <ul>
+                              <li class="file">image.png</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dir">dir2/
+                        <ul>
+                          <li class="dir">dir2-1/
+                            <ul>
+                              <li class="file">file2-1-1.txt</li>
+                              <li class="file">file2-1-2.txt</li>
+                            </ul>
+                          </li>
+                          <li class="file">file2-2.txt</li>
+                        </ul>
+                      </li>
+                      <li class="file">file3.txt</li>
+                      <li class="file">index.html</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <p class="gantz-line">また一度に色々出てきたぞ。まとめるとこんな感じか？</p>
+              <dl class="story-table-like story-definition">
+                <dt>ルートディレクトリ</dt>
+                <dd>木構造の最上位に位置するディレクトリのこと。</dd>
+                <dt>絶対パス</dt>
+                <dd>ルートディレクトリから別のファイルやディレクトリへの経路のこと。</dd>
+              </dl>
+              <p class="clare-line">そうですね。例えば https://example.com/index.html というウェブページがあった場合、ドメイン名 example.com のすぐ後ろの /
+                がこのサイトにおけるルートディレクトリを表します。絶対パスは先頭に / が付きます。このサイトにおいては、ファイル index.html の絶対パスは /index.html なわけです。</p>
+              <p class="gantz-line">で、経路とは何のことじゃ？</p>
+              <p class="clare-line">例えばこんなディレクトリ構成があったとします。ちなみにディレクトリは、末尾に / を付けます。省略することも可能です。この練習帳では省略しません。</p>
+              <div class="dir-tree">
+                <ul>
+                  <li class="dir">
+                    / (root)
+                    <ul>
+                      <li class="dir">dir1/
+                        <ul>
+                          <li class="dir">
+                            dir1-1/
+                            <ul>
+                              <li class="file">image.png</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dir">dir2/
+                        <ul>
+                          <li class="dir">dir2-1/
+                            <ul>
+                              <li class="file">file2-1-1.txt</li>
+                              <li class="file">file2-1-2.txt</li>
+                            </ul>
+                          </li>
+                          <li class="file">file2-2.txt</li>
+                        </ul>
+                      </li>
+                      <li class="file">file3.txt</li>
+                      <li class="file">index.html</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <p class="clare-line">で、いま index.html から image.png を参照するにはどんな経路をたどればいいでしょう？</p>
+              <p class="gantz-line">え？ えっと……こ、こんな感じか？</p>
+              <p><img src="images/path01.png" alt="ガンツのおふざけ"></p>
+              <p class="clare-line">ふざけてるんですか？ 教えるのやめますよ。だいたい何なんですか、そのアイコンは？</p>
+              <p class="gantz-line">すまんすまん。じゃが、分からんのじゃ。</p>
+              <p class="clare-line">たとえ分からなくてもそうはならないでしょ？</p>
+              <p class="gantz-line">すまんて。……じゃあ、こんな感じか？</p>
+              <p><img src="images/path02.png" alt="index.html から image.png への誤った経路"></p>
+              <p class="clare-line">さすがですね。</p>
+              <p class="gantz-line">お！ さすがワシじゃ。正解か？</p>
+              <p class="clare-line">いえ、いい感じに間違ってます。答えはこうです。</p>
+              <p><img src="images/path03.png" alt="index.html から image.png への正しい経路"></p>
+              <p class="gantz-line">いやいやいやいや、クレアさんよう。そいつは話が違う。 index.html から image.png を参照したいんじゃろ？
+                出発点からしておかしいわ。頂点からたどるのは相対パスではなくて、絶対パスのはずじゃ。</p>
+              <p class="clare-line">
+                フッ、注意力散漫ですね。私はさっき相対パスについて「基準となるファイルが存在しているディレクトリから、別のファイルやディレクトリへの経路のこと」と言いました。「基準となるファイルが存在しているディレクトリから」と言ったのであって、「基準となるファイルから」と言ったのではありません。今回、頂点からたどっているのは、たまたま
+                index.html が存在しているディレクトリがルートディレクトリだったからに過ぎません。</p>
+              <p class="gantz-line">なんじゃ、その一休さんの頓智みたいな話は……。</p>
+              <p class="clare-line">相対パスを辿るには次のような原則があります。</p>
+              <dl class="story-table-like story-definition">
+                <dt>原則 1</dt>
+                <dd>起点は基準ファイルが存在するディレクトリである。基準ファイルではない。またこのディレクトリを「カレントディレクトリ」と呼び ./ で表す。</dd>
+                <dt>原則 2</dt>
+                <dd>相対パスは親・または子の関係のみを辿る。兄弟関係を直接辿ったり、一足跳びに祖先や子孫に到達することはできない。</dd>
+              </dl>
+              <p class="gantz-line">つまりワシは出発点で間違って（原則 1 に違反）、出発点から兄弟関係にある dir1 に行ったことでさらに間違った（原則 2 に違反）ということじゃな？</p>
+              <p class="clare-line">そうです。だからさすがだと言ったのです。</p>
+              <p class="gantz-line">むむむ。……おっ、じゃが、ワシは index.html と同じ階層にあるファイルを参照する、こんな感じのハイパーリンクをみたことがあるぞ！
+              </p>
+              <pre class="line-numbers language-html"
+                tabindex="0"><code class="language-html">&lt;a href="menu.html"&gt;</code></pre>
+              <p class="gantz-line">これは index.html
+                と同じ階層にある menu.html を参照しているんじゃから、兄弟関係じゃないのか？</p>
+              <div class="dir-tree">
+                <ul>
+                  <li class="dir">
+                    / (root)
+                    <ul>
+                      <li class="dir">images/
+                        <ul>
+                          <li class="file">image.png</li>
+                        </ul>
+                      </li>
+                      <li class="dir">css/
+                        <ul>
+                          <li class="file">normalize.css</li>
+                          <li class="file">style.css</li>
+                        </ul>
+                      </li>
+                      <li class="dir">js/
+                        <ul>
+                          <li class="file">main.js</li>
+                          <li class="file">game.js</li>
+                        </ul>
+                      </li>
+                      <li class="file">menu.html</li>
+                      <li class="file">index.html</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <p class="clare-line">そ、それは……</p>
+              <p class="gantz-line">お？ クレアさんも間違うことがあるんじゃな？</p>
+              <p class="clare-line">むむむ……。</p>
+              <p class="gantz-line">まあ、人間誰でも間違うことはあるもんじゃ、気にせんでええぞ。へへへっ！</p>
+              <p class="clare-line">ふふっ、なんちゃって。……そんなことですぐ喜んじゃうなんて可愛いですね。カレントディレクトリを表す ./
+                は省略することができます。だからハイパーリンクに書かれた相対パスの menu.html は本当は ./menu.html なんです。</p>
+              <p class="gantz-line">……ワシをいじめて楽しいか？</p>
+              <p class="clare-line">カレントディレクトリ配下のファイルを参照するには、直接そのファイル名を指定するか、そのファイル名の先頭に ./ を付けて指定することができます。あと一応、厳密に言えば「カレントディレクトリ」というのは、コマンドプロンプトなどを使っている際の作業ディレクトリのことを指します。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 01</h2>
+            <div class="story">
+              <p class="clare-line">index.html から access.html への相対パスを書いてください。</p>
+            </div>
+            <div id="question-01" class="dir-tree question-dir-tree"></div>
+            <textarea id="your-answer-01" class="your-answer-box" rows="4" placeholder="ここに相対パスを書きます"></textarea>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-01">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-01" class="story hidden">
+            </div>
+          </section>
+
+          <section id="answer-01-card" class="card hidden">
+            <h2 class="card-title">解答例 01</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-html" tabindex="0"><code class="language-html">access.html
+&lt;!-- または --&gt;
+./access.html</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="02">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-01-card -->
+        </div>
+
+        <!-- 02 話 -->
+        <div id="story-02" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">02. ドワーフ・ガンツの子孫パス</h2>
+            <div class="story">
+              <p class="gantz-line">カレントディレクトリ配下のファイルの参照の仕方は分かった。相対パスは親もしくは子関係を辿るという話じゃったな。まずは、子関係を辿るにはどうすればいいんじゃ？</p>
+              <p class="clare-line">親関係を辿る方じゃなくて、子関係の方から攻めますか？</p>
+              <p class="gantz-line">なんとなく、そっちの方が簡単そうじゃからな、へへへ。</p>
+              <p class="clare-line">なかなかよい嗅覚ですね。</p>
+            </div><!-- .story -->
+          </section><!-- .card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 02</h2>
+            <p><span id="display-hint-02" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-02" class="story hidden">
+              <p class="clare-line">子関係を辿るのはとても簡単です。カレントディレクトリを出発点として、ディレクトリを順に追記していくだけです。例えばこんなディレクトリ構成で考えてみます。</p>
+              <div class="dir-tree">
+                <ul>
+                  <li class="dir">
+                    / (root)
+                    <ul>
+                      <li class="dir">public_html/
+                        <ul>
+                          <li class="dir">ref/
+                            <ul>
+                              <li class="dir">images/
+                                <ul>
+                                  <li class="file">coffee.jpg</li>
+                                  <li class="file">cake.jpg</li>
+                                  <li class="file">tea.jpg</li>
+                                </ul>
+                              </li>
+                              <li class="dir">css/
+                                <ul>
+                                  <li class="file">styles.css</li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="file">index.html</li>
+                        </ul>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <p class="clare-line">index.html から coffee.jpg を参照してみましょう。</p>
+              <p class="gantz-line">ワシにやらせてくれ。名誉挽回じゃ。原則 1 によって、起点になるのはカレントディレクトリ ./ じゃったな。この木構造の場合、 ./ は実際には public_html/
+                を指しているはずじゃ。</p>
+              <p class="clare-line">そうですね。続けてください。</p>
+              <p class="gantz-line">原則 2 によって「相対パスは親または子の関係のみを辿ることができる」んじゃから、次はカレントディレクトリ ./ の子ディレクトリ ref/ に行く。この時点で
+                ./ref/ じゃ。</p>
+              <p class="clare-line">順調です。</p>
+              <p class="gantz-line">再び原則 2 を適用して、ディレクトリ ref/ の子ディレクトリ images/ に行く。この時点で ./ref/images/ じゃ。</p>
+              <p class="clare-line">はい。</p>
+              <p class="gantz-line">もう一度原則 2 を適用すれば、目的のファイル coffee.jpg じゃから、これも追記すれば求める相対パスは ./ref/images/coffee.jpg
+                じゃ。どうじゃ？</p>
+              <p class="clare-line">完璧ですね。</p>
+              <p class="gantz-line">なんか楽しくなってきたぞ。</p>
+              <p class="clare-line">単純で子どもみたいですね。一つだけ付け加えておくと、カレントディレクトリは省略できるので ref/images/coffee.jpg でも大丈夫です。</p>
+              <p class="gantz-line">そうじゃったな。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 02</h2>
+            <div class="story">
+              <p class="clare-line">index.html から styles.css への相対パスを書いてください。</p>
+            </div>
+            <div id="question-02" class="dir-tree question-dir-tree"></div>
+            <textarea id="your-answer-02" class="your-answer-box" rows="4" placeholder="ここに相対パスを書きます"></textarea>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-02">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-02" class="story hidden"></div>
+          </section>
+
+          <section id="answer-02-card" class="card hidden">
+            <h2 class="card-title">解答例 02</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-html" tabindex="0"><code class="language-html">css/styles.css
+&lt;!-- または --&gt;
+./css/styles.css</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="03">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-02-card -->
+        </div>
+
+        <!-- 03 話 -->
+        <div id="story-03" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">03. ドワーフ・ガンツの祖先パス</h2>
+            <div class="story">
+              <p class="gantz-line">カレントディレクトリ配下のファイルの指定の仕方も、子ディレクトリ配下のファイルの指定の仕方も分かった。あとは祖先ディレクトリの指定の仕方じゃな。</p>
+              <p class="clare-line">そうですね。これが分かれば、相対パスの指定はもう何でもできちゃいます。</p>
+            </div><!-- .story -->
+          </section><!-- .card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 03</h2>
+            <p><span id="display-hint-03" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-03" class="story hidden">
+              <p class="clare-line">親関係を辿る場合、子関係と違ってひとつ重要なことがあります。子関係と親関係では何が違うか分かりますか？</p>
+              <p class="gantz-line">え？ 子関係は何と言うか、下への関係というか、それに対して親関係と言うのは上への関係というか、そんな感じか？</p>
+              <p class="clare-line">はぁ……。</p>
+              <p class="gantz-line">違うのか？</p>
+              <p class="clare-line">まあ、別に違いはしないのですが、……子要素というのは 0 個以上存在するのに対して、親ディレクトリと言うのは常に 1 個しか存在しません。</p>
+              <p class="gantz-line">いや、ルートディレクトリに親関係はないじゃろ？</p>
+              <p class="clare-line">よいツッコミですね。ルートディレクトリは親が存在しない例外的な唯一のディレクトリです。</p>
+              <p class="gantz-line">で、親が 1 個しか存在しないというのは、何か重要なのか？</p>
+              <p class="clare-line">とても重要です。では、こんなディレクトリ構成で考えてみましょう。 tamago1.html から kuwagata.html を参照したいとします。</p>
+              <div class="dir-tree">
+                <ul>
+                  <li class="dir">
+                    / (root)
+                    <ul>
+                      <li class="dir">cho/
+                        <ul>
+                          <li class="dir">sanagi/
+                            <ul>
+                              <li class="dir">aomusi/
+                                <ul>
+                                  <li class="file">tamago1.html</li>
+                                  <li class="file">tamago2.html</li>
+                                  <li class="file">tamago3.html</li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="file">kuwagata.html</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <p class="gantz-line">いや、蝶は蛹の親じゃないし、蛹も青虫の親じゃないじゃろ？</p>
+              <p class="clare-line">いいんです、そんなことは！</p>
+              <p class="gantz-line">tamago1.html から kuwagata.html を辿ればいいんじゃな？ 原則 1 によって起点はカレントディレクトリ ./ じゃから、実際には
+                aomusi/ ディレクトリじゃな。</p>
+              <p class="clare-line">はい。</p>
+              <p class="gantz-line">原則 2 によって「相対パスは親・または子の関係のみを辿る」んじゃから、次は sanagi/ じゃ。カレントディレクトリに続けて ./sanagi/ じゃろ？</p>
+              <p class="clare-line">残念ながら違います。それでは、カレントディレクトリ配下の sanagi/ ディレクトリを意味してしまいます。</p>
+              <p class="gantz-line">そ、そう言えばそうじゃな。でもカレントディレクトリ配下に sanagi/
+                ディレクトリはないんじゃから、ないということに免じて親ディレクトリの方に行ってくれたりはしないんかな？</p>
+              <p class="clare-line">そんなことに免じられません。カレントディレクトリ配下の sanagi/ ディレクトリを探しに行って、見つからなければそこで終わりです。</p>
+              <p class="gantz-line">じゃあ、どうすればいいんじゃ？</p>
+              <p class="clare-line">まあ、これは知らないとどうにもなりませんね。親ディレクトリは ../ で表します。</p>
+              <p class="gantz-line">でもそれだと、どのディレクトリか……いや、そうか、親ディレクトリは常に 1 つじゃったな。なんか名探偵みたいじゃな。……じゃあ ./sanagi/ じゃなくて
+                ./../ なんじゃな？</p>
+              <p class="clare-line">そうです。続けてみてください。</p>
+              <p class="gantz-line">sanagi/ ディレクトリのさらに親ディレクトリを辿るから、次はどうなるんじゃ？ カレントディレクトリが ./ で、親ディレクトリが ../
+                じゃったから、祖父ディレクトリは .../ か？</p>
+              <p class="clare-line">面白いですね。天才ですか？</p>
+              <p class="gantz-line">お？ じゃあ、合ってたんじゃな？</p>
+              <p class="clare-line">いえ、違いますけどね。原則 2 をよく思い出してください。「相対パスは親・または子の関係のみを辿る」んです。いきなり祖父ディレクトリには辿り着けません。それに .../
+                なんて記号は存在しませんし。</p>
+              <p class="gantz-line">じゃあ、……カレントディレクトリの親の親じゃから ./../../ になるのか？</p>
+              <p class="clare-line">そうです。</p>
+              <p class="gantz-line">よし。もう分かったぞ。 ./../../ は実際には cho/ ディレクトリを指している。もう一つ上に行く必要があるから ./../../../ じゃな？
+                これが実質的には、ルートディレクトリ / を指していて kuwagata.html はその直下じゃから、求める相対パスは ./../../../kuwagata.html じゃな？</p>
+              <p class="clare-line">はい。</p>
+              <p class="gantz-line">この場合もカレントディレクトリを省略して ../../../kuwagata.html と書けるんかな？</p>
+              <p class="clare-line">書けます。ばっちりです。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 03</h2>
+            <div class="story">
+              <p class="clare-line">styles.css から hero.png への相対パスを書いてください。</p>
+            </div>
+            <div id="question-03" class="dir-tree question-dir-tree"></div>
+            <textarea id="your-answer-03" class="your-answer-box" rows="4" placeholder="ここに相対パスを書きます"></textarea>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-03">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-03" class="story hidden"></div>
+          </section>
+
+          <section id="answer-03-card" class="card hidden">
+            <h2 class="card-title">解答例 03</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-html" tabindex="0"><code class="language-html">../../hero.png
+&lt;!-- または --&gt;
+./../../hero.png</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="04">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-03-card -->
+        </div>
+
+        <!-- 04 話 -->
+        <div id="story-04" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">04. ドワーフ・ガンツの応用</h2>
+            <div class="story">
+              <p class="gantz-line">これで相対パスについては、すべて学んだことになるのかな？
+              </p>
+              <p class="clare-line">はい。</p>
+              <p class="gantz-line">相対パスを使って、他のサイトへの参照を貼ったりはできないのかな？</p>
+              <p class="clare-line">できません。最初に示した 2 つの原則で到達できない対象は相対パスで表記できません。</p>
+            </div><!-- .story -->
+          </section><!-- .card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 04</h2>
+            <p><span id="display-hint-04" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-04" class="story hidden">
+              <p class="gantz-line">念のため、最初に学んだ 2 つの原則を復習しておくと、こんな感じじゃったな？</p>
+              <dl class="story-table-like story-definition">
+                <dt>原則 1</dt>
+                <dd>起点は基準ファイルが存在するディレクトリである。基準ファイルではない。またこのディレクトリを「カレントディレクトリ」と呼び ./ で表す。</dd>
+                <dt>原則 2</dt>
+                <dd>相対パスは親・または子の関係のみを辿る。兄弟関係を直接辿ったり、一足跳びに祖先や子孫に到達することはできない。</dd>
+              </dl>
+              <p class="clare-line">はい。これさえ押さえておけば何も難しいことはありません。念のため、こんなディレクトリ構造で確認してみましょう。</p>
+              <div class="dir-tree">
+                <ul>
+                  <li class="dir">
+                    / (root)
+                    <ul>
+                      <li class="dir">tokyoto/
+                        <ul>
+                          <li class="dir">taitoku/
+                            <ul>
+                              <li class="dir">asakusa/
+                                <ul>
+                                  <li class="file">sensoji.temple</li>
+                                  <li class="file">nakamise.shop</li>
+                                  <li class="file">hoppy.street</li>
+                                </ul>
+                              </li>
+                              <li class="dir">ueno/
+                                <ul>
+                                  <li class="file">ueno.park</li>
+                                  <li class="file">sinobazu.pond</li>
+                                  <li class="file">saigo.statue</li>
+                                  <li class="file">ameyoko.market</li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li class="dir">nakanoku/
+                            <ul>
+                              <li class="dir">broadway/
+                                <ul>
+                                  <li class="file">sanmall.shop</li>
+                                  <li class="file">sikinomori.park</li>
+                                </ul>
+                              </li>
+                              <li class="dir">araiyakusi/
+                                <ul>
+                                  <li class="file">baisyoin.temple</li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="dir">chibaken/
+                        <ul>
+                          <li class="dir">urayasu/
+                            <ul>
+                              <li class="file">disney.park</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <p class="clare-line">観光気分で、浅草寺（ sensoji.temple ）から出発してみることにしましょう。</p>
+              <p class="gantz-line">どこへ行くんじゃ？</p>
+              <p class="clare-line">まずは、西郷像（ saigo.statue ）へでも行きましょう。</p>
+              <p class="gantz-line">よっしゃ。起点がカレントディレクトリ（ ./ ）つまり浅草（ asakusa/ ）じゃな。ひとつ親に遡って（ ./../ ）台東区（ taitoku/ ）を経由して、上野（ ./../ueno/ ）へ行くと、西郷像（ ./../ueno/saigo.statue ）に到着じゃ。</p>
+              <p class="clare-line">楽しそうですね。じゃあ、そこから四季の森公園（ sikinomori.park ）へ行ってみてください。</p>
+              <p class="gantz-line">一気に行くぞ！ カレントディレクトリの ueno/ が起点で 2 回遡って tokyoto/ まで行ってから、後は順に下って行けばいいから、求める相対パスは ./../../nakanoku/broadway/sikinomori.park じゃな。</p>
+              <p class="clare-line">そこからディズニーランド（ disney.park ）へ行って終わりにしましょう。</p>
+              <p class="gantz-line">一旦ルートディレクトリまで行かなきゃいかんな。カレントディレクトリ（ /broadway ）から 3 回遡ってから下るから、求める相対パスは ./../../../chibaken/urayasu/disney.park じゃな。</p>
+              <p class="clare-line">完璧ですね。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 04</h2>
+            <div class="story">
+              <p class="clare-line">disney.park から sensoji.temple への相対パスを書いてください。</p>
+            </div>
+            <div id="question-04" class="dir-tree question-dir-tree"></div>
+            <textarea id="your-answer-04" class="your-answer-box" rows="4" placeholder="ここに相対パスを書きます"></textarea>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-04">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-04" class="story hidden"></div>
+          </section>
+
+          <section id="answer-04-card" class="card hidden">
+            <h2 class="card-title">解答例 04</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-html" tabindex="0"><code class="language-html">../../tokyoto/taitoku/asakusa/sensoji.temple
+&lt;!-- または --&gt;
+./../../tokyoto/taitoku/asakusa/sensoji.temple</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="05">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-04-card -->
+        </div>
+
+        <!-- 05 話 -->
+        <div id="story-05" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">05. ドワーフ・ガンツのランダム練習問題</h2>
+            <div class="story">
+              <p class="gantz-line">相対パスに関してはワシはもう完璧じゃよ。</p>
+              <p class="clare-line">じゃあ、力試しでもしてみましょう。</p>
+            </div><!-- .story -->
+          </section><!-- card -->
+
+          <section class="card">
+            <h2 class="card-title">解説 05</h2>
+            <p><span id="display-hint-05" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-05" class="story hidden">
+              <p class="clare-line">このページの出題は完全にランダムです。解答後に、ボタン「別の問題を試す」を押下することで、何度でも違う問題に挑戦できます。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 05</h2>
+            <div class="story">
+              <p id="random-path-question" class="clare-line"></p>
+            </div>
+            <div id="question-05" class="dir-tree question-dir-tree"></div>
+            <textarea id="your-answer-05" class="your-answer-box" rows="4" placeholder="ここに相対パスを書きます"></textarea>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-05">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-05" class="story hidden">
+            </div>
+          </section>
+
+          <section id="answer-05-card" class="card hidden">
+            <h2 class="card-title">解答例 05</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-html" tabindex="0"><code id="random-path-answer" class="language-html">file001.html
+&lt;!-- または --&gt;
+./file001.html</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button id="show-another-path-question" class="gplayer-button ripple" type="button">別の問題を試す</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-05-card -->
+        </div>
+
+        <section class="card">
+          <h2 class="card-title">結果一覧</h2>
+          <dl class="story-table-like">
+            <dt>設問 01 ドワーフ・ガンツのカレントディレクトリ</dt>
+            <dd id="your-result-list-01" data-result-id="ghomepub-path-01"></dd>
+            <dt>設問 02 ドワーフ・ガンツの子孫パス</dt>
+            <dd id="your-result-list-02" data-result-id="ghomepub-path-02"></dd>
+            <dt>設問 03 ドワーフ・ガンツの祖先パス</dt>
+            <dd id="your-result-list-03" data-result-id="ghomepub-path-03"></dd>
+            <dt>設問 04 ドワーフ・ガンツの応用</dt>
+            <dd id="your-result-list-04" data-result-id="ghomepub-path-04"></dd>
+            <dt>設問 05 ドワーフ・ガンツのランダム練習問題</dt>
+            <dd id="your-result-list-05" data-result-id="ghomepub-path-05"></dd>
+          </dl>
+          <div class="gplayer-button-wrapper">
+            <button class="gplayer-button ripple" type="button" id="clear-your-progress-button">結果一覧のクリア</button>
+          </div><!-- .gplayer-button-wrapper -->
+        </section><!-- #results-card -->
+
+      </main>
+    </div><!-- .content-container -->
+
+    <footer id="footer">
+      <p class="copyright">&copy;GHomePub 2022</p>
+    </footer><!-- .footer -->
+
+  </div><!-- .whole-wrapper -->
+  <script id="prism" src="js/prism.js"></script>
+  <script type="module" src="js/ex-path.js"></script>
+  <script src="js/button.js"></script>
+  <script src="js/common.js"></script>
+</body>
+
+</html>

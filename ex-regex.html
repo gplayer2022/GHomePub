@@ -111,9 +111,58 @@
           </section><!-- #answer-01-card -->
         </div>
 
+        <!-- 02 話 -->
+        <div id="story-02" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">02. ドワーフ・ガンツの万屋事始め</h2>
+            <div class="story">
+              <p class="gantz-line">クレアさんよぅ、なにやらデータベースというものを使うと、たくさんのデータをとてもいい感じに整理できるらしいな。早速やってみたいんだが、何をどうしたらいいんだ？</p>
+            </div><!-- .story -->
+          </section><!-- #story-02 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 02</h2>
+            <p><span id="display-hint-01" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-02" class="story hidden">
+              <p class="clare-line">テーブルを作成するには、最低限テーブル名・列名・各列の型名を指定します。例えばこんな感じです。
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 02</h2>
+            <div class="story">
+              <p class="clare-line">下記のようなテーブル products を作成してください。まだレコードの入力は必要ありません。</p>
+            </div>
+            <p><textarea id="your-story-02" class="your-story" rows="10" placeholder="ここにstory 文を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="run-your-story-02">実行</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-02" class="story">
+            </div><!-- #your-result-02 -->
+          </section>
+
+          <section id="answer-02-card" class="card hidden">
+            <h2 class="card-title">解答例 02</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。 AUTOINCREMENT は、なくても大丈夫です。</p>
+              <pre class="line-numbers language-story" tabindex="0"><code class="language-story">CREATE TABLE `products` (
+  `id` INTEGER PRIMARY KEY,
+  `product_name` TEXT NOT NULL,
+  `price` INTEGER NOT NULL,
+  `stock_quantity` INTEGER NOT NULL
+);</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="02">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-02-card -->
+        </div>
+
         <section class="card">
           <h2 class="card-title">結果一覧</h2>
           <dl class="story-table-like">
+            <dt>設問 01 ドワーフ・ガンツの万屋事始め</dt>
+            <dd id="your-result-list-01" data-result-id="ghomepub-story-01"></dd>
             <dt>設問 01 ドワーフ・ガンツの万屋事始め</dt>
             <dd id="your-result-list-01" data-result-id="ghomepub-story-01"></dd>
           </dl>

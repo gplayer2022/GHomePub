@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /GHomePub/admin.html
+Disallow: /GHomePub/question.html
+Disallow: /GHomePub/gistsync.html
+Disallow: /GHomePub/typing.html
