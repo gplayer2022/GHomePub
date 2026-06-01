@@ -2,124 +2,57 @@
 const regexQuestions = [
   {
     no: '01',
-    tree: {
-      root: {
-        images: {
-          hero: 'png',
-          coffee: 'jpg',
-          cake: 'jpg',
-          bread: 'jpg',
-        },
-        css: {
-          styles: 'css'
-        },
-        contents: {
-          access: 'html',
-          index: 'html',
-          menu: 'html',
-        },
-      },
-    },
-    from: 'index',
-    to: 'access',
+    regex: /unn?ko/
   },
   {
     no: '02',
-    tree: {
-      root: {
-        contents: {
-          css: {
-            images: {
-              coffee: 'jpg',
-              cake: 'jpg',
-              tea: 'jpg',
-            },
-            styles: 'css',
-          },
-          js: {
-            main: 'js',
-          },
-          index: 'html',
-          menu: 'html',
-        },
-      },
-    },
-    from: 'index',
-    to: 'styles',
+    regex: /un.ko/
   },
   {
     no: '03',
-    tree: {
-      root: {
-        contents: {
-          css: {
-            styles: 'css',
-          },
-          images: {
-            coffee: 'jpg',
-            tea: 'jpg',
-          }
-        },
-        index: 'html',
-        menu: 'html',
-        hero: 'png',
-      },
-    },
-    from: 'styles',
-    to: 'hero',
+    regex: /go*gle/
   },
   {
     no: '04',
-    tree: {
-      root: {
-        tokyoto: {
-          taitoku: {
-            asakusa: {
-              sensoji: 'temple',
-              nakamise: 'shop',
-              hoppy: 'street',
-            },
-            ueno: {
-              ueno: 'park',
-              sinobazu: 'pond',
-              saigo: 'statue',
-              ameyoko: 'market',
-            },
-          },
-          nakanoku: {
-            broadway: {
-              sanmall: 'shop',
-              sikinomori: 'park',
-            },
-            araiyakusi: {
-              baisyoin: 'temple',
-            }
-          },
-        },
-        chibaken: {
-          urayasu: {
-            disney: 'park',
-          }
-        }
-      },
-    },
-    from: 'disney',
-    to: 'sensoji',
+    regex: /go+gle/
   },
-  {
-    no: '05',
-    tree: {
-      root: {
-      },
-    },
-    from: '',
-    to: '',
-  },
+  // {
+  //   no: '05',
+  //   regex: /go{3,5}gle/
+  // },
+  // {
+  //   no: '06',
+  //   regex: /[AaEe]lice/
+  // },
+  // {
+  //   no: '07',
+  //   regex: /[0-9]{3}/
+  // },
+  // {
+  //   no: '08',
+  //   regex: /[^0-9]{3}/
+  // },
+  // {
+  //   no: '09',
+  //   regex: /(Final|Initial)Fantasy/
+  // },
+  // {
+  //   no: '10',
+  //   regex: /^F.+/
+  // },
+  // {
+  //   no: '11',
+  //   regex: /\\d{3}-\\d{4}/
+  // },
+  // {
+  //   no: '12',
+  //   regex: /^abc(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/
+  // },
 ];
 
 // 結果一覧に結果を表示し、ローカルストレージにデータを格納する
-function showResult2ResultList(yourResultListElem, isCorrect) {
-  if (isCorrect) {
+function showResult2ResultList(yourResultListElem, isCorrects) {
+  if (!isCorrects.includes(false)) {
     yourResultListElem.textContent = '〇';
     localStorage.setItem(yourResultListElem.dataset.resultId, "〇");
   } else {
@@ -129,15 +62,23 @@ function showResult2ResultList(yourResultListElem, isCorrect) {
 }
 
 // 正誤の表示
-function showResult(yourResultElem, isCorrect) {
+function showResult(yourResultElem, isCorrects) {
   yourResultElem.replaceChildren();
   const pElem = document.createElement('p');
   pElem.classList.add('clare-line');
-  if (isCorrect) {
-    pElem.textContent = '正解です。';
+  let text = '[';
+  if (isCorrects[0]) {
+    text += '正解, ';
   } else {
-    pElem.textContent = '不正解です。';
+    text += '不正解, ';
   }
+  if (isCorrects[1]) {
+    text += '正解';
+  } else {
+    text += '不正解';
+  }
+  text += '] です。'
+  pElem.textContent = text;
   yourResultElem.appendChild(pElem);
   yourResultElem.classList.remove('hidden');
 }
@@ -214,171 +155,27 @@ function clearProgress(questions) {
   })
 }
 
-// 全てのファイルを絶対パスにする
-function composeAbsoluteRegexRecursively(regexs, tree, tempRegex) {
-  for (let key in tree) {
-    if (typeof tree[key] === 'string') {
-      regexs[key] = `${tempRegex}${key}.${tree[key]}`;
-    } else {
-      let dirName = (key === 'root') ? '' : key;
-      const connectedTempRegex = `${tempRegex}${dirName}/`;
-      composeAbsoluteRegexRecursively(regexs, tree[key], connectedTempRegex);
-    }
-  }
-}
-
-// 相対パスを導出する
-function computeRelativeRegexs(absoluteRegexs, from, to) {
-  const fromRegex = absoluteRegexs[from];
-  const toRegex = absoluteRegexs[to];
-  const fromDirs = fromRegex.split('/');
-  const toDirs = toRegex.split('/');
-  const length = Math.min(fromDirs.length, toDirs.length);
-  let relativeRegex = '';
-  for (let i = 0; i < length; i++) {
-    if (fromDirs[i] !== toDirs[i]) {
-      relativeRegex += '../'.repeat(fromDirs.length - i - 1);
-      relativeRegex += toDirs.slice(i).join('/');
-      break;
-    }
-  }
-  return [relativeRegex, `./${relativeRegex}`];
-}
-
-// 設問の木構造を表示する
-function showTree(tree, elem) {
-  const ulElem = composeTreeElemRecursively(tree);
-  elem.appendChild(ulElem);
-}
-
-// ディレクトリツリーを再帰的に構成する
-function composeTreeElemRecursively(tree) {
-  const ulElem = document.createElement('ul');
-  for (let key in tree) {
-    if (typeof tree[key] === 'string') {
-      let liFileElem = document.createElement('li');
-      liFileElem.classList.add('file');
-      liFileElem.textContent = `${key}.${tree[key]}`;
-      ulElem.appendChild(liFileElem);
-    } else {
-      let liDirElem = document.createElement('li');
-      liDirElem.classList.add('dir');
-      let dirName = (key === 'root') ? '' : key;
-      liDirElem.textContent = `${dirName}/`;
-      const childUlElem = composeTreeElemRecursively(tree[key]);
-      liDirElem.appendChild(childUlElem);
-      ulElem.appendChild(liDirElem);
-    }
-  }
-  return ulElem;
-}
-
 // ユーザ回答に正誤判定する
-function checkAnswer(yourAnswer, regexQuestion) {
-  let isCorrect = false;
-  if (yourAnswer.trim() !== '') {
-    const absoluteRegexs = {};
-    composeAbsoluteRegexRecursively(absoluteRegexs, regexQuestion.tree, '');
-    const relativeRegexs = computeRelativeRegexs(absoluteRegexs, regexQuestion.from, regexQuestion.to);
-    isCorrect = relativeRegexs.includes(yourAnswer.trim());
+function checkAnswer(yourRegexMatchedIElem, yourRegexUnmatchedIElem, regexQuestion) {
+  let isCorrects = [false, false];
+  if (yourRegexMatchedIElem.value.trim() !== '') {
+    isCorrects[0] = regexQuestion.regex.test(yourRegexMatchedIElem.value);
   }
-  return isCorrect;
-}
-
-// 問 5 を初期化する
-function initializeQ5() {
-  const regexQuestion = regexQuestions[4];
-  // ユーザ解答欄を初期化する
-  const yourAnswerIElem = document.getElementById(`your-answer-${regexQuestion.no}`);
-  yourAnswerIElem.value = '';
-  // ディレクトリツリーを初期化する
-  composeRandomTree();
-  // 起点と終点を設定する
-  const absoluteRegexs = {};
-  composeAbsoluteRegexRecursively(absoluteRegexs, regexQuestion.tree, '');
-  const entries = shuffleAbsoluteRegexs(absoluteRegexs);
-  regexQuestion.from = entries[0][0];
-  regexQuestion.to = entries[1][0];
-  // 設問欄を初期化する
-  const randomRegexQuestionElem = document.getElementById('random-regex-question');
-  randomRegexQuestionElem.textContent = `${regexQuestion.from}.html から ${regexQuestion.to}.html への相対パスを書いてください。`;
-  const questionElem = document.getElementById(`question-${regexQuestion.no}`);
-  questionElem.replaceChildren();
-  showTree(regexQuestion.tree, questionElem);
-  // 解答欄を設定する
-  const randomRegexAnswerElem = document.getElementById('random-regex-answer');
-  const relativeRegexs = computeRelativeRegexs(absoluteRegexs, regexQuestion.from, regexQuestion.to);
-  randomRegexAnswerElem.textContent = `${relativeRegexs[0]}
-<!-- または -->
-${relativeRegexs[1]}`;
-  Prism.highlightElement(randomRegexAnswerElem);
-  // 解答例を隠す
-  const answerCardElem = document.getElementById(`answer-${regexQuestion.no}-card`);
-  answerCardElem.classList.add('hidden');
-  const yourResultElem = document.getElementById(`your-result-${regexQuestion.no}`);
-  yourResultElem.replaceChildren();
-  yourResultElem.classList.add('hidden');
-}
-
-// to と from を設定するために、初期化する
-function shuffleAbsoluteRegexs(absoluteRegexs) {
-  const entries = Object.entries(absoluteRegexs);
-  for (let i = entries.length - 1; 0 < i; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [entries[i], entries[j]] = [entries[j], entries[i]];
+  if (yourRegexUnmatchedIElem.value.trim !== '') {
+    isCorrects[1] = !regexQuestion.regex.test(yourRegexUnmatchedIElem.value);
   }
-  return entries;
-}
-
-// ランダムなツリーを作成する
-const maxDepth = 3;
-let fileCounter = 0;
-function composeRandomTree() {
-  fileCounter = 0;
-  regexQuestions[4].tree.root = {};
-  composeRandomTreeRecursively(regexQuestions[4].tree.root, 0);
-}
-
-// ランダムなツリーを再帰的に構成する
-function composeRandomTreeRecursively(tree, depth) {
-  // ディレクトリ・ファイル合計は [2, 5) 個で。
-  const dirFileCount = Math.floor(Math.random() * 3) + 2;
-  let dirCount = Math.floor(Math.random() * (dirFileCount + 1));
-  let fileCount = dirFileCount - dirCount;
-  let dirCounter = 0;
-  // 最下層の場合
-  if (maxDepth - depth <= 0) {
-    fileCount = dirFileCount;
-    dirCount = 0;
-  }
-  // ディレクトリを作成する
-  for (let i = 0; i < dirCount; i++) {
-    dirCounter++;
-    let key = `dir${depth + 1}_${dirCounter}`;
-    let treeChild = {};
-    composeRandomTreeRecursively(treeChild, depth + 1);
-    tree[key] = treeChild;
-  }
-  // ファイルを作成する
-  for (let i = 0; i < fileCount; i++) {
-    fileCounter++;
-    let key = `file${String(fileCounter).padStart(3, '0')}`;
-    tree[key] = 'html';
-  }
+  return isCorrects;
 }
 
 function main() {
-  initializeQ5();
   for (let regexQuestion of regexQuestions) {
     const questionElem = document.getElementById(`question-${regexQuestion.no}`);
-    const yourAnswerIElem = document.getElementById(`your-answer-${regexQuestion.no}`);
+    const yourRegexMatchedIElem = document.getElementById(`your-regex-matched-${regexQuestion.no}`);
+    const yourRegexUnmatchedIElem = document.getElementById(`your-regex-unmatched-${regexQuestion.no}`);
     const showYourAnswerButtonIElem = document.getElementById(`show-answer-${regexQuestion.no}`);
     const answerCardElem = document.getElementById(`answer-${regexQuestion.no}-card`);
     const yourResultElem = document.getElementById(`your-result-${regexQuestion.no}`);
     const yourResultListElem = document.getElementById(`your-result-list-${regexQuestion.no}`);
-    if (regexQuestion !== regexQuestions[4]) {
-      showTree(regexQuestion.tree, questionElem);
-    }
     // 解説表示用のイベントリスナ
     const displayHintElem = document.getElementById(`display-hint-${regexQuestion.no}`);
     displayHintElem.addEventListener('click', (event) => {
@@ -388,9 +185,9 @@ function main() {
     // 回答表示ボタン
     showYourAnswerButtonIElem.addEventListener('click', () => {
       // 正誤判定
-      const isCorrect = checkAnswer(yourAnswerIElem.value, regexQuestion);
-      showResult(yourResultElem, isCorrect);
-      showResult2ResultList(yourResultListElem, isCorrect);
+      const isCorrects = checkAnswer(yourRegexMatchedIElem, yourRegexUnmatchedIElem, regexQuestion);
+      showResult(yourResultElem, isCorrects);
+      showResult2ResultList(yourResultListElem, isCorrects);
       answerCardElem.classList.remove('hidden');
     });
   }
@@ -418,11 +215,6 @@ function main() {
   const clearYourProgressButtonIElem = document.getElementById('clear-your-progress-button');
   clearYourProgressButtonIElem.addEventListener('click', (e) => {
     clearProgress(regexQuestions);
-  });
-  // 問 5 更新ボタンイベント
-  const showAnotherRegexQuestionIElem = document.getElementById('show-another-regex-question');
-  showAnotherRegexQuestionIElem.addEventListener('click', (e) => {
-    initializeQ5();
   });
 }
 

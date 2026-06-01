@@ -55,21 +55,30 @@
           </p>
           <p>メイドのクレアは、ガンツに雇われた少し口の悪い普通の人間です。 IT
             に詳しく、ガンツの経営の IT 化を補助をしています。</p>
-          <p><img class="story-hero-image" src="images/yorozuya.png" alt="ガンツとクレア"></p>
+          <p><img class="story-hero-image" src="images/yorozuya-half.png" alt="ガンツとクレア"></p>
         </section><!-- .card -->
 
         <section class="card">
           <div id="step-progress" class="progress">
-            <span title="01 ドワーフ・ガンツの万屋事始め" data-step="01">●</span>
+            <span title="01 ドワーフ・ガンツの怪しい一文字" data-step="01">●</span>
+            <span title="02 ドワーフ・ガンツの任意の一文字" data-step="02">○</span>
+            <span title="03 ドワーフ・ガンツの文字の連続" data-step="03">○</span>
+            <span title="04 ドワーフ・ガンツの一文字以上の連続" data-step="04">○</span>
           </div>
         </section>
 
         <!-- 01 話 -->
         <div id="story-01" class="story-wrapper active">
           <section class="card">
-            <h2 class="card-title">01. ドワーフ・ガンツの万屋事始め</h2>
+            <h2 class="card-title">01. ドワーフ・ガンツの怪しい一文字</h2>
             <div class="story">
-              <p class="gantz-line">クレアさんよぅ、なにやらデータベースというものを使うと、たくさんのデータをとてもいい感じに整理できるらしいな。早速やってみたいんだが、何をどうしたらいいんだ？</p>
+              <p class="gantz-line">クレアさんよぅ、プログラマの世界では文字列検索や文字列の置き換えや入力文字列のチェックなんかに便利な表現というのがあるらしいな？</p>
+              <p class="clare-line">そうなんですか？</p>
+              <p class="gantz-line">なんじゃ、知らんのか？ それとも、知らない振りしてワシを試しとるんかな？ よく意味は分からんがこんなようなやつじゃ。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">a+b</code></pre>
+              <p class="clare-line">ただの数式じゃないんです？</p>
+              <p class="gantz-line">いや、どうやらそうじゃないんらしいんじゃ。「 a が並んで b 」みたいなことらしいんじゃが……。</p>
+              <p class="clare-line">ふぅん。……正規表現のことですね。</p>
             </div><!-- .story -->
           </section><!-- #story-01 -->
 
@@ -77,18 +86,53 @@
             <h2 class="card-title">解説 01</h2>
             <p><span id="display-hint-01" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
             <div id="story-hint-01" class="story hidden">
-              <p class="clare-line">テーブルを作成するには、最低限テーブル名・列名・各列の型名を指定します。例えばこんな感じです。
+              <p class="gantz-line">「正規表現」ってそもそも何なんじゃ？</p>
+              <p class="clare-line">
+                そもそも何なのかみたいな話から始めても、小難しい話になるだけですよ。とりあえず最初は、文字列パターンを表すための表現方法で、文字列検索や入力文字列チェックなどに利用できる便利な表現方法だくらいに思っておけばいいです。一通り勉強した後に、少しだけ正規表現と正規言語についてお話してもいいですけど。
+              </p>
+              <p class="gantz-line">……うん。残念じゃが、今の話だけですでによく分からん。もう少し具体的にどういう風に使えるものなのか説明してくれんか？</p>
+              <p class="clare-line">
+                例えば物凄く長いテキストデータがあったと考えてみてください。あるいはもっと単純に「環境問題はセクシーに取り組まなければならない」という文字列が、見た目とは違って実はとても長い文字列だと想像してみてください。
+              </p>
+              <p class="gantz-line">おう。</p>
+              <p class="clare-line">この長い文字列から「セクシー」という文字列を検索したいとしたらどうしますか？</p>
+              <p class="gantz-line">メモ帳で開いているような場合なら、検索窓を使って検索するかな？</p>
+              <figure>
+                <img src="images/regex-notepad.png" alt="メモ帳で検索">
+                <figcaption>メモ帳で検索</figcaption>
+              </figure>
+              <p class="clare-line">メモ帳以外のテキストエディタの場合、大概は正規表現での検索をサポートしています。例えばサクラエディタならこんな感じです。</p>
+              <figure>
+                <img src="images/regex-sakura.png" alt="サクラエディタで検索">
+                <figcaption>サクラエディタで検索</figcaption>
+              </figure>
+              <p class="gantz-line">ほうん。で、正規表現を使うとどうなるんじゃ？</p>
+              <p class="clare-line">
+                検索したい文字列がはっきりと分かっている場合は、メモ帳でも問題ありません。しかし「検索したい文字が「セクシー」だったか「セクシ」だったか忘れちゃった」みたいな場合、つまり最後の長音「ー」が存在したかどうか怪しい場合、正規表現では「セクシー?」のように「?」を使って表現できます。
+              </p>
+              <p class="gantz-line">つまり「セクシー?」で検索すると、一度に「セクシー」も「セクシ」も検索対象にできるんじゃな？</p>
+              <p class="clare-line">そうです。なお「?」は半角でなければなりません。「?」は直前の文字が出現するかしないかのパターンを表します。</p>
+              <p class="gantz-line">正規表現はうっかり屋さん向けの検索用表現なのかな？</p>
+              <p class="clare-line">……そんなわけないでしょ。</p>
+              <dl class="story-table-like story-definition">
+                <dt>?</dt>
+                <dd>直前の文字が出現するかしないかのパターン。</dd>
+              </dl>
             </div><!-- #story-hint -->
           </section>
 
           <section class="card">
             <h2 class="card-title">設問 01</h2>
             <div class="story">
-              <p class="clare-line">下記のようなテーブル products を作成してください。まだレコードの入力は必要ありません。</p>
+              <p class="clare-line">正規表現 unn?ko にマッチする文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-story-01" class="your-story" rows="10" placeholder="ここにstory 文を書きます"></textarea></p>
+            <p><textarea id="your-regex-matched-01" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 unn?ko にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-01" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
-              <button class="gplayer-button ripple" type="button" id="run-your-story-01">実行</button>
+              <button class="gplayer-button ripple" type="button" id="show-answer-01">解答を表示する</button>
             </div><!-- .gplayer-button-wrapper -->
             <div id="your-result-01" class="story">
             </div><!-- #your-result-01 -->
@@ -97,13 +141,9 @@
           <section id="answer-01-card" class="card hidden">
             <h2 class="card-title">解答例 01</h2>
             <div class="story">
-              <p class="clare-line">解答例です。 AUTOINCREMENT は、なくても大丈夫です。</p>
-              <pre class="line-numbers language-story" tabindex="0"><code class="language-story">CREATE TABLE `products` (
-  `id` INTEGER PRIMARY KEY,
-  `product_name` TEXT NOT NULL,
-  `price` INTEGER NOT NULL,
-  `stock_quantity` INTEGER NOT NULL
-);</code></pre>
+              <p class="clare-line">解答例です。 </p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: unko, unnko
+マッチしない文字列例: asdf, unnnko, unn?ko</code></pre>
             </div>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple to-next-step" type="button" data-next-step="02">次の問題へ</button>
@@ -114,28 +154,43 @@
         <!-- 02 話 -->
         <div id="story-02" class="story-wrapper">
           <section class="card">
-            <h2 class="card-title">02. ドワーフ・ガンツの万屋事始め</h2>
+            <h2 class="card-title">02. ドワーフ・ガンツの任意の一文字</h2>
             <div class="story">
-              <p class="gantz-line">クレアさんよぅ、なにやらデータベースというものを使うと、たくさんのデータをとてもいい感じに整理できるらしいな。早速やってみたいんだが、何をどうしたらいいんだ？</p>
+              <p class="gantz-line">正規表現というのは、要するに複数の文字列をパターン化した表現なんじゃな。</p>
+              <p class="clare-line">……まあ、そんな感じです。</p>
+              <p class="gantz-line">今日のクレアさんは、なんか歯切れが悪いな。「?」は直前の文字があるかないかを表したわけじゃが、とりあえず何か文字があるみたいなことって表せないのか？</p>
+              <p class="clare-line">任意の一文字ですね。できます。</p>
             </div><!-- .story -->
           </section><!-- #story-02 -->
 
           <section class="card">
             <h2 class="card-title">解説 02</h2>
-            <p><span id="display-hint-01" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <p><span id="display-hint-02" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
             <div id="story-hint-02" class="story hidden">
-              <p class="clare-line">テーブルを作成するには、最低限テーブル名・列名・各列の型名を指定します。例えばこんな感じです。
+              <p class="clare-line">例えば「環境問題はセクシーに取り組まなければならない」という文字列について、検索したいのが「「セクシー」だったか「セクシィ」だったか「セクシイ」だったか忘れちゃった」みたいなうっかり屋さんがいたとします。</p>
+              <p class="gantz-line">やっぱり正規表現はうっかり屋さん向けの検索用表現なのかな？</p>
+              <p class="clare-line">この場合、曖昧な文字を「.」を使って「セクシ.」のように表現できます。</p>
+              <p class="gantz-line">つまり「セクシ.」で検索すると、一度に「セクシア」も「セクシイ」も「セクシウ」も「セクシエ」も、なんだったら「セクシa」みたいなのも検索対象にできるんじゃな？</p>
+              <p class="clare-line">そうです。「.」は任意の一文字を表します。</p>
+              <dl class="story-table-like story-definition">
+                <dt>.</dt>
+                <dd>任意の一文字を表すパターン。</dd>
+              </dl>
             </div><!-- #story-hint -->
           </section>
 
           <section class="card">
             <h2 class="card-title">設問 02</h2>
             <div class="story">
-              <p class="clare-line">下記のようなテーブル products を作成してください。まだレコードの入力は必要ありません。</p>
+              <p class="clare-line">正規表現 un.ko にマッチする文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-story-02" class="your-story" rows="10" placeholder="ここにstory 文を書きます"></textarea></p>
+            <p><textarea id="your-regex-matched-02" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 un.ko にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-02" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
-              <button class="gplayer-button ripple" type="button" id="run-your-story-02">実行</button>
+              <button class="gplayer-button ripple" type="button" id="show-answer-02">解答を表示する</button>
             </div><!-- .gplayer-button-wrapper -->
             <div id="your-result-02" class="story">
             </div><!-- #your-result-02 -->
@@ -144,27 +199,190 @@
           <section id="answer-02-card" class="card hidden">
             <h2 class="card-title">解答例 02</h2>
             <div class="story">
-              <p class="clare-line">解答例です。 AUTOINCREMENT は、なくても大丈夫です。</p>
-              <pre class="line-numbers language-story" tabindex="0"><code class="language-story">CREATE TABLE `products` (
-  `id` INTEGER PRIMARY KEY,
-  `product_name` TEXT NOT NULL,
-  `price` INTEGER NOT NULL,
-  `stock_quantity` INTEGER NOT NULL
-);</code></pre>
+              <p class="clare-line">解答例です。 </p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: unnko, unako, un.ko
+マッチしない文字列例: asdf, unnnko, un..ko</code></pre>
             </div>
             <div class="gplayer-button-wrapper">
-              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="02">次の問題へ</button>
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="03">次の問題へ</button>
             </div><!-- .gplayer-button-wrapper -->
           </section><!-- #answer-02-card -->
+        </div>
+
+        <!-- 03 話 -->
+        <div id="story-03" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">03. ドワーフ・ガンツの文字の連続</h2>
+            <div class="story">
+              <p class="gantz-line">同じ文字が連続するみたいなパターンの表現はないのかな？</p>
+              <p class="clare-line">あります。 0 個以上の連続か 1 個以上の連続かで違います。まずは 0 個以上の連続から見ていきましょう。</p>
+            </div><!-- .story -->
+          </section><!-- #story-03 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 03</h2>
+            <p><span id="display-hint-03" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-03" class="story hidden">
+              <p class="clare-line">「ヤッホー」だったか「ヤッホーー」だったか曖昧な場合、つまり文字「ー」がいくつ続くか曖昧な場合、「ヤッホー*」のように「*」を使って表現できます。</p>
+              <p class="gantz-line">「ヤッホ」はもいいのか？</p>
+              <p class="clare-line">大丈夫です。「*」は直前の文字の 0 回以上の連続を表します。</p>
+              <p class="gantz-line">なくても大丈夫というのが、ちょっと引っかけじゃな。</p>
+              <dl class="story-table-like story-definition">
+                <dt>*</dt>
+                <dd>直前の文字の 0 回以上の連続を表すパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 03</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 go*gle にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-03" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 go*gle にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-03" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-03">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-03" class="story">
+            </div><!-- #your-result-02 -->
+          </section>
+
+          <section id="answer-03-card" class="card hidden">
+            <h2 class="card-title">解答例 03</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: ggle, gogle, google, gooooogle
+マッチしない文字列例: asdf, go*gle, goagle</code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="04">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-03-card -->
+        </div>
+
+        <!-- 04 話 -->
+        <div id="story-04" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">04. ドワーフ・ガンツの一文字以上の連続</h2>
+            <div class="story">
+              <p class="gantz-line">正規表現というのは、要するに複数の文字列をパターン化した表現なんじゃな。</p>
+              <p class="clare-line">……まあ、そんな感じです。</p>
+              <p class="gantz-line">今日のクレアさんは、なんか歯切れが悪いな。 ? は前の文字があるか・ないかを表したわけじゃが、とりあえず何か文字があるみたいなことって表せないのか？</p>
+            </div><!-- .story -->
+          </section><!-- #story-04 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 04</h2>
+            <p><span id="display-hint-04" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-04" class="story hidden">
+              <p class="clare-line"></p>
+              <dl class="story-table-like story-definition">
+                <dt>.</dt>
+                <dd>任意の一文字を表すパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 04</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 un.ko にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-04" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 un.ko にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-04" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-04">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-04" class="story">
+            </div><!-- #your-result-02 -->
+          </section>
+
+          <section id="answer-04-card" class="card hidden">
+            <h2 class="card-title">解答例 04</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: unko, unnko
+マッチしない文字列例: asdf, unnnko, unn?ko
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="05">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-04-card -->
+        </div>
+
+        <!-- 05 話 -->
+        <div id="story-05" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">05. ドワーフ・ガンツの文字の連続</h2>
+            <div class="story">
+              <p class="gantz-line">正規表現というのは、要するに複数の文字列をパターン化した表現なんじゃな。</p>
+              <p class="clare-line">……まあ、そんな感じです。</p>
+              <p class="gantz-line">今日のクレアさんは、なんか歯切れが悪いな。 ? は前の文字があるか・ないかを表したわけじゃが、とりあえず何か文字があるみたいなことって表せないのか？</p>
+            </div><!-- .story -->
+          </section><!-- #story-05 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 05</h2>
+            <p><span id="display-hint-05" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-05" class="story hidden">
+              <p class="clare-line"></p>
+              <dl class="story-table-like story-definition">
+                <dt>.</dt>
+                <dd>任意の一文字を表すパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 05</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 un.ko にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-05" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 un.ko にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-05" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-05">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-05" class="story">
+            </div><!-- #your-result-05 -->
+          </section>
+
+          <section id="answer-05-card" class="card hidden">
+            <h2 class="card-title">解答例 05</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: unko, unnko
+マッチしない文字列例: asdf, unnnko, unn?ko
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="06">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-05-card -->
         </div>
 
         <section class="card">
           <h2 class="card-title">結果一覧</h2>
           <dl class="story-table-like">
-            <dt>設問 01 ドワーフ・ガンツの万屋事始め</dt>
-            <dd id="your-result-list-01" data-result-id="ghomepub-story-01"></dd>
-            <dt>設問 01 ドワーフ・ガンツの万屋事始め</dt>
-            <dd id="your-result-list-01" data-result-id="ghomepub-story-01"></dd>
+            <dt>設問 01 ドワーフ・ガンツの怪しい一文字</dt>
+            <dd id="your-result-list-01" data-result-id="ghomepub-regex-01"></dd>
+            <dt>設問 02 ドワーフ・ガンツの任意の一文字</dt>
+            <dd id="your-result-list-02" data-result-id="ghomepub-regex-02"></dd>
+            <dt>設問 03 ドワーフ・ガンツの文字の連続</dt>
+            <dd id="your-result-list-03" data-result-id="ghomepub-regex-03"></dd>
+            <dt>設問 04 ドワーフ・ガンツの一文字以上の連続</dt>
+            <dd id="your-result-list-04" data-result-id="ghomepub-regex-04"></dd>
           </dl>
           <div class="gplayer-button-wrapper">
             <button class="gplayer-button ripple" type="button" id="clear-your-progress-button">結果一覧のクリア</button>
@@ -180,7 +398,6 @@
 
   </div><!-- .whole-wrapper -->
   <script id="prism" src="js/prism.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/story.js/1.8.0/story-wasm.js"></script>
   <script type="module" src="js/ex-regex.js"></script>
   <script src="js/button.js"></script>
   <script src="js/common.js"></script>
