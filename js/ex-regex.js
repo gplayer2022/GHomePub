@@ -16,38 +16,42 @@ const regexQuestions = [
     no: '04',
     regex: /go+gle/
   },
-  // {
-  //   no: '05',
-  //   regex: /go{3,5}gle/
-  // },
-  // {
-  //   no: '06',
-  //   regex: /[AaEe]lice/
-  // },
-  // {
-  //   no: '07',
-  //   regex: /[0-9]{3}/
-  // },
-  // {
-  //   no: '08',
-  //   regex: /[^0-9]{3}/
-  // },
-  // {
-  //   no: '09',
-  //   regex: /(Final|Initial)Fantasy/
-  // },
-  // {
-  //   no: '10',
-  //   regex: /^F.+/
-  // },
-  // {
-  //   no: '11',
-  //   regex: /\\d{3}-\\d{4}/
-  // },
-  // {
-  //   no: '12',
-  //   regex: /^abc(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/
-  // },
+  {
+    no: '05',
+    regex: /go{3,5}gle/
+  },
+  {
+    no: '06',
+    regex: /[AaEe]lice/
+  },
+  {
+    no: '07',
+    regex: /[0-9]{3}/
+  },
+  {
+    no: '08',
+    regex: /[^0-9]{3}/
+  },
+  {
+    no: '09',
+    regex: /(Final|Initial)Fantasy/
+  },
+  {
+    no: '10',
+    regex: /^F.+/
+  },
+  {
+    no: '11',
+    regex: /\\d{3}-\\d{4}/
+  },
+  {
+    no: '12',
+    regex: /^x(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$%&])[a-zA-Z0-9$%&]{5,}$/
+  },
+  {
+    no: '13',
+    regex: /^[abc]+c$/
+  },
 ];
 
 // 結果一覧に結果を表示し、ローカルストレージにデータを格納する
@@ -161,7 +165,7 @@ function checkAnswer(yourRegexMatchedIElem, yourRegexUnmatchedIElem, regexQuesti
   if (yourRegexMatchedIElem.value.trim() !== '') {
     isCorrects[0] = regexQuestion.regex.test(yourRegexMatchedIElem.value);
   }
-  if (yourRegexUnmatchedIElem.value.trim !== '') {
+  if (yourRegexUnmatchedIElem.value.trim() !== '') {
     isCorrects[1] = !regexQuestion.regex.test(yourRegexUnmatchedIElem.value);
   }
   return isCorrects;

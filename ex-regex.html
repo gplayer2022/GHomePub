@@ -54,30 +54,39 @@
           <p>ガンツはドワーフの<ruby>万屋<rt>よろずや</rt></ruby>経営者です。最近、世間では業務の IT 化がすっかり進んでいるのを知って、年寄りの手習いで自分でもシステムをいじり始めている。
           </p>
           <p>メイドのクレアは、ガンツに雇われた少し口の悪い普通の人間です。 IT
-            に詳しく、ガンツの経営の IT 化を補助をしています。</p>
+            に詳しく、ガンツの経営の IT 化を補助しています。</p>
           <p><img class="story-hero-image" src="images/yorozuya-half.png" alt="ガンツとクレア"></p>
         </section><!-- .card -->
 
         <section class="card">
           <div id="step-progress" class="progress">
-            <span title="01 ドワーフ・ガンツの怪しい一文字" data-step="01">●</span>
-            <span title="02 ドワーフ・ガンツの任意の一文字" data-step="02">○</span>
+            <span title="01 ドワーフ・ガンツの怪しい 1 文字" data-step="01">●</span>
+            <span title="02 ドワーフ・ガンツの任意の 1 文字" data-step="02">○</span>
             <span title="03 ドワーフ・ガンツの文字の連続" data-step="03">○</span>
-            <span title="04 ドワーフ・ガンツの一文字以上の連続" data-step="04">○</span>
+            <span title="04 ドワーフ・ガンツの 1 文字以上の連続" data-step="04">○</span>
+            <span title="05 ドワーフ・ガンツの連続文字数指定" data-step="05">○</span>
+            <span title="06 ドワーフ・ガンツの文字候補列挙" data-step="06">○</span>
+            <span title="07 ドワーフ・ガンツの文字候補範囲" data-step="07">○</span>
+            <span title="08 ドワーフ・ガンツの文字候補の否定" data-step="08">○</span>
+            <span title="09 ドワーフ・ガンツの複数の文字列候補" data-step="09">○</span>
+            <span title="10 ドワーフ・ガンツの開始と終了" data-step="10">○</span>
+            <span title="11 ドワーフ・ガンツのエスケープ" data-step="11">○</span>
+            <span title="12 ドワーフ・ガンツの先読み" data-step="12">○</span>
+            <span title="13 ドワーフ・ガンツの有限オートマトン" data-step="13">○</span>
           </div>
         </section>
 
         <!-- 01 話 -->
         <div id="story-01" class="story-wrapper active">
           <section class="card">
-            <h2 class="card-title">01. ドワーフ・ガンツの怪しい一文字</h2>
+            <h2 class="card-title">01. ドワーフ・ガンツの怪しい 1 文字</h2>
             <div class="story">
               <p class="gantz-line">クレアさんよぅ、プログラマの世界では文字列検索や文字列の置き換えや入力文字列のチェックなんかに便利な表現というのがあるらしいな？</p>
               <p class="clare-line">そうなんですか？</p>
               <p class="gantz-line">なんじゃ、知らんのか？ それとも、知らない振りしてワシを試しとるんかな？ よく意味は分からんがこんなようなやつじゃ。</p>
               <pre class="line-numbers language-text" tabindex="0"><code class="language-text">a+b</code></pre>
               <p class="clare-line">ただの数式じゃないんです？</p>
-              <p class="gantz-line">いや、どうやらそうじゃないんらしいんじゃ。「 a が並んで b 」みたいなことらしいんじゃが……。</p>
+              <p class="gantz-line">いや、どうやらそうじゃないらしいんじゃ。「 a が並んで b 」みたいなことらしいんじゃが……。</p>
               <p class="clare-line">ふぅん。……正規表現のことですね。</p>
             </div><!-- .story -->
           </section><!-- #story-01 -->
@@ -88,7 +97,7 @@
             <div id="story-hint-01" class="story hidden">
               <p class="gantz-line">「正規表現」ってそもそも何なんじゃ？</p>
               <p class="clare-line">
-                そもそも何なのかみたいな話から始めても、小難しい話になるだけですよ。とりあえず最初は、文字列パターンを表すための表現方法で、文字列検索や入力文字列チェックなどに利用できる便利な表現方法だくらいに思っておけばいいです。一通り勉強した後に、少しだけ正規表現と正規言語についてお話してもいいですけど。
+                そもそも何なのかみたいな話から始めても、小難しい話になるだけですよ。とりあえず最初は、文字列パターンを表すための表現方法で、文字列検索や入力文字列チェックなどに利用できる便利な表現方法くらいに思っておけばいいです。一通り勉強した後に、少しだけ正規表現と正規言語についてお話してもいいですけど。
               </p>
               <p class="gantz-line">……うん。残念じゃが、今の話だけですでによく分からん。もう少し具体的にどういう風に使えるものなのか説明してくれんか？</p>
               <p class="clare-line">
@@ -108,7 +117,7 @@
               </figure>
               <p class="gantz-line">ほうん。で、正規表現を使うとどうなるんじゃ？</p>
               <p class="clare-line">
-                検索したい文字列がはっきりと分かっている場合は、メモ帳でも問題ありません。しかし「検索したい文字が「セクシー」だったか「セクシ」だったか忘れちゃった」みたいな場合、つまり最後の長音「ー」が存在したかどうか怪しい場合、正規表現では「セクシー?」のように「?」を使って表現できます。
+                検索したい文字列がはっきりと分かっている場合は、メモ帳でも問題ありません。しかし「検索したい文字列が「セクシー」だったか「セクシ」だったか忘れちゃった」みたいな場合、つまり最後の長音「ー」が存在したかどうか怪しい場合、正規表現では「セクシー?」のように「?」を使って表現できます。
               </p>
               <p class="gantz-line">つまり「セクシー?」で検索すると、一度に「セクシー」も「セクシ」も検索対象にできるんじゃな？</p>
               <p class="clare-line">そうです。なお「?」は半角でなければなりません。「?」は直前の文字が出現するかしないかのパターンを表します。</p>
@@ -126,11 +135,13 @@
             <div class="story">
               <p class="clare-line">正規表現 unn?ko にマッチする文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-matched-01" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-matched-01" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
             <div class="story">
               <p class="clare-line">正規表現 unn?ko にマッチしない文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-unmatched-01" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-unmatched-01" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="show-answer-01">解答を表示する</button>
             </div><!-- .gplayer-button-wrapper -->
@@ -154,12 +165,12 @@
         <!-- 02 話 -->
         <div id="story-02" class="story-wrapper">
           <section class="card">
-            <h2 class="card-title">02. ドワーフ・ガンツの任意の一文字</h2>
+            <h2 class="card-title">02. ドワーフ・ガンツの任意の 1 文字</h2>
             <div class="story">
               <p class="gantz-line">正規表現というのは、要するに複数の文字列をパターン化した表現なんじゃな。</p>
               <p class="clare-line">……まあ、そんな感じです。</p>
               <p class="gantz-line">今日のクレアさんは、なんか歯切れが悪いな。「?」は直前の文字があるかないかを表したわけじゃが、とりあえず何か文字があるみたいなことって表せないのか？</p>
-              <p class="clare-line">任意の一文字ですね。できます。</p>
+              <p class="clare-line">任意の 1 文字ですね。できます。</p>
             </div><!-- .story -->
           </section><!-- #story-02 -->
 
@@ -167,14 +178,16 @@
             <h2 class="card-title">解説 02</h2>
             <p><span id="display-hint-02" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
             <div id="story-hint-02" class="story hidden">
-              <p class="clare-line">例えば「環境問題はセクシーに取り組まなければならない」という文字列について、検索したいのが「「セクシー」だったか「セクシィ」だったか「セクシイ」だったか忘れちゃった」みたいなうっかり屋さんがいたとします。</p>
+              <p class="clare-line">
+                例えば「環境問題はセクシーに取り組まなければならない」という文字列について、検索したいのが「「セクシー」だったか「セクシィ」だったか「セクシイ」だったか忘れちゃった」みたいなうっかり屋さんがいたとします。
+              </p>
               <p class="gantz-line">やっぱり正規表現はうっかり屋さん向けの検索用表現なのかな？</p>
               <p class="clare-line">この場合、曖昧な文字を「.」を使って「セクシ.」のように表現できます。</p>
               <p class="gantz-line">つまり「セクシ.」で検索すると、一度に「セクシア」も「セクシイ」も「セクシウ」も「セクシエ」も、なんだったら「セクシa」みたいなのも検索対象にできるんじゃな？</p>
-              <p class="clare-line">そうです。「.」は任意の一文字を表します。</p>
+              <p class="clare-line">そうです。「.」は任意の 1 文字を表します。</p>
               <dl class="story-table-like story-definition">
                 <dt>.</dt>
-                <dd>任意の一文字を表すパターン。</dd>
+                <dd>任意の 1 文字を表すパターン。</dd>
               </dl>
             </div><!-- #story-hint -->
           </section>
@@ -184,11 +197,13 @@
             <div class="story">
               <p class="clare-line">正規表現 un.ko にマッチする文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-matched-02" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-matched-02" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
             <div class="story">
               <p class="clare-line">正規表現 un.ko にマッチしない文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-unmatched-02" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-unmatched-02" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="show-answer-02">解答を表示する</button>
             </div><!-- .gplayer-button-wrapper -->
@@ -223,10 +238,11 @@
             <h2 class="card-title">解説 03</h2>
             <p><span id="display-hint-03" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
             <div id="story-hint-03" class="story hidden">
-              <p class="clare-line">「ヤッホー」だったか「ヤッホーー」だったか曖昧な場合、つまり文字「ー」がいくつ続くか曖昧な場合、「ヤッホー*」のように「*」を使って表現できます。</p>
-              <p class="gantz-line">「ヤッホ」はもいいのか？</p>
+              <p class="clare-line">「ヤッホ」だったか「ヤッホー」だったか「ヤッホーー」だったか曖昧な場合、つまり文字「ー」がいくつ続くか曖昧な場合、「ヤッホー*」のように「*」を使って表現できます。</p>
+              <p class="gantz-line">「ヤッホ」でもいいのか？</p>
               <p class="clare-line">大丈夫です。「*」は直前の文字の 0 回以上の連続を表します。</p>
               <p class="gantz-line">なくても大丈夫というのが、ちょっと引っかけじゃな。</p>
+              <p class="clare-line">任意の 1 文字を表す「.」と組み合わせて、「.*」で任意の文字の 0 回以上の繰り返しを表すことがよくあります。</p>
               <dl class="story-table-like story-definition">
                 <dt>*</dt>
                 <dd>直前の文字の 0 回以上の連続を表すパターン。</dd>
@@ -239,11 +255,13 @@
             <div class="story">
               <p class="clare-line">正規表現 go*gle にマッチする文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-matched-03" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-matched-03" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
             <div class="story">
               <p class="clare-line">正規表現 go*gle にマッチしない文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-unmatched-03" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-unmatched-03" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="show-answer-03">解答を表示する</button>
             </div><!-- .gplayer-button-wrapper -->
@@ -267,11 +285,10 @@
         <!-- 04 話 -->
         <div id="story-04" class="story-wrapper">
           <section class="card">
-            <h2 class="card-title">04. ドワーフ・ガンツの一文字以上の連続</h2>
+            <h2 class="card-title">04. ドワーフ・ガンツの 1 文字以上の連続</h2>
             <div class="story">
-              <p class="gantz-line">正規表現というのは、要するに複数の文字列をパターン化した表現なんじゃな。</p>
-              <p class="clare-line">……まあ、そんな感じです。</p>
-              <p class="gantz-line">今日のクレアさんは、なんか歯切れが悪いな。 ? は前の文字があるか・ないかを表したわけじゃが、とりあえず何か文字があるみたいなことって表せないのか？</p>
+              <p class="gantz-line">前回 0 文字以上の連続については分かった。 1 文字以上というのはないのか？</p>
+              <p class="clare-line">ありますよ。</p>
             </div><!-- .story -->
           </section><!-- #story-04 -->
 
@@ -279,10 +296,13 @@
             <h2 class="card-title">解説 04</h2>
             <p><span id="display-hint-04" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
             <div id="story-hint-04" class="story hidden">
-              <p class="clare-line"></p>
+              <p class="gantz-line">まあ、「ヤッホーー*」みたいにすれば、結果的に 1 文字以上を表せそうじゃが。</p>
+              <p class="clare-line">そうですね。でも「ヤッホー+」で「+」の直前の「ー」を 1 回以上連続するパターンを表せます。</p>
+              <p class="gantz-line">これも「.+」で任意の 1 文字以上を表せそうじゃな。</p>
+              <p class="clare-line">はい。</p>
               <dl class="story-table-like story-definition">
-                <dt>.</dt>
-                <dd>任意の一文字を表すパターン。</dd>
+                <dt>+</dt>
+                <dd>直前の文字の 1 回以上の連続を表すパターン。</dd>
               </dl>
             </div><!-- #story-hint -->
           </section>
@@ -290,13 +310,15 @@
           <section class="card">
             <h2 class="card-title">設問 04</h2>
             <div class="story">
-              <p class="clare-line">正規表現 un.ko にマッチする文字列を入力してください。</p>
+              <p class="clare-line">正規表現 go+gle にマッチする文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-matched-04" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-matched-04" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
             <div class="story">
-              <p class="clare-line">正規表現 un.ko にマッチしない文字列を入力してください。</p>
+              <p class="clare-line">正規表現 go+gle にマッチしない文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-unmatched-04" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-unmatched-04" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="show-answer-04">解答を表示する</button>
             </div><!-- .gplayer-button-wrapper -->
@@ -308,9 +330,8 @@
             <h2 class="card-title">解答例 04</h2>
             <div class="story">
               <p class="clare-line">解答例です。</p>
-              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: unko, unnko
-マッチしない文字列例: asdf, unnnko, unn?ko
-              </code></pre>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: gogle, google, gooooogle
+マッチしない文字列例: asdf, ggle, go+gle, go0gle</code></pre>
             </div>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple to-next-step" type="button" data-next-step="05">次の問題へ</button>
@@ -321,11 +342,12 @@
         <!-- 05 話 -->
         <div id="story-05" class="story-wrapper">
           <section class="card">
-            <h2 class="card-title">05. ドワーフ・ガンツの文字の連続</h2>
+            <h2 class="card-title">05. ドワーフ・ガンツの連続文字数指定</h2>
             <div class="story">
-              <p class="gantz-line">正規表現というのは、要するに複数の文字列をパターン化した表現なんじゃな。</p>
-              <p class="clare-line">……まあ、そんな感じです。</p>
-              <p class="gantz-line">今日のクレアさんは、なんか歯切れが悪いな。 ? は前の文字があるか・ないかを表したわけじゃが、とりあえず何か文字があるみたいなことって表せないのか？</p>
+              <p class="gantz-line">連続する文字数を指定することはできないのかな？</p>
+              <p class="clare-line">できます。</p>
+              <p class="gantz-line">何文字以上以下で指定できるのかな？</p>
+              <p class="clare-line">はい。それもできます。</p>
             </div><!-- .story -->
           </section><!-- #story-05 -->
 
@@ -333,10 +355,23 @@
             <h2 class="card-title">解説 05</h2>
             <p><span id="display-hint-05" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
             <div id="story-hint-05" class="story hidden">
-              <p class="clare-line"></p>
+              <p class="clare-line">例えば「ヤッホー{2}」という正規表現は、「{2}」直前の「ー」がちょうど 2 回続くパターンを表します。</p>
+              <p class="gantz-line">「ヤッホーー」に合致するんじゃな。</p>
+              <p class="clare-line">「ヤッホー{2,5}」で「ー」が 2 回以上 5 回以下続くパターンを表せます。</p>
+              <p class="gantz-line">以上・以下も指定できるんじゃな。</p>
+              <p class="clare-line">「ヤッホー{3,}」なら「ー」が 3 回以上続くパターンになります。</p>
+              <p class="gantz-line">なるほど。「ヤッホーーー」みたいなやつじゃな。</p>
+              <p class="clare-line">……。</p>
+              <p class="gantz-line">あとは「ヤッホー{,3}」で 3 回以下続くパターンなんじゃな。</p>
+              <p class="clare-line">ふっ、ひっかかりましたね。「{,3}」はありません。まあ、一部のプログラミング言語では実装されていますが。</p>
+              <p class="gantz-line">ふぅん。「{,3}」にするなら「{0,3}」とか「{1,3}」とかにしろってことじゃな。</p>
               <dl class="story-table-like story-definition">
-                <dt>.</dt>
-                <dd>任意の一文字を表すパターン。</dd>
+                <dt>{m,n}</dt>
+                <dd>直前の文字が m 回以上 n 回以下繰り返されるパターン</dd>
+                <dt>{m,}</dt>
+                <dd>直前の文字が m 回以上を表すパターン。</dd>
+                <dt><s>{,m}</s></dt>
+                <dd>一部のプログラミング言語を除いて未実装。直前の文字が n 回以下を表すパターン。</dd>
               </dl>
             </div><!-- #story-hint -->
           </section>
@@ -344,13 +379,15 @@
           <section class="card">
             <h2 class="card-title">設問 05</h2>
             <div class="story">
-              <p class="clare-line">正規表現 un.ko にマッチする文字列を入力してください。</p>
+              <p class="clare-line">正規表現 go{3,5}gle にマッチする文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-matched-05" class="your-story" rows="4" placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-matched-05" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
             <div class="story">
-              <p class="clare-line">正規表現 un.ko にマッチしない文字列を入力してください。</p>
+              <p class="clare-line">正規表現 go{3,5}gle にマッチしない文字列を入力してください。</p>
             </div>
-            <p><textarea id="your-regex-unmatched-05" class="your-story" rows="4" placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <p><textarea id="your-regex-unmatched-05" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
             <div class="gplayer-button-wrapper">
               <button class="gplayer-button ripple" type="button" id="show-answer-05">解答を表示する</button>
             </div><!-- .gplayer-button-wrapper -->
@@ -362,8 +399,8 @@
             <h2 class="card-title">解答例 05</h2>
             <div class="story">
               <p class="clare-line">解答例です。</p>
-              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: unko, unnko
-マッチしない文字列例: asdf, unnnko, unn?ko
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: gooogle, goooogle, gooooogle
+マッチしない文字列例: asdf, go{3,5}gle, google, goooooogle
               </code></pre>
             </div>
             <div class="gplayer-button-wrapper">
@@ -372,17 +409,720 @@
           </section><!-- #answer-05-card -->
         </div>
 
+        <!-- 06 話 -->
+        <div id="story-06" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">06. ドワーフ・ガンツの文字候補列挙</h2>
+            <div class="story">
+              <p class="gantz-line">曖昧は曖昧でもそんなに曖昧じゃないということもあるじゃろ？</p>
+              <p class="clare-line">はぁ？ 言っていることが曖昧過ぎて、何を言っているのか分かりません。</p>
+              <p class="gantz-line">例えば「セクシー」か「セクシィ」か「セクシイ」のどれかであることは確実なんじゃが「セクシい」はないみたいな感じじゃ。</p>
+              <p class="clare-line">候補が絞られている場合ですね。</p>
+            </div><!-- .story -->
+          </section><!-- #story-06 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 06</h2>
+            <p><span id="display-hint-06" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-06" class="story hidden">
+              <p class="clare-line">「セクシ[ーィイ]」のように文字候補たちを「[]」内に並列することで複数候補をパターン化できます。</p>
+              <p class="gantz-line">「[文字候補たち]」で単一文字の複数候補を表せるんじゃな。</p>
+              <p class="clare-line">はい。</p>
+              <dl class="story-table-like story-definition">
+                <dt>[文字候補たち]</dt>
+                <dd>単一文字の複数候補を表すパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 06</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 [AaEe]lice にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-06" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 [AaEe]lice にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-06" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-06">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-06" class="story">
+            </div><!-- #your-result-05 -->
+          </section>
+
+          <section id="answer-06-card" class="card hidden">
+            <h2 class="card-title">解答例 06</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: Alice, alice, Elice, elice
+マッチしない文字列例: asdf, [AaEe]lice, blice
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="07">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-06-card -->
+        </div>
+
+        <!-- 07 話 -->
+        <div id="story-07" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">07. ドワーフ・ガンツの文字候補範囲</h2>
+            <div class="story">
+              <p class="gantz-line">単一文字の複数候補を表す方法があるなら、いっそのこと a から z までのどれかみたいなことができたりしないのかな？</p>
+              <p class="clare-line">数字だけとか・小文字だけとか・大文字だけとか、文字候補を範囲指定で絞れますよ。</p>
+              <p class="gantz-line">範囲指定？</p>
+            </div><!-- .story -->
+          </section><!-- #story-07 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 07</h2>
+            <p><span id="display-hint-07" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-07" class="story hidden">
+              <p class="clare-line">例えば「[A-Z]」のように「[]」の中でハイフン「-」で繋ぐと大文字の英字単体を表せます。</p>
+              <p class="gantz-line">「[a-z]」なら単体の小文字英字になるのかな？</p>
+              <p class="clare-line">はい。「[0-9]」で数字単体です。</p>
+              <p class="gantz-line">日本語はできないのかな？ 「[あ-ん]」みたいな。</p>
+              <p class="clare-line">んー。できないことはないんですが、日本語の平仮名全体を表したいのであれば「[あ-ん]」ではなく「[ぁ-ゖ]」ですかね。小さい「ぁ」と小さい「ゖ」です。</p>
+              <p class="gantz-line">は？ 意味が分からんぞ。</p>
+              <p class="clare-line">文字コードを範囲指定した場合、 Linux コマンドなど一部の例外を除けば、およそほとんどのプログラム言語では Unicode の文字コード規格にしたがって文字範囲が把握されます。</p>
+              <p class="gantz-line">ゆにこーど？</p>
+              <p class="clare-line">世界中の文字や絵文字を統一的に扱うための文字集合の規格です。テキストデータを保存しようとする際などに、テキストファイルの文字エンコード方式として UTF-8 や UTF-16 や
+                UTF-32 などがあるのを見たことがないでしょうか？ これらの文字エンコード方式は Unicode を実際のコンピュータで扱う際の文字符号化形式なのです。</p>
+              <p class="gantz-line">なんか、小難しくてよく分からんぞ。要するに Unicode という規格がまずあって、世界中の文字にラベル付けがされていると？
+                ただ、それを実際のコンピュータで扱う際には、いくつかやり方があり、それぞれ UTF なんちゃらと名付けられているわけじゃな？</p>
+              <p class="clare-line">はい。よい整理です。</p>
+              <p class="gantz-line">じゃ、平仮名一覧が [あ-ん] じゃなくて [ぁ-ゖ] になってしまうのは、その Unicode での登録順のせいということか？</p>
+              <p class="clare-line">察しがいいですね。小さい「ぁ」には U+3041 が、小さい「ゖ」には U+3096 が割り当てられていて、この間に日本語の平仮名全てが入っています。ちなみに U+ は
+                Unicode を 16 進数で表すときの慣習的な接頭辞です。気にしなくて大丈夫です。</p>
+              <p class="gantz-line">なんか平仮名の珍妙な範囲指定を見ると、片仮名についても知りたくなるが、実際にはあんまり使わなさそうじゃな。</p>
+              <p class="clare-line">そうかもしれませんね。ウィキペディアの「<a
+                  href="https://ja.wikipedia.org/wiki/%E7%89%87%E4%BB%AE%E5%90%8D_(Unicode%E3%81%AE%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF)"
+                  target="_blank">片仮名 (Unicodeのブロック)</a>」を見ると、片仮名の文字コード表を見ることができます。「<a
+                  href="https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF_(Unicode)"
+                  target="_blank">ブロック
+                  (Unicode)</a>」のページは、世界中のさまざまな文字のブロックを閲覧するためのハブになっています。気になるなら暇なときにでも見てみるといいかもしれません。</p>
+              <p class="gantz-line">ちなみに、よく使うのはどんなものじゃ？</p>
+              <p class="clare-line">「[a-z]」や「[A-Z]」や「[0-9]」あたりでしょうか。たまに 0 を省いて「[1-9]」というのも登場したりします。</p>
+              <p class="gantz-line">じゃあ、それだけ覚えておけば十分じゃな。</p>
+              <p class="clare-line">他の記号と上手く組み合わせれば「[1-9]?[0-9]」で 0 以上 100 未満の数字を表したりもできます。</p>
+              <dl class="story-table-like story-definition">
+                <dt>[文字-別の文字]</dt>
+                <dd>単一文字候補の範囲を表すパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 07</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 [0-9]{3} にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-07" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 [0-9]{3} にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-07" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-07">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-07" class="story">
+            </div><!-- #your-result-07 -->
+          </section>
+
+          <section id="answer-07-card" class="card hidden">
+            <h2 class="card-title">解答例 07</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: 000, 001, 002, 999, 100000
+マッチしない文字列例: asdf, [0-9]{3}, 22,
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="08">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-07-card -->
+        </div>
+
+        <!-- 08 話 -->
+        <div id="story-08" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">08. ドワーフ・ガンツの文字候補の否定</h2>
+            <div class="story">
+              <p class="gantz-line">今まで合致する文字列パターンばかり扱ってきたわけじゃが、合致しない文字列パターンというのは表現できないのかな？</p>
+              <p class="clare-line">一応できます。ただ正規表現は否定を扱うのはあまり得意ではありません。</p>
+              <p class="gantz-line">ほぉん。</p>
+            </div><!-- .story -->
+          </section><!-- #story-08 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 08</h2>
+            <p><span id="display-hint-08" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-08" class="story hidden">
+              <p class="clare-line">「[]」内の先頭に「^」を使用することで、文字候補の否定を表すことができます。例えば「[^0-9]」は、数字以外の任意の 1 文字を表します。例えば a とか b
+                とかですね。</p>
+              <p class="gantz-line">なるほど。「[^aA]lice」の場合は Elice ならオッケーってことじゃな。</p>
+              <p class="clare-line">はい。ただし、ちょっと注意が必要です。 EliceAlice という文字列があった場合どうなると思います。</p>
+              <p class="gantz-line">ん？ Alice という文字列が含まれているから当然ダメじゃろ？</p>
+              <p class="clare-line">いいえ、 EliceAlice はオッケーなんです。</p>
+              <p class="gantz-line">なんでじゃ！ Alice が含まれておるが？</p>
+              <p class="clare-line">いいえ、 EliceAlice の先頭の Elice の部分だけで「[^aA]lice」を満たしているので、その後に Alice が入っていてもオッケーになってしまうのです。</p>
+              <p class="gantz-line">……ほぉん、ややこしいな。「[^aA]lice」は「Alice も alice
+                も含まれていない」ことを表しているのではなく、「[^aA]lice」を満たすものが含まれているパターンなわけじゃな。</p>
+              <p class="clare-line">そうです。最初に言ったように、正規表現は否定を扱うのはあまり得意ではありません。</p>
+              <dl class="story-table-like story-definition">
+                <dt>[^文字候補たち]</dt>
+                <dd>文字候補たち以外の 1 文字を表すパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 08</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 [^0-9]{3} にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-08" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 [^0-9]{3} にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-08" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-08">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-08" class="story">
+            </div><!-- #your-result-08 -->
+          </section>
+
+          <section id="answer-08-card" class="card hidden">
+            <h2 class="card-title">解答例 08</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: aaa, abc, asdf, abc123
+マッチしない文字列例: 000, 111, 123, [^0-9]{3}
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="09">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-08-card -->
+        </div>
+
+        <!-- 09 話 -->
+        <div id="story-09" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">09. ドワーフ・ガンツの複数の文字列候補</h2>
+            <div class="story">
+              <p class="gantz-line">今まで単一文字が曖昧なパターンの取り扱いばかりじゃったが、文字列が曖昧だみたいなパターンは扱えないのかな？</p>
+              <p class="clare-line">例えば？</p>
+              <p class="gantz-line">「力こそパワー」か「チカラこそパワー」か曖昧だなみたいな場合じゃ。</p>
+              <p class="clare-line">可能です。</p>
+            </div><!-- .story -->
+          </section><!-- #story-09 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 09</h2>
+            <p><span id="display-hint-09" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-09" class="story hidden">
+              <p class="clare-line">「(力|チカラ)こそパワー」のように「(文字列候補|文字列候補)」を使って表現できます。</p>
+              <p class="gantz-line">2 つ並べるだけじゃなくて 3 つ以上並べてもいいのかな？ 「(力|チカラ|ちから)こそパワー」みたいに。</p>
+              <p class="clare-line">大丈夫です。いくつでも並べられます。</p>
+              <dl class="story-table-like story-definition">
+                <dt>(文字列候補|文字列候補)</dt>
+                <dd>複数の文字列候補を表すパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 09</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 (Final|Initial)Fantasy にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-09" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 (Final|Initial)Fantasy にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-09" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-09">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-09" class="story">
+            </div><!-- #your-result-09 -->
+          </section>
+
+          <section id="answer-09-card" class="card hidden">
+            <h2 class="card-title">解答例 09</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: FinalFantasy, InitialFantasy
+マッチしない文字列例: asdf, Final Fantasy, (Final|Initial)Fantasy
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="10">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-09-card -->
+        </div>
+
+        <!-- 10 話 -->
+        <div id="story-10" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">10. ドワーフ・ガンツの開始と終了</h2>
+            <div class="story">
+              <p class="gantz-line">「可能」は検索対象にしたいが、「不可能」はいらんという場合もあるじゃろ？ こういう場合はどうすればいいんじゃ？
+                「[^不]可能」だと「非可能」とか「屁可能」はオッケーになっても「可能」はダメじゃろ？</p>
+              <p class="clare-line">そうですね。この場合であれば、先頭位置を指定してやればいけそうですね。</p>
+            </div><!-- .story -->
+          </section><!-- #story-10 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 10</h2>
+            <p><span id="display-hint-10" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-10" class="story hidden">
+              <p class="clare-line">「^」を使うことで文字列の開始位置を指定することができます。例えば「^可能」で最初の文字が「可」であることを表せます。</p>
+              <p class="gantz-line">ん？ いや、「^」は否定を表すんじゃろ？</p>
+              <p class="clare-line">いいえ、「[]」の中の先頭で使われると文字候補たちの否定を表しますが、「[]」なしで文字列の先頭におかれた場合は、文字列の先頭を表します。</p>
+              <p class="gantz-line">これまたややこしいな。</p>
+              <p class="clare-line">一度覚えてしまえば大したことはありません。</p>
+              <p class="gantz-line">開始位置を表す記号があるということは、終了位置を表す記号もありそうじゃな。</p>
+              <p class="clare-line">はい。「可能」という語は検索対象にしたいが「可能性」は検索対象にしたくない場合、つまり終了文字を明確に指定したい場合、「可能$」のように「$」を使って表現できます。
+              </p>
+              <p class="gantz-line">じゃあ、「^可能$」の場合は、「不可能」も「可能性」もダメで、「可能」だけがオッケーってことじゃな。</p>
+              <p class="clare-line">そうです。ちなみに先頭以外の「^」と末尾以外の「$」はそのままの文字として扱われるため、例えば「^^abc$$」であれば、文字列「^abc$」にマッチします。</p>
+              <dl class="story-table-like story-definition">
+                <dt>^</dt>
+                <dd>文字列の先頭を表すパターン。</dd>
+                <dt>$</dt>
+                <dd>文字列の終了を表すパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 10</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 ^F.+ にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-10" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 ^F.+ にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-10" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-10">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-10" class="story">
+            </div><!-- #your-result-10 -->
+          </section>
+
+          <section id="answer-10-card" class="card hidden">
+            <h2 class="card-title">解答例 10</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: FinalFantasy, Foo, F., F.+
+マッチしない文字列例: asdf, ^F, ^F.+, F
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="11">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-10-card -->
+        </div>
+
+        <!-- 11 話 -->
+        <div id="story-11" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">11. ドワーフ・ガンツのエスケープ</h2>
+            <div class="story">
+              <p class="gantz-line">今までいろんな記号が出てきたわけじゃが、今まで出てきた記号そのものを検索対象にしたいみたいな場合もあるじゃろ？</p>
+              <p class="clare-line">そうなんですか？ 例えば？</p>
+              <p class="gantz-line">例えば「[a-z]」と書くと、小文字の英字 1 文字のどれかを表してしまうわけじゃが、「a」か「-」か「z」を表したい場合もあり得るじゃろ？</p>
+              <p class="clare-line">なかなかひねくれてますね。でもこういう疑問を持てるセンスは重要です。こういう場合は、エスケープします。</p>
+              <p class="gantz-line">えすけーぷ？</p>
+            </div><!-- .story -->
+          </section><!-- #story-11 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 11</h2>
+            <p><span id="display-hint-11" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-11" class="story hidden">
+              <p class="clare-line">エスケープの前にちょっとした便利表現を見ておきましょう。</p>
+              <p class="gantz-line">おう。</p>
+              <p class="clare-line">「\d」は数字つまり「[0-9]」を表し、「\w」は英数字とアンダースコアつまり「[a-zA-Z0-9_]」を表します。バックスラッシュ（ \
+                ）は、環境によっては円マーク（ &yen; ）と表示されるかもしれません。</p>
+              <p class="gantz-line">「\d」は割と使えそうじゃな。</p>
+              <p class="clare-line">今出てきたバックスラッシュ（ \ ）ですが、これはエスケープ記号としても使えます。特殊文字の前に置くことで、直後に置かれた特殊文字を通常の文字扱いできるようになります。
+              </p>
+              <p class="gantz-line">ほう。じゃあさっきの「[a-z]」は「[a\-z]」で「a」か「-」か「z」を表せるようになるんじゃな。</p>
+              <p class="clare-line">はい。ほかにも「\[\]」とかすれば、角括弧そのもの「[]」を表せるようになりますし、「\\d」なら「\d」という文字列そのものを表せます。</p>
+              <p class="gantz-line">なんか「\[^^\]」とかすると、絵文字みたいになるな。</p>
+              <p class="clare-line">その場合は「[^^]」という文字列を表すことになります。顔に似合わず可愛いもの好きですね。</p>
+              <p class="gantz-line">やかましいわい。</p>
+              <dl class="story-table-like story-definition">
+                <dt>\d</dt>
+                <dd>数字 1 文字つまり「[0-9]」を表すパターン。</dd>
+                <dt>\w</dt>
+                <dd>英数字とアンダースコアつまり「[a-zA-Z0-9_]」を表すパターン。</dd>
+                <dt>\</dt>
+                <dd>直後の特殊文字をエスケープする文字。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 11</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 \\d{3}-\\d{4} にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-11" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 \\d{3}-\\d{4} にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-11" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-11">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-11" class="story">
+            </div><!-- #your-result-11 -->
+          </section>
+
+          <section id="answer-11-card" class="card hidden">
+            <h2 class="card-title">解答例 11</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: \ddd-\dddd, abc\ddd-\ddddxyz
+マッチしない文字列例: asdf, \\d{3}-\\d{4}, \123-\1234
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="12">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-11-card -->
+        </div>
+
+        <!-- 12 話 -->
+        <div id="story-12" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">12. ドワーフ・ガンツの先読み</h2>
+            <div class="story">
+              <p class="gantz-line">ちゃんと覚えて使えば、正規表現が相当便利なツールっぽいというのは、おぼろげながら分かってきた気はするんじゃが……。</p>
+              <p class="clare-line">「じゃが……」？</p>
+              <p class="gantz-line">例えばユーザに入力を促して入力値をチェックしたいみたいな状況があるとするじゃろ？</p>
+              <p class="clare-line">バリデーションですね。</p>
+              <p class="gantz-line">得点の入力をさせたい、値は 0 以上 100 以下に限定したい、みたいな場合があるとする。</p>
+              <p class="clare-line">はい。</p>
+              <p class="gantz-line">その場合「^(100|[1-9]?\d)$」でチェックできるじゃろ？ 他にも書き方はあるかもしれんが。……合ってるかな？</p>
+              <p class="clare-line">合ってます。素晴らしいです。</p>
+              <p class="gantz-line">そうじゃろ！ じゃが、こんな素晴らしいワシの能力を以てしても、パスワードのバリデーションができんのじゃ。</p>
+              <p class="clare-line">へぇ……。パスワードのバリデーションってどんなものを考えてるんですか？</p>
+              <p class="gantz-line">アルファベットの大文字・小文字・数字と一部の特殊記号（ $%& ）をそれぞれ 1 文字以上ずつ含んでいて、全体としては 8
+                文字以上みたいなことを指定したいのじゃが……。</p>
+              <p class="clare-line">なるほど。それは難しいですね。</p>
+              <p class="gantz-line">そうなんじゃ。例えば「^[A-Za-z0-9$%&]{8,}$」としたとするじゃろ？
+                そうすると「aaaaaaaa」みたいな文字列でもオッケーになってしまう。かと言って「^[A-Z]+[a-z]+\d+[$%&]+$」みたいにすると、大文字・小文字・数字・記号の順が固定で「Aa0$」はオッケーじゃが、順番を逆順にして「$0aA」にしたりするとパスワードとしてダメみたいな珍妙なことになってしまう。
+              </p>
+              <p class="clare-line">しかも 8 文字以上制約がどっか行っちゃいましたね。</p>
+              <p class="gantz-line">
+                ほかにも「^.*[A-Z].*[a-z].*\d.*[$%&]$」とかにしても、先頭が大文字で固定というのが回避できるだけで、やっぱり文字種の順序は固定になってしまって上手くいかん。どうこねくり回しても、パスワードのバリデーションができる気がせんのじゃ。
+              </p>
+              <p class="clare-line">「先読み」と呼ばれる方法を使うとできます。ちょっと難しいですが、パスワードをヴァリデートするための定型的な方法なので、覚えておいて損はありません。</p>
+              <p class="gantz-line">先読み……？</p>
+            </div><!-- .story -->
+          </section><!-- #story-12 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 12</h2>
+            <p><span id="display-hint-12" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-12" class="story hidden">
+              <p class="clare-line">先読みを理解するためには「消費」を理解する必要があります。</p>
+              <p class="gantz-line">消費？ ワシは正規表現を使うと、何かを消費してしまうのか？</p>
+              <p class="clare-line">
+                ガンツさんの所持品は何も減りません。例えば「^abc(bar|xyz){2}$」という正規表現で、「abcbarxyz」という文字列をチェックするとします。最終的には開始は「abc」でその後に「bar」と「xyz」が続くけれど、「bar」と「xyz」については順序は問わないという文字列をチェックしたいとします。
+              </p>
+              <p class="gantz-line">つまり適切な文字列は「abcbarxyz」か「abcxyzbar」かということじゃな。でも実際には「^abc(bar|xyz){2}$」だと今のところ下記の
+                4 通りを拾ってしまうな。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">abcbarbar ×
+abcbarxyz ○
+abcxyzbar ○
+abcxyzxyz ×</code></pre>
+              <p class="clare-line">はい。とりあえず、消費を理解するために「^abc(bar|xyz){2}$」で試します。</p>
+              <p class="gantz-line">おう。</p>
+              <p class="clare-line">まず正規表現側の「^abc」に対応する部分が次のように消費されます。</p>
+              <figure>
+                <img src="images/regex-lookahead-01.png" alt="abc を消費">
+                <figcaption>abc を消費</figcaption>
+              </figure>
+              <p class="gantz-line">どういうことじゃ？</p>
+              <p class="clare-line">チェックされたことで、対象文字列の▲の所までカーソルが動いたと考えてみてください。</p>
+              <p class="gantz-line">それが消費されたということなんじゃな？ 正規表現「^abc(bar|xyz)$」の「^abc」に相当する部分までカーソルが移動したということと、対象文字列が消費されたということは同じことなんじゃな？
+              </p>
+              <p class="clare-line">はい。で、次は「(bar|xyz){2}」の部分の 1 回目です。</p>
+              <figure>
+                <img src="images/regex-lookahead-02.png" alt="abcbar を消費">
+                <figcaption>abcbar を消費</figcaption>
+              </figure>
+              <p class="gantz-line">「bar」か「xyz」の内の、今回は「bar」が消費されて、再びカーソルが動いたんじゃな。</p>
+              <p class="clare-line">続いて「(bar|xyz){2}」の部分の 2 回目で文字列が全て消費されます。</p>
+              <figure>
+                <img src="images/regex-lookahead-04.png" alt="abcbarxyz を消費">
+                <figcaption>abcbarxyz を消費</figcaption>
+              </figure>
+              <p class="gantz-line">うん、なんか当たり前過ぎて、何が言いたいのかよく分からんぞ。でもこの正規表現じゃ、さっきも言ったように、余計な文字列までオッケーになってしまうな。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">abcbarbar ×
+abcbarxyz ○
+abcxyzbar ○
+abcxyzxyz ×</code></pre>
+              <p class="clare-line">はい。ダメな例を確認すると「abcbarbar」と「abcxyzxyz」のように、「bar」か「xyz」の片方しかないものになります。</p>
+              <p class="gantz-line">おう。「bar」と「xyz」は両方必要で順不同じゃったな。</p>
+              <p class="clare-line">
+                ここで「abc」を消費した時点でカーソルが一旦停止して、カーソルが停止したままこの先に「bar」と「xyz」がそれぞれ存在するかどうかだけ先に確認できる方法があったらいいと思いませんか？</p>
+              <figure>
+                <img src="images/regex-lookahead-01.png" alt="abc を消費">
+                <figcaption>abc を消費</figcaption>
+              </figure>
+              <p class="gantz-line">そ、そうなのか？……まあクレアさんの言う通り、「abc」だけ消費してカーソルが止まったままの状態で、この先の「bar」と「xyz」の存在をそれぞれ確認できれば、順不同の存在確認ができそうじゃな？ それが先読みということか？</p>
+              <p class="clare-line">
+                はい。先読みは「(?=先読み対象)」で表せます。これをさっきの正規表現に組み込むと下記のようになります。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">^abc(?=.*bar)(?=.*xyz)(bar|xyz){2}$</code></pre>
+              <p class="gantz-line">……はぁ？ びっくりするくらい意味が分からんぞ……。</p>
+              <p class="clare-line">順番に見ていきましょう。まず「^abc」で「abc」まで消費するのはさっきと同じです。</p>
+              <figure>
+                <img src="images/regex-lookahead-01.png" alt="abc を消費">
+                <figcaption>abc を消費</figcaption>
+              </figure>
+              <p class="clare-line">続いて、カーソルはそのままで、まず「.*bar」を先読みします。</p>
+              <p class="gantz-line">0 文字以上の任意の文字列の後に「bar」が来るパターンじゃな。</p>
+              <p class="clare-line">はい。この場合「abc」の直後・つまり 0
+                文字後に「bar」が来ているのでオッケーです。ここまでで対象文字列については「abc」だけ消費した状態で、正規表現側で見ると「^abc(?=.*bar)」までチェックしました。続いて「(?=.*xyz)」の先読みです。先読みの内容は「.*xyz」なので、
+                0 文字以上の文字列の後に「xyz」が存在するかどうかをチェックします。</p>
+              <p class="gantz-line">3 文字の文字列のあとに「xyz」があるな。</p>
+              <p class="clare-line">ここまでで正規表現は「^abc(?=.*bar)(?=.*xyz)」までチェックしたのに、消費したのは「abc」だけの状態です。</p>
+              <p class="gantz-line">なるほど。「abc」の後に、「bar」と「xyz」が順不同で存在することが確認できたわけじゃな。</p>
+              <p class="clare-line">はい。</p>
+              <p class="gantz-line">じゃあ、ここで終わりでいいのでは？</p>
+              <p class="clare-line">ダメです。ここで終わりにすると、下記のような例もオッケーになってしまいますよ。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">abcbarxyzhoge
+abchogehogebarxyz
+abcxyzhogebar</code></pre>
+              <p class="gantz-line">「abc」の後に「bar」と「xyz」以外の余計なものがないことを保証してやるために、最後の「(bar|xyz){2}$」が必要なわけじゃな？</p>
+              <p class="clare-line">はい。</p>
+              <p class="gantz-line">これは難しいな。</p>
+              <p class="clare-line">「abc」の部分は置いておいて、 2 つの部分に分けて考えると整理できるかと思います。まずは順不同で必要なものを定義する先読み部分。その後で、可能な文字や文字列を「または」で連結する部分。</p>
+              <p class="gantz-line">つまり、こういうことかな？</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">A, B, C: 順不同で必要な文字列
+
+^(?=.*A)(?=.*B)(?=.*C)(A|B|C){3}$</code></pre>
+              <p class="clare-line">いいですね。……それじゃあ、最初のパスワードの例の場合どうなりますか？</p>
+              <p class="gantz-line">順不同で、大文字・小文字・数字・記号（ $%& ）が必要で、それらだけで 8 文字以上じゃから、こんな感じじゃな？</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[$%&])[A-Za-z\d$%&]{8,}$</code></pre>
+              <p class="clare-line">完璧です。パスワードバリデーションの例は、一々考えて書くというよりも、いっそ覚えてしまった方がいいです。覚えてしまったものを、書きながら、都度内容を考えて確認するという風にした方が使いこなせると思います。</p>
+              <dl class="story-table-like story-definition">
+                <dt>(?=先読み対象)</dt>
+                <dd>先読み対象を消費せずに存在を確認するパターン。</dd>
+              </dl>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 12</h2>
+            <div class="story">
+              <p class="clare-line">正規表現 ^x(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$%&])[a-zA-Z0-9$%&]{5,}$ にマッチする文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-matched-12" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">正規表現 ^x(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$%&])[a-zA-Z0-9$%&]{5,}$ にマッチしない文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-12" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-12">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-12" class="story">
+            </div><!-- #your-result-12 -->
+          </section>
+
+          <section id="answer-12-card" class="card hidden">
+            <h2 class="card-title">解答例 12</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: xaA0$a, x0%9Zz
+マッチしない文字列例: asdf, ^x(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$%&])[a-zA-Z0-9$%&]{5,}$, xaA0$
+              </code></pre>
+            </div>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple to-next-step" type="button" data-next-step="13">次の問題へ</button>
+            </div><!-- .gplayer-button-wrapper -->
+          </section><!-- #answer-12-card -->
+        </div>
+
+        <!-- 13 話 -->
+        <div id="story-13" class="story-wrapper">
+          <section class="card">
+            <h2 class="card-title">13. ドワーフ・ガンツの有限オートマトン</h2>
+            <div class="story">
+              <p class="gantz-line">正規表現を覚えれば割とどんなパターンでも表現できそうな気がしてきたんじゃが、表現できないパターンってあるんかな？</p>
+              <p class="clare-line">よく挙げられる例は「a」が n 個並んだ後に「b」も n 個並ぶみたいなパターンですかね。</p>
+              <p class="gantz-line">「a{3}b{3}」みたいなのじゃダメなのか？</p>
+              <p class="clare-line">それでは 3 個限定になってしまいます。できないと言っているのは、何個来るか分からないけれども a と b が同じ個数並ぶパターンのことです。</p>
+              <p class="gantz-line">そっか……。無理なのかな。</p>
+              <p class="clare-line">実はプログラマが考える正規表現の景色は、正規表現を作った人たちが見ている風景と全く違っているんです。</p>
+              <p class="gantz-line">どういうことじゃ？</p>
+              <p class="clare-line">ガンツさんはここまで正規表現を学んで、正規表現をどういうものだと思いましたか？</p>
+              <p class="gantz-line">まあ、検索したり、入力値のフォーマットチェックしたりするのに便利ツールみたいな感じかな？</p>
+              <p class="clare-line">そうでしょう。それがプログラマが見ている正規表現の景色です。既存の言語の中に特定のパターンを発見するためのツールというのが、プログラマが正規表現に対して持っているイメージです。</p>
+              <p class="gantz-line">そうではないのか？</p>
+              <p class="clare-line">もともとは正規表現は「正規言語」を構成するためのツールなのです。</p>
+              <p class="gantz-line">せいきげんご？ 何じゃそれ？</p>
+              <p class="clare-line">正規言語は有限オートマトンによって受理できる言語の集合です。</p>
+              <p class="gantz-line">おーとまとん？ 自動羊か？ 訳が分からなくてよく眠れそうじゃな。</p>
+              <p class="clare-line">自動羊（ Auto Mutton ）ではありません。自動装置（ Automaton ）です。</p>
+            </div><!-- .story -->
+          </section><!-- #story-13 -->
+
+          <section class="card">
+            <h2 class="card-title">解説 13</h2>
+            <p><span id="display-hint-13" class="display-hint">ここをクリックすれば解説が表示</span>されます。</p>
+            <div id="story-hint-13" class="story hidden">
+              <p class="clare-line">いきなりですが「a+b」という正規表現を有限オートマトンで表現してみます。ただし話を単純化するために、今アルファベットは「a」と「b」と「c」しか存在しないものとします。</p>
+              <figure>
+                <img src="images/regex-automaton.png" alt="正規表現 a+b の有限オートマトン">
+                <figcaption>正規表現 a+b の有限オートマトン</figcaption>
+              </figure>
+              <p class="gantz-line">なんじゃ、このけったいな図は？ 黒魔術か？</p>
+              <p class="clare-line">青い矢印の q0 から開始します。まずは正規表現「a+b」を満たす文字列「aaab」について考えてみましょう。 q0 q1 q2 qd は「状態」を表します。とりあえず状態は双六のマスのようなものだと考えてください。 q2 は「受理状態」で、双六で言えばアガリです。今考えている文字列「aaab」は、サイコロを振って出た目だと思ってください。出た目にしたがって矢印方向に進みます。出た目と移動先を表にしておくと下記のようになります。</p>
+              <table>
+                <caption>状態遷移表</caption>
+                <thead>
+                  <tr>
+                    <th>状態</th>
+                    <th>a</th>
+                    <th>b</th>
+                    <th>c</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>q0</th>
+                    <td>q1</td>
+                    <td>qd</td>
+                    <td>qd</td>
+                  </tr>
+                  <tr>
+                    <th>q1</th>
+                    <td>q1</td>
+                    <td>q2</td>
+                    <td>qd</td>
+                  </tr>
+                  <tr>
+                    <th>q2</th>
+                    <td>qd</td>
+                    <td>qd</td>
+                    <td>qd</td>
+                  </tr>
+                  <tr>
+                    <th>qd</th>
+                    <td>qd</td>
+                    <td>qd</td>
+                    <td>qd</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="gantz-line">表よりも遷移図を見た方が分かりやすそうじゃ。……サイコロを 4 回振って「aaab」が出たという想定で、最後に「受理状態」のマスに到達していればアガリということじゃな。</p>
+              <p class="clare-line">はい。</p>
+              <p class="gantz-line">q0 から出発して最初は a が出たから q1 に移動。続けてまた a が出たのでまた q1 のマスのまま。もう 1 回 a が出たのでまた q1 のマス。最後に b が出たので q2 に移動してアガリの「受理状態」じゃ！</p>
+              <p class="clare-line">おめでとうございます。</p>
+              <p class="gantz-line">めでたいのか？</p>
+              <p class="clare-line">これが 1 回でも c が出てきたり、最初が a 以外から始まったりすると死状態 qd に遷移したまま抜け出せなくなります。例えば「aacb」とか「baab」とで試してみてください。</p>
+              <p class="gantz-line">なるほど。……で、これがなんなんじゃ？</p>
+              <p class="clare-line">有限オートマトンは有限個の状態を管理できる自動機械です。そしてこの機械で受理できるものの集合が正規言語です。もともとの正規表現はこの正規言語を生成するためのツールなのです。</p>
+              <p class="gantz-line">ほぉん。……じゃが、ちょっと腑に落ちないこともないではない。</p>
+              <p class="clare-line">と言うと？</p>
+              <p class="gantz-line">今回対象にした正規表現「a+b」には、開始位置を表す「^」や終了位置を表す「$」が見当たらない。今回の有限オートマトンだと「aaabc」みたいな文字列は受理されないじゃろ？ じゃが、正規表現「a+b」にはマッチするはずじゃ。「^a+b$」ならマッチする。正規表現「a+b」と今回の有限オートマトンの図はズレているのではないか？</p>
+              <p class="clare-line">そもそも有限オートマトンの正規表現には「^」も「$」も存在しません。正規表現が部分文字列検索をデフォルトの機能とするようになったのは後のことで、「^」も「$」もそのために追加された拡張機能なのです。</p>
+              <p class="gantz-line">なるほど。じゃあ、あの小難しかった先読みとかも後の拡張なのかな？</p>
+              <p class="clare-line">少なくとも「(?=)」という形のものは、おそらく Perl での導入が最初かと思います。現在プログラマが知っている正規表現は、元々の古典的正規表現から見ると大分別物ですね。</p>
+            </div><!-- #story-hint -->
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">設問 13</h2>
+            <div class="story">
+              <p class="clare-line">下記有限オートマトンで受理される文字列を入力してください。ただし、アルファベットは「a」と「b」と「c」しか存在しないものとし、状態 q0 を開始位置、状態 q2 を受理状態とします。</p>
+              <figure>
+                <img src="images/regex-automaton-02.png" alt="設問">
+                <figcaption>設問 13</figcaption>
+              </figure>
+            </div>
+            <p><textarea id="your-regex-matched-13" class="your-story" rows="4"
+                placeholder="ここにマッチする文字列を書きます"></textarea></p>
+            <div class="story">
+              <p class="clare-line">上記有限オートマトンで受理される文字列を入力してください。</p>
+            </div>
+            <p><textarea id="your-regex-unmatched-13" class="your-story" rows="4"
+                placeholder="ここにマッチしない文字列を書きます"></textarea></p>
+            <div class="gplayer-button-wrapper">
+              <button class="gplayer-button ripple" type="button" id="show-answer-13">解答を表示する</button>
+            </div><!-- .gplayer-button-wrapper -->
+            <div id="your-result-13" class="story">
+            </div><!-- #your-result-13 -->
+          </section>
+
+          <section id="answer-13-card" class="card hidden">
+            <h2 class="card-title">解答例 13</h2>
+            <div class="story">
+              <p class="clare-line">解答例です。正規表現「^[abc]+c$」にマッチするかしないかで解答してください。</p>
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: aaac, abcc
+マッチしない文字列例: ccca, abca, aaa
+              </code></pre>
+            </div>
+          </section><!-- #answer-13-card -->
+        </div>
+
         <section class="card">
           <h2 class="card-title">結果一覧</h2>
           <dl class="story-table-like">
-            <dt>設問 01 ドワーフ・ガンツの怪しい一文字</dt>
+            <dt>設問 01 ドワーフ・ガンツの怪しい 1 文字</dt>
             <dd id="your-result-list-01" data-result-id="ghomepub-regex-01"></dd>
-            <dt>設問 02 ドワーフ・ガンツの任意の一文字</dt>
+            <dt>設問 02 ドワーフ・ガンツの任意の 1 文字</dt>
             <dd id="your-result-list-02" data-result-id="ghomepub-regex-02"></dd>
             <dt>設問 03 ドワーフ・ガンツの文字の連続</dt>
             <dd id="your-result-list-03" data-result-id="ghomepub-regex-03"></dd>
-            <dt>設問 04 ドワーフ・ガンツの一文字以上の連続</dt>
+            <dt>設問 04 ドワーフ・ガンツの 1 文字以上の連続</dt>
             <dd id="your-result-list-04" data-result-id="ghomepub-regex-04"></dd>
+            <dt>設問 05 ドワーフ・ガンツの連続文字数指定</dt>
+            <dd id="your-result-list-05" data-result-id="ghomepub-regex-05"></dd>
+            <dt>設問 06 ドワーフ・ガンツの文字候補列挙</dt>
+            <dd id="your-result-list-06" data-result-id="ghomepub-regex-06"></dd>
+            <dt>設問 07 ドワーフ・ガンツの文字候補範囲</dt>
+            <dd id="your-result-list-07" data-result-id="ghomepub-regex-07"></dd>
+            <dt>設問 08 ドワーフ・ガンツの文字候補の否定</dt>
+            <dd id="your-result-list-08" data-result-id="ghomepub-regex-08"></dd>
+            <dt>設問 09 ドワーフ・ガンツの複数の文字列候補</dt>
+            <dd id="your-result-list-09" data-result-id="ghomepub-regex-09"></dd>
+            <dt>設問 10 ドワーフ・ガンツの開始と終了</dt>
+            <dd id="your-result-list-10" data-result-id="ghomepub-regex-10"></dd>
+            <dt>設問 11 ドワーフ・ガンツのエスケープ</dt>
+            <dd id="your-result-list-11" data-result-id="ghomepub-regex-11"></dd>
+            <dt>設問 12 ドワーフ・ガンツの先読み</dt>
+            <dd id="your-result-list-12" data-result-id="ghomepub-regex-12"></dd>
+            <dt>設問 13 ドワーフ・ガンツの有限オートマトン</dt>
+            <dd id="your-result-list-13" data-result-id="ghomepub-regex-13"></dd>
           </dl>
           <div class="gplayer-button-wrapper">
             <button class="gplayer-button ripple" type="button" id="clear-your-progress-button">結果一覧のクリア</button>
