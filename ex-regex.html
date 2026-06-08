@@ -984,7 +984,7 @@ abcxyzhogebar</code></pre>
               <p class="clare-line">実はプログラマが考える正規表現の景色は、正規表現を作った人たちが見ている風景と全く違っているんです。</p>
               <p class="gantz-line">どういうことじゃ？</p>
               <p class="clare-line">ガンツさんはここまで正規表現を学んで、正規表現をどういうものだと思いましたか？</p>
-              <p class="gantz-line">まあ、検索したり、入力値のフォーマットチェックしたりするのに便利ツールみたいな感じかな？</p>
+              <p class="gantz-line">まあ、検索したり、入力値のフォーマットチェックしたりするのに便利なツールみたいな感じかな？</p>
               <p class="clare-line">そうでしょう。それがプログラマが見ている正規表現の景色です。既存の言語の中に特定のパターンを発見するためのツールというのが、プログラマが正規表現に対して持っているイメージです。</p>
               <p class="gantz-line">そうではないのか？</p>
               <p class="clare-line">もともとは正規表現は「正規言語」を構成するためのツールなのです。</p>
@@ -1005,7 +1005,7 @@ abcxyzhogebar</code></pre>
                 <figcaption>正規表現 a+b の有限オートマトン</figcaption>
               </figure>
               <p class="gantz-line">なんじゃ、このけったいな図は？ 黒魔術か？</p>
-              <p class="clare-line">青い矢印の q0 から開始します。まずは正規表現「a+b」を満たす文字列「aaab」について考えてみましょう。 q0 q1 q2 qd は「状態」を表します。とりあえず状態は双六のマスのようなものだと考えてください。 q2 は「受理状態」で、双六で言えばアガリです。今考えている文字列「aaab」は、サイコロを振って出た目だと思ってください。出た目にしたがって矢印方向に進みます。出た目と移動先を表にしておくと下記のようになります。</p>
+              <p class="clare-line">青い矢印の q0 から開始します。まずは正規表現「a+b」を満たす文字列「aaab」について考えてみましょう。 q0 q1 q2 qd は「状態」を表します。とりあえず状態は双六のマスのようなものだと考えてください。 q2 は「受理状態」で、双六で言えばアガリです。今考えている文字列「aaab」は、サイコロを振って出た目だと思ってください。 4 回振って、順に「aaab」と出た感じです。出た目にしたがって矢印方向に進みます。出た目と移動先を表にしておくと下記のようになります。</p>
               <table>
                 <caption>状態遷移表</caption>
                 <thead>
@@ -1087,7 +1087,7 @@ abcxyzhogebar</code></pre>
             <h2 class="card-title">解答例 13</h2>
             <div class="story">
               <p class="clare-line">解答例です。正規表現「^[abc]+c$」にマッチするかしないかで解答してください。</p>
-              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: aaac, abcc
+              <pre class="line-numbers language-text" tabindex="0"><code class="language-text">マッチする文字列例: ac, cc, aaac, abcc
 マッチしない文字列例: ccca, abca, aaa
               </code></pre>
             </div>
